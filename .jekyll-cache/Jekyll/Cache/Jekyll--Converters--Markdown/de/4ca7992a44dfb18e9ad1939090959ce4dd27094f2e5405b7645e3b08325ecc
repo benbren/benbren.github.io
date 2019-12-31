@@ -1,11 +1,4 @@
-I"�+<p>layout: post
-title:  “Least Squares via the SVD”
-date:   2018-04-11 20:00:00 -0700
-categories: jekyll update</p>
-
-<hr />
-
-<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"^+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Let’s say you have some matrix of features (covariates) <script type="math/tex">A \in \mathbb{R}^{m \times n}</script> and a response vector <script type="math/tex">y \in \mathbb{R}^m</script>. We want to find the input vector <script type="math/tex">x \in \mathbb{R}^n</script> that solves this problem or gives us the best possible solution. How should we define best? That is subjective - but the most common idea is to take the real response <script type="math/tex">y_i</script> and the predicted response <script type="math/tex">A[i,:] x</script> and square the difference for each response. We can formalize this problem as</p>

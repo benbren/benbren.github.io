@@ -1,3 +1,4 @@
+---
 layout: post
 title:  "Least Squares via the SVD"
 date:   2018-04-11 20:00:00 -0700

@@ -1,0 +1,44 @@
+I",<p>You’ll remember in OLS, we had something called the <strong>normal equations</strong> - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, $X^TX$ to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.</p>
+
+<p>Jekyll requires blog post files to be named according to the following format:</p>
+
+<p><code class="highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+
+<p>Where <code class="highlighter-rouge">YEAR</code> is a four-digit number, <code class="highlighter-rouge">MONTH</code> and <code class="highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">gradient_descent</span> <span class="o">=</span> <span class="k">function</span><span class="x">(</span> <span class="n">X</span> <span class="x">,</span> <span class="n">y</span> <span class="x">,</span> <span class="n">β</span> <span class="x">,</span> <span class="n">α</span> <span class="x">,</span> <span class="n">threshold</span><span class="x">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="nb">true</span><span class="x">)</span>
+    <span class="k">if</span> <span class="n">intercept</span>
+        <span class="k">if</span> <span class="n">length</span><span class="x">(</span><span class="n">size</span><span class="x">(</span><span class="n">X</span><span class="x">)[</span><span class="mi">2</span><span class="x">])</span> <span class="o">==</span> <span class="n">length</span><span class="x">(</span><span class="n">β</span><span class="x">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">inter</span> <span class="o">=</span> <span class="n">ones</span><span class="x">(</span><span class="n">size</span><span class="x">(</span><span class="n">X</span><span class="x">)[</span><span class="mi">1</span><span class="x">])</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">hcat</span><span class="x">(</span><span class="n">inter</span><span class="x">,</span><span class="n">X</span><span class="x">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">X</span><span class="x">)[</span><span class="mi">1</span><span class="x">]</span>
+    <span class="n">q_plus_one</span> <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">X</span><span class="x">)[</span><span class="mi">2</span><span class="x">]</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">gradient</span> <span class="o">=</span> <span class="n">zeros</span><span class="x">(</span><span class="n">q_plus_one</span><span class="x">)</span>
+    <span class="n">it</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">α</span> <span class="o">=</span> <span class="x">(</span><span class="n">α</span><span class="o">/</span><span class="n">n</span><span class="x">)</span>
+
+    <span class="k">while</span> <span class="n">it</span> <span class="o">&lt;</span> <span class="mi">10000</span> <span class="o">&amp;&amp;</span> <span class="n">e</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="n">X</span><span class="o">*</span><span class="n">β</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">h</span> <span class="o">-</span> <span class="n">y</span>
+
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">α</span> <span class="o">*</span> <span class="x">(</span><span class="n">X</span><span class="err">'</span> <span class="o">*</span> <span class="n">error</span><span class="x">)</span>
+        <span class="n">β</span> <span class="o">=</span> <span class="n">β</span> <span class="o">-</span> <span class="n">gradient</span>
+
+        <span class="n">e</span> <span class="o">=</span> <span class="n">norm</span><span class="x">(</span><span class="n">gradient</span><span class="x">)</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="n">it</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">end</span>
+
+    <span class="k">return</span> <span class="n">β</span><span class="x">,</span> <span class="n">e</span>
+<span class="k">end</span> </code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+
+:ET

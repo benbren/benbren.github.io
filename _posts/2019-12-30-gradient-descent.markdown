@@ -4,7 +4,7 @@ title:  "Gradient Descent"
 date:   2019-12-30 22:21:32 -0700
 categories: jekyll update
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+You'll remember in OLS, we had something called the **normal equations** - a nice, succinct, simple formula for calculating out best-fit parameters. You'll also remember, then, that we had to invert an n by n matrix, $X^TX$ to get these parameters.. which, if n is large, is computationally very expensive. Today we'll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.
 
 Jekyll requires blog post files to be named according to the following format:
 

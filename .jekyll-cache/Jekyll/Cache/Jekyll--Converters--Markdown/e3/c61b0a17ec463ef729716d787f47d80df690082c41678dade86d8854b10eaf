@@ -1,0 +1,2 @@
+I"�<p>You’ll remember in OLS, we had something called the <strong>normal equations</strong> - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, $X^TX$ to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.</p>
+:ET

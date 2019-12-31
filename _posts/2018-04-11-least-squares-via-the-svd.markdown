@@ -1,0 +1,142 @@
+layout: post
+title:  "Least Squares via the SVD"
+date:   2018-04-11 20:00:00 -0700
+categories: jekyll update
+
+---
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+Let's say you have some matrix of features (covariates) $$ A \in \mathbb{R}^{m \times n} $$ and a response vector $$ y \in \mathbb{R}^m $$. We want to find the input vector $$  x \in \mathbb{R}^n $$ that solves this problem or gives us the best possible solution. How should we define best? That is subjective - but the most common idea is to take the real response $$ y_i $$ and the predicted response $$ A[i,:] x $$ and square the difference for each response. We can formalize this problem as
+
+$$
+\textrm{argmin} _ x || Ax - y ||_2^2
+$$ 
+
+where $$ \vert\vert . \vert\vert _ 2 $$ is the $$ \ell_2$$ norm - where we are just summing the components squared of the input to the norm (in this case, summing predicted minus real squared: the squared error) and taking the square root. We square it just to get rid of the square root - it is the same problem!
+
+Sometimes there may not an exact solution to this problem - that's why all we are trying to do is minimize this sum of squares. Obviously, if there is an exact solution, that is going to minimize the squared error because, well, there is no error in that case!
+
+When would there be no error? Clearly, this must be the case that $$ y \in \mathcal{R}(A) $$ for there to be no error. That is, the rank of $$ A$$ must be $$ m$$ for there to be no error. Does this guarantee the solution is unique? No. For the solution to be unique, $$ \mathcal{N}(A) $$ must be $$ \phi $$. That is, the rank of $$ A$$ must be $$ n$$. Thus, for there to be a unique solution with zero error, $$ A$$ must be square. Notice that a unique solution and a solution with zero error are different concepts. You can have a unique solution where the error is non-zero, and you can have lots (infinite, actually!) solutions that are exact. So, now that we have some intuition into the problem, let's work on solving it. Let's think about it geometrically! Let's consider the 3 $$ \times $$ 3 matrix
+
+$$
+ \begin{bmatrix}  1 & 0 & 0 \\  0 & 1 & 0 \\ 0 & 0 & 0 \\ \end{bmatrix} 
+$$
+
+The range of this matrix is the x-y plane, obviously, since its columns span $$ \mathbb{R}^2 $$. So what if we want to solve a problem of the form
+
+$$ 
+\textrm{argmin} _ x || Ax - b ||_2^2 
+$$
+
+where $$ b \in \mathbb{R}^3 $$ and is non-zero in the z-component that is closest to the vector $$ b $$ that exists in the range of our transformation. Check out this figure.
+
+![Projection](/assets/pics/projection_svd.jpg)
+
+The closest point is always the point directly perpendicular (or orthogonal) to the range of $$ A$$ - think about the triangle inequality. Like, if the end of your vector was a donkey, and the range of your matrix was some food that donkeys like (any ideas?), the donkey would walk straight to the food in a direct path. That's the intuition here. So, in other words, to find the answer to our question, we just need to project the vector we are trying to reach on to the range of values that we can reach. We need a projection matrix $$ P_ {\mathcal{R}(A)} $$. So, how do we get that.... first, we need to find an (orthonormal) basis for $$ \mathcal{R}(A) $$ and then use that basis to build $$ P_{\mathcal{R}(A)} $$. So..... how do we get that...
+
+Let's introduce an easy way to do this - the Singular Value Decomposition. Every matrix, square or not, has an SVD. For positive semi-definite matrices, the SVD is just the same as the Eigendecomposition. (ED). However, unlike the ED, the SVD is defined for rectangular matrices. You can view the ED as kind of a subset of the SVD. Anyways, here's the definition.
+
+$$ 
+A \in \mathbb{R}^{m \times n} = U\Sigma V^T = \sum_{i =1}^{r} \sigma_{i}u_{i}v_{i}^{T} 
+$$
+
+where $$ U \in \mathbb{R}^{m \times m}$$ , $$ V \in \mathbb{R}^{n \times n} $$ and $$ \Sigma \in \mathbb{R}^{m \times n} $$ and is diagonal. Both $$ U$$ and $$ V $$ are orthogonal matrices, where the columns of $$ U $$ are the eigenvectors of $$ AA^T $$ and the columns of $$ V $$ are the eigenvectors of $$ A^TA $$. To see this, notice both $$ AA^T $$ and $$ A^TA $$ are square, symmetric matrices.
+
+Without loss of generalizability, consider
+
+$$
+A^TA = V \Sigma^T U^TU \Sigma V^T = V \Sigma ^T \Sigma V^T = V \Lambda V^T 
+$$
+
+which is the eigendecomposition. So, clearly, the eigenvectors of $$ A^TA $$ are found in $$ V $$. Same can be said of $$ U $$. Another observation we can make here is that $$ \Sigma^T\Sigma = \Lambda $$, so the elements of $$ \Sigma $$ , $$ \{\sigma_ i\}_{i=1}^{r} $$ are the square roots of the eigenvalues of both $$ A^TA $$ and $$ AA^T $$. These values are called the singular values of $$ A $$!
+
+So now, we have a tool to solve our least squares problem. How do we use it? If we want to form a basis for $latex \mathcal{R}(A) $. Well, $latex \mathcal{R}(A) $ is just the span of the columns of $latex A$. Extending this notion to the SVD,
+
+$$
+Ax = \sum_ {i=1}^{r} \sigma_ i u_ i v_ i^Tx
+$$
+
+$$ 
+= \sum_ {i=1}^{r} \sigma_ i (v_ i^T x) u_i 
+$$
+
+and notice that $$ \sigma_ i ( v_ i^Tx) $$ is a scalar. This is just a linear combination of the first $$ r $$  columns of $$ U $$ Therefore, letting $$ U_ r $$ denote the $$ m \times r$$ matrix with the first $$ r $$ columns of $$ U$$, corresponding to the non-zero singular values, we have shown that $$ \mathcal{R}(A) = \mathcal{R}(U_ r)$$. Since $$U$$ is orthogonal, $$ U_ r$$ is an orthonormal basis for $$ \mathcal{R}(A) $$. Using the fact that, if $$ B $$ is is an orthonormal basis for $$ \mathcal{V} $$, then $$ BB^T = P_ {\mathcal{V}} $$, we have that $$ U_ rU_ r^T = P_ {\mathcal{R}(A)}$$. So, in terms of our problem, the point closest to $$ b$$ that is in  $$ \mathcal{R}(A)$$ is $$ U_rU_r^Tb $$. We are now super close to finding $$ \hat{x}$$ that minimizes the error in the $$ \ell -2 $$ sense. To get there, we need to define one more thing - the **Monroe-Penrose Pseudo Inverse**, $$ A^+ $$.
+
+Definition:
+
+$$
+ A^+ = V \Sigma ^+ U^T 
+$$
+
+where $$ \Sigma^+ \in \mathbb{R}^{n \times m}$$ = diag$$ (\frac{1}{\sigma_ 1},\dots,\frac{1}{\sigma_r},0,\dots,0) $$. Using this definition,
+
+$$
+ AA^+ = U\Sigma V^T V \Sigma ^+ U^T 
+$$
+
+$$ 
+= U \Sigma \Sigma^+ U^T 
+$$
+
+$$
+ = U_rU_r^T
+$$
+
+Therefore, since we know the closest possible point we can reach with $$ A$$ is $$ U_ r U_ r^Tb $$, then
+
+$$ 
+U_ r U_ r^Tb = A(A^+b )
+$$
+
+and it follows immediately that
+
+$$
+ \hat{x} = A^+b
+$$
+
+for any matrix $$ A \in \mathbb{R}^{m \times n} $$. Therefore, we have shown there is a general solution to the least-squares problem
+
+$$
+ argmin_ x ||Ax - b||_2^2
+$$
+
+An interesting thing to note here:
+
+$$
+ || A\hat{x} - b ||_2^2
+$$
+
+$$
+ = || b - A\hat{x} ||_2^2
+$$
+
+$$
+ = || b - AA^+b ||_2^2
+$$
+
+$$
+ = || (I - AA^+)b ||_2^2
+$$
+
+Since $$ U = [U_ r U_ o]$$ where $$ U_ o$$ is the $$ m \times n-r $$ matrix with columns corresponding the the zero-valued singular values of $$ A$$. Therefore,
+
+$$ UU^T = I = [U_ r U_ o] [U_ r U_ o]^T = U_ rU_ r^T + U_ oU_ o^T $$
+
+$$ \implies U_ oU_ o^T = I - AA^+ = I - P_ { \mathcal{R}(A)} = P_ {\mathcal{R}^{\perp}(A)} $$.
+
+Therefore,
+
+$$
+ = || (I - AA^+)b ||_2^2
+$$
+
+$$
+= || P_ {\mathcal{R}^{\perp}(A)}b ||_2^2 
+$$
+
+That is, what we are doing is projecting the error onto the the orthogonal complement of $$ P_ {\mathcal{R}(A)} $$. This is exactly what the figure above is showing! Our error should be directly orthogonal to $$ P_{\mathcal{R}(A)} $$ for the objective function to be minimized.
+
+Now we have a bit of intuition into how we can use the Singular Value Decomposition to solve the least squares problem. This helps when you have a feature matrix and outcomes and want to find the specific weights associated with each covariate in the feature matrix. Least squares is used to solve for the parameters in linear regression and can be used to find the weights associated with neural networks... it has lots of applications. Hopefully, now you can apply it!

@@ -9,11 +9,7 @@ categories: jekyll update
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-Jekyll requires blog post files to be named according to the following format:
 
-`YEAR-MONTH-DAY-title.MARKUP`
-
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
 
 You'll remember in OLS, we had something called the **normal equations** - a nice, succinct, simple formula for calculating out best-fit parameters. You'll also remember, then, that we had to invert an n by n matrix, $$X^TX$$ to get these parameters.. which, if n is large, is computationally very expensive. Today we'll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.
 
@@ -149,8 +145,3 @@ $$
 
 Perfect. So now we know what it is, how to use it.. but when would you use it? Usually only when you have really large values of n (lots of observations, like millions...) . Essentially, the only reason you use it is time. There are other things you can do here, like use only one observation (which is called Least Mean Squares) which saves even more time but isn't as great, obviously. There are other issues with gradient descent, like correctly choosing the step-size that, in practice, you really have no way around. There are plenty of ways to choose a step-size, but no set-rule - you'll have to figure it out on your own (and that takes time, too!). What's best about gradient descent is that you can use it for a lot of things. Least squares is just one. You can use it for plenty of other things... really, you can use it for whatever problem you have where you need to optimize a function. But I hope learning about it via least squares was helpful!
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/

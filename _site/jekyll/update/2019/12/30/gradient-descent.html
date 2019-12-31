@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-12-30T22:21:32-07:00" />
 <script type="application/ld+json">
-{"description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","headline":"Gradient Descent","dateModified":"2019-12-30T22:21:32-07:00","datePublished":"2019-12-30T22:21:32-07:00","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/12/30/gradient-descent.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/12/30/gradient-descent.html"},"@context":"https://schema.org"}</script>
+{"description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/12/30/gradient-descent.html"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/12/30/gradient-descent.html","headline":"Gradient Descent","dateModified":"2019-12-30T22:21:32-07:00","datePublished":"2019-12-30T22:21:32-07:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ben Brennan" /></head>
 <body><header class="site-header" role="banner">
@@ -47,12 +47,6 @@
   <div class="post-content e-content" itemprop="articleBody">
     <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-
-<p>Jekyll requires blog post files to be named according to the following format:</p>
-
-<p><code class="highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
-
-<p>Where <code class="highlighter-rouge">YEAR</code> is a four-digit number, <code class="highlighter-rouge">MONTH</code> and <code class="highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
 
 <p>You’ll remember in OLS, we had something called the <strong>normal equations</strong> - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, <script type="math/tex">X^TX</script> to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.</p>
 
@@ -166,8 +160,6 @@
 <script type="math/tex; mode=display">\mathbf{\beta^{(new)}} = \mathbf{\beta^{(old)}} - \alpha \frac{1}{n} \mathbf{X^T( X\beta - Y)}</script>
 
 <p>Perfect. So now we know what it is, how to use it.. but when would you use it? Usually only when you have really large values of n (lots of observations, like millions…) . Essentially, the only reason you use it is time. There are other things you can do here, like use only one observation (which is called Least Mean Squares) which saves even more time but isn’t as great, obviously. There are other issues with gradient descent, like correctly choosing the step-size that, in practice, you really have no way around. There are plenty of ways to choose a step-size, but no set-rule - you’ll have to figure it out on your own (and that takes time, too!). What’s best about gradient descent is that you can use it for a lot of things. Least squares is just one. You can use it for plenty of other things… really, you can use it for whatever problem you have where you need to optimize a function. But I hope learning about it via least squares was helpful!</p>
-
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
 
 
   </div><a class="u-url" href="/jekyll/update/2019/12/30/gradient-descent.html" hidden></a>

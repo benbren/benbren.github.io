@@ -1,11 +1,5 @@
-I"�7<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"�4<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-
-<p>Jekyll requires blog post files to be named according to the following format:</p>
-
-<p><code class="highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
-
-<p>Where <code class="highlighter-rouge">YEAR</code> is a four-digit number, <code class="highlighter-rouge">MONTH</code> and <code class="highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
 
 <p>You’ll remember in OLS, we had something called the <strong>normal equations</strong> - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, <script type="math/tex">X^TX</script> to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.</p>
 
@@ -45,9 +39,12 @@
 <p>so, a gradient descent algorithm would look something like</p>
 
 <ul>
-  <li>is the norm of the gradient greater than our threshold? 
- 	* if yes, move along the gradient by some <script type="math/tex">\alpha</script> and repeat
- 	* if no, return the current point</li>
+  <li>is the norm of the gradient greater than our threshold?
+    <ul>
+      <li>if yes, move along the gradient for each <script type="math/tex">\beta_J</script> by some <script type="math/tex">\alpha</script> and check again</li>
+      <li>if no, return the current point</li>
+    </ul>
+  </li>
 </ul>
 
 <p>where <script type="math/tex">\alpha</script> is a stepsize of your choosing. It is important to note that the choice of the step-size is important. A step-size that is too big will cause the algorithm to jump over the minimum value and maybe even diverge, whereas a step-size that is too small will mean the algorithm takes forever to converge to the minimum value. In one dimension, we can see what is happening below.</p>
@@ -56,7 +53,7 @@
 
 <p>When the step size is small (left), it is converging to the minimum value… but it is gonna take forever (maybe even actually. . .) and on the right, where the step size is too large, the minimum is being overshot and then the larger slope (gradient) is compounding with a large step size to overshoot by even more and so on and so forth as your algorithm sadly diverges to infinity ….. :(</p>
 
-<p>Below is an interpretation of this algorithm in Julia:</p>
+<p>You can imagine this type of computation is best done in a while-loop. Below is an interpretation of this algorithm in Julia:</p>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">gradient_descent</span> <span class="o">=</span> <span class="k">function</span><span class="x">(</span> <span class="n">X</span> <span class="x">,</span> <span class="n">y</span> <span class="x">,</span> <span class="n">β</span> <span class="x">,</span> <span class="n">α</span> <span class="x">,</span> <span class="n">threshold</span><span class="x">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="nb">true</span><span class="x">)</span>
     <span class="k">if</span> <span class="n">intercept</span>
@@ -116,7 +113,5 @@
 <script type="math/tex; mode=display">\mathbf{\beta^{(new)}} = \mathbf{\beta^{(old)}} - \alpha \frac{1}{n} \mathbf{X^T( X\beta - Y)}</script>
 
 <p>Perfect. So now we know what it is, how to use it.. but when would you use it? Usually only when you have really large values of n (lots of observations, like millions…) . Essentially, the only reason you use it is time. There are other things you can do here, like use only one observation (which is called Least Mean Squares) which saves even more time but isn’t as great, obviously. There are other issues with gradient descent, like correctly choosing the step-size that, in practice, you really have no way around. There are plenty of ways to choose a step-size, but no set-rule - you’ll have to figure it out on your own (and that takes time, too!). What’s best about gradient descent is that you can use it for a lot of things. Least squares is just one. You can use it for plenty of other things… really, you can use it for whatever problem you have where you need to optimize a function. But I hope learning about it via least squares was helpful!</p>
-
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
 
 :ET

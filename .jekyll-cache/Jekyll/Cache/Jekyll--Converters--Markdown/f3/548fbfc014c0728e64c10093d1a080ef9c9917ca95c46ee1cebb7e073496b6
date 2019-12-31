@@ -1,0 +1,103 @@
+I"+<p>layout: post
+title:  “Least Squares via the SVD”
+date:   2018-04-11 20:00:00 -0700
+categories: jekyll update</p>
+
+<hr />
+
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Let’s say you have some matrix of features (covariates) <script type="math/tex">A \in \mathbb{R}^{m \times n}</script> and a response vector <script type="math/tex">y \in \mathbb{R}^m</script>. We want to find the input vector <script type="math/tex">x \in \mathbb{R}^n</script> that solves this problem or gives us the best possible solution. How should we define best? That is subjective - but the most common idea is to take the real response <script type="math/tex">y_i</script> and the predicted response <script type="math/tex">A[i,:] x</script> and square the difference for each response. We can formalize this problem as</p>
+
+<script type="math/tex; mode=display">\textrm{argmin} _ x || Ax - y ||_2^2</script>
+
+<p>where <script type="math/tex">\vert\vert . \vert\vert _ 2</script> is the <script type="math/tex">\ell_2</script> norm - where we are just summing the components squared of the input to the norm (in this case, summing predicted minus real squared: the squared error) and taking the square root. We square it just to get rid of the square root - it is the same problem!</p>
+
+<p>Sometimes there may not an exact solution to this problem - that’s why all we are trying to do is minimize this sum of squares. Obviously, if there is an exact solution, that is going to minimize the squared error because, well, there is no error in that case!</p>
+
+<p>When would there be no error? Clearly, this must be the case that <script type="math/tex">y \in \mathcal{R}(A)</script> for there to be no error. That is, the rank of <script type="math/tex">A</script> must be <script type="math/tex">m</script> for there to be no error. Does this guarantee the solution is unique? No. For the solution to be unique, <script type="math/tex">\mathcal{N}(A)</script> must be <script type="math/tex">\phi</script>. That is, the rank of <script type="math/tex">A</script> must be <script type="math/tex">n</script>. Thus, for there to be a unique solution with zero error, <script type="math/tex">A</script> must be square. Notice that a unique solution and a solution with zero error are different concepts. You can have a unique solution where the error is non-zero, and you can have lots (infinite, actually!) solutions that are exact. So, now that we have some intuition into the problem, let’s work on solving it. Let’s think about it geometrically! Let’s consider the 3 <script type="math/tex">\times</script> 3 matrix</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}  1 & 0 & 0 \\  0 & 1 & 0 \\ 0 & 0 & 0 \\ \end{bmatrix} %]]></script>
+
+<p>The range of this matrix is the x-y plane, obviously, since its columns span <script type="math/tex">\mathbb{R}^2</script>. So what if we want to solve a problem of the form</p>
+
+<script type="math/tex; mode=display">\textrm{argmin} _ x || Ax - b ||_2^2</script>
+
+<p>where <script type="math/tex">b \in \mathbb{R}^3</script> and is non-zero in the z-component that is closest to the vector <script type="math/tex">b</script> that exists in the range of our transformation. Check out this figure.</p>
+
+<p><img src="/assets/pics/projection_svd.jpg" alt="Projection" /></p>
+
+<p>The closest point is always the point directly perpendicular (or orthogonal) to the range of <script type="math/tex">A</script> - think about the triangle inequality. Like, if the end of your vector was a donkey, and the range of your matrix was some food that donkeys like (any ideas?), the donkey would walk straight to the food in a direct path. That’s the intuition here. So, in other words, to find the answer to our question, we just need to project the vector we are trying to reach on to the range of values that we can reach. We need a projection matrix <script type="math/tex">P_ {\mathcal{R}(A)}</script>. So, how do we get that…. first, we need to find an (orthonormal) basis for <script type="math/tex">\mathcal{R}(A)</script> and then use that basis to build <script type="math/tex">P_{\mathcal{R}(A)}</script>. So….. how do we get that…</p>
+
+<p>Let’s introduce an easy way to do this - the Singular Value Decomposition. Every matrix, square or not, has an SVD. For positive semi-definite matrices, the SVD is just the same as the Eigendecomposition. (ED). However, unlike the ED, the SVD is defined for rectangular matrices. You can view the ED as kind of a subset of the SVD. Anyways, here’s the definition.</p>
+
+<script type="math/tex; mode=display">A \in \mathbb{R}^{m \times n} = U\Sigma V^T = \sum_{i =1}^{r} \sigma_{i}u_{i}v_{i}^{T}</script>
+
+<p>where <script type="math/tex">U \in \mathbb{R}^{m \times m}</script> , <script type="math/tex">V \in \mathbb{R}^{n \times n}</script> and <script type="math/tex">\Sigma \in \mathbb{R}^{m \times n}</script> and is diagonal. Both <script type="math/tex">U</script> and <script type="math/tex">V</script> are orthogonal matrices, where the columns of <script type="math/tex">U</script> are the eigenvectors of <script type="math/tex">AA^T</script> and the columns of <script type="math/tex">V</script> are the eigenvectors of <script type="math/tex">A^TA</script>. To see this, notice both <script type="math/tex">AA^T</script> and <script type="math/tex">A^TA</script> are square, symmetric matrices.</p>
+
+<p>Without loss of generalizability, consider</p>
+
+<script type="math/tex; mode=display">A^TA = V \Sigma^T U^TU \Sigma V^T = V \Sigma ^T \Sigma V^T = V \Lambda V^T</script>
+
+<p>which is the eigendecomposition. So, clearly, the eigenvectors of <script type="math/tex">A^TA</script> are found in <script type="math/tex">V</script>. Same can be said of <script type="math/tex">U</script>. Another observation we can make here is that <script type="math/tex">\Sigma^T\Sigma = \Lambda</script>, so the elements of <script type="math/tex">\Sigma</script> , <script type="math/tex">\{\sigma_ i\}_{i=1}^{r}</script> are the square roots of the eigenvalues of both <script type="math/tex">A^TA</script> and <script type="math/tex">AA^T</script>. These values are called the singular values of <script type="math/tex">A</script>!</p>
+
+<p>So now, we have a tool to solve our least squares problem. How do we use it? If we want to form a basis for $latex \mathcal{R}(A) $. Well, $latex \mathcal{R}(A) $ is just the span of the columns of $latex A$. Extending this notion to the SVD,</p>
+
+<script type="math/tex; mode=display">Ax = \sum_ {i=1}^{r} \sigma_ i u_ i v_ i^Tx</script>
+
+<script type="math/tex; mode=display">= \sum_ {i=1}^{r} \sigma_ i (v_ i^T x) u_i</script>
+
+<p>and notice that <script type="math/tex">\sigma_ i ( v_ i^Tx)</script> is a scalar. This is just a linear combination of the first <script type="math/tex">r</script>  columns of <script type="math/tex">U</script> Therefore, letting <script type="math/tex">U_ r</script> denote the $latex m \times r$ matrix with the first <script type="math/tex">r</script> columns of $latex U$, corresponding to the non-zero singular values, we have shown that $latex \mathcal{R}(A) = \mathcal{R}(U_r)$. Since $latex U$ is orthogonal, $latex U_r<script type="math/tex">is an orthonormal basis for</script> \mathcal{R}(A) <script type="math/tex">. Using the fact that, if</script> B <script type="math/tex">is is an orthonormal basis for</script> \mathcal{V} <script type="math/tex">, then</script> BB^T = P_ {\mathcal{V}} <script type="math/tex">, we have that</script> U_ rU_ r^T = P_ {\mathcal{R}(A)}<script type="math/tex">. So, in terms of our problem, the point closest to</script> b<script type="math/tex">that is in </script> \mathcal{R}(A)<script type="math/tex">is</script> U_rU_r^Tb <script type="math/tex">. We are now super close to finding</script> \hat{x}<script type="math/tex">that minimizes the error in the</script> \ell -2 <script type="math/tex">sense. To get there, we need to define one more thing - the **Monroe-Penrose Pseudo Inverse**,</script> A^+ $$.</p>
+
+<p>Definition:</p>
+
+<script type="math/tex; mode=display">A^+ = V \Sigma ^+ U^T</script>
+
+<p>where <script type="math/tex">\Sigma^+ \in \mathbb{R}^{n \times m}</script> = diag<script type="math/tex">(\frac{1}{\sigma_ 1},\dots,\frac{1}{\sigma_r},0,\dots,0)</script>. Using this definition,</p>
+
+<script type="math/tex; mode=display">AA^+ = U\Sigma V^T V \Sigma ^+ U^T </script>
+
+<script type="math/tex; mode=display">= U \Sigma \Sigma^+ U^T</script>
+
+<script type="math/tex; mode=display">= U_rU_r^T</script>
+
+<p>Therefore, since we know the closest possible point we can reach with $latex A$ is <script type="math/tex">U_rU_r^Tb</script>, then</p>
+
+<script type="math/tex; mode=display">U_rU_r^Tb = A(A^+b )</script>
+
+<p>and it follows immediately that</p>
+
+<script type="math/tex; mode=display">\hat{x} = A^+b</script>
+
+<p>for any matrix <script type="math/tex">A \in \mathbb{R}^{m \times n}</script>. Therefore, we have shown there is a general solution to the least-squares problem</p>
+
+<script type="math/tex; mode=display">argmin_x ||Ax - b||_2^2</script>
+
+<p>An interesting thing to note here:</p>
+
+<script type="math/tex; mode=display">|| A\hat{x} - b ||_2^2</script>
+
+<script type="math/tex; mode=display">= || b - A\hat{x} ||_2^2</script>
+
+<script type="math/tex; mode=display">= || b - AA^+b ||_2^2</script>
+
+<script type="math/tex; mode=display">= || (I - AA^+)b ||_2^2</script>
+
+<p>Since <script type="math/tex">U = [U_r U_o]</script> where <script type="math/tex">U_o$ is the</script> m \times n-r <script type="math/tex">matrix with columns corresponding the the zero-valued singular values of</script> A$$. Therefore,</p>
+
+<script type="math/tex; mode=display">UU^T = I = [U_r U_o] [U_r U_o]^T = U_rU_r^T + U_oU_o^T</script>
+
+<p><script type="math/tex">\implies U_oU_o^T = I - AA^+ = I - P_{\mathcal{R}(A)} = P_{\mathcal{R}^{\perp}(A)}</script>.</p>
+
+<p>Therefore,</p>
+
+<script type="math/tex; mode=display">= || (I - AA^+)b ||_2^2</script>
+
+<script type="math/tex; mode=display">= || P_{\mathcal{R}^{\perp}(A)}b ||_2^2</script>
+
+<p>That is, what we are doing is projecting the error onto the the orthogonal complement of <script type="math/tex">P_ {\mathcal{R}(A)}</script>. This is exactly what the figure above is showing! Our error should be directly orthogonal to <script type="math/tex">P_{\mathcal{R}(A)}</script> for the objective function to be minimized.</p>
+
+<p>Now we have a bit of intuition into how we can use the Singular Value Decomposition to solve the least squares problem. This helps when you have a feature matrix and outcomes and want to find the specific weights associated with each covariate in the feature matrix. Least squares is used to solve for the parameters in linear regression and can be used to find the weights associated with neural networks… it has lots of applications. Hopefully, now you can apply it!</p>
+:ET

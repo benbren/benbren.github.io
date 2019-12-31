@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Gradient Descent"
 date:   2019-12-30 22:21:32 -0700
 categories: jekyll update
 ---
@@ -14,13 +14,40 @@ Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit number
 
 Jekyll also offers powerful support for code snippets:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+{% highlight julia %}
+
+gradient_descent = function( X , y , β , α , threshold, intercept = true)
+    if intercept
+        if length(size(X)[2]) == length(β) - 1
+            inter = ones(size(X)[1])
+            X = hcat(inter,X)
+        end
+    end
+
+    n = size(X)[1]
+    q_plus_one = size(X)[2]
+    e = 100
+    gradient = zeros(q_plus_one)
+    it = 0
+    α = (α/n)
+
+    while it < 10000 && e > threshold
+
+        h = X*β
+        error = h - y
+
+        gradient = α * (X' * error)
+        β = β - gradient
+
+        e = norm(gradient)
+
+        it = it + 1
+    end
+
+    return β, e
+end 
 {% endhighlight %}
+
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 

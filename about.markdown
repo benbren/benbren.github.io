@@ -4,15 +4,10 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+My name is Ben. 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+I was born and raised in Albuquerque, New Mexico. Half of my undergraduate career was done at the University of New Mexico (Go Lobos!) and my degree is from the College of Charleston in Applied Mathematics and Economics.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+I am currently a graduate student in Biostatistics at the University of Michigan, where I have been both a Graduate Student Research Assistant and a Graduate Student Instructor. 
 
-
-[jekyll-organization]: https://github.com/jekyll
+Outside of school, I enjoy snowboarding, rock-climbing, scuba diving, playing guitar, and reading. Pretty typical.  I am also an avid traveler - I love learning about new cultures, ideas and ways of life. 

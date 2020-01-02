@@ -18,9 +18,9 @@ gradient_descent = function( X , y , β , α , threshold, intercept = true)
         h = X*β
         error = h - y
 
-        for i in 1:q_plus_one
-            gradient[i] = α*(error'*X[:,i])
-        end
+        #for i in 1:q_plus_one
+        #    gradient[i] = α*(error'*X[:,i])
+        #end
 
 
         gradient = α * (X' * error)
@@ -32,4 +32,4 @@ gradient_descent = function( X , y , β , α , threshold, intercept = true)
     end
 
     return β, e
-end 
+end

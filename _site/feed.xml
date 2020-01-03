@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-03T12:15:45-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/jekyll/update/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/jekyll/update/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-03T13:05:31-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;You’ll remember in OLS, we had something called the &lt;strong&gt;normal equations&lt;/strong&gt; - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.&lt;/p&gt;
@@ -112,7 +112,149 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf{\beta^{(new)}} = \mathbf{\beta^{(old)}} - \alpha \frac{1}{n} \mathbf{X^T( X\beta - Y)}&lt;/script&gt;
 
-&lt;p&gt;Perfect. So now we know what it is, how to use it.. but when would you use it? Usually only when you have really large values of n (lots of observations, like millions…) . Essentially, the only reason you use it is time. There are other things you can do here, like use only one observation (which is called Least Mean Squares) which saves even more time but isn’t as great, obviously. There are other issues with gradient descent, like correctly choosing the step-size that, in practice, you really have no way around. There are plenty of ways to choose a step-size, but no set-rule - you’ll have to figure it out on your own (and that takes time, too!). What’s best about gradient descent is that you can use it for a lot of things. Least squares is just one. You can use it for plenty of other things… really, you can use it for whatever problem you have where you need to optimize a function. But I hope learning about it via least squares was helpful!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Least Squares via the SVD</title><link href="http://localhost:4000/jekyll/update/2018/04/11/least-squares-via-the-svd.html" rel="alternate" type="text/html" title="Least Squares via the SVD" /><published>2018-04-11T23:00:00-04:00</published><updated>2018-04-11T23:00:00-04:00</updated><id>http://localhost:4000/jekyll/update/2018/04/11/least-squares-via-the-svd</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/04/11/least-squares-via-the-svd.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;p&gt;Perfect. So now we know what it is, how to use it.. but when would you use it? Usually only when you have really large values of n (lots of observations, like millions…) . Essentially, the only reason you use it is time. There are other things you can do here, like use only one observation (which is called Least Mean Squares) which saves even more time but isn’t as great, obviously. There are other issues with gradient descent, like correctly choosing the step-size that, in practice, you really have no way around. There are plenty of ways to choose a step-size, but no set-rule - you’ll have to figure it out on your own (and that takes time, too!). What’s best about gradient descent is that you can use it for a lot of things. Least squares is just one. You can use it for plenty of other things… really, you can use it for whatever problem you have where you need to optimize a function. But I hope learning about it via least squares was helpful!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Introduction to Survival Analysis</title><link href="http://localhost:4000/2019/10/21/introduction-to-survival-analysis.html" rel="alternate" type="text/html" title="Introduction to Survival Analysis" /><published>2019-10-21T23:00:00-04:00</published><updated>2019-10-21T23:00:00-04:00</updated><id>http://localhost:4000/2019/10/21/introduction-to-survival-analysis</id><content type="html" xml:base="http://localhost:4000/2019/10/21/introduction-to-survival-analysis.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;Survival Analysis: the branch of statistics that pretty much everyone I know only associates with biostatistics. I get it - that makes sense. Sure, survival implies.. surviving, but lots of things survive. My attempt to be a vegetarian (still going) is something that ‘survives’. Your T.V., your willingness to stay on an email list. Things like that. Survival analysis takes on many different names (for instance, reliability in engineering). Essentially, it deals with data that has ‘failure’ times and ‘censoring’ times - so it takes into account actual and observational failure times. For example, a failure time could be death (actual failure) and a censoring time could be a patient lost to follow-up (observational failure). It’s a cool subject - one that is applicable to almost every field, so let’s dive into some of the basics. The first : &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;. Big one. The time to event, which is a random variable. The second: &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. Also a big one, the time to censoring. And finally, the first and second combined into the third(?): &lt;script type=&quot;math/tex&quot;&gt;X = min(T,C)&lt;/script&gt; which is the event we actually observe. Ok, now actually finally, we have &lt;script type=&quot;math/tex&quot;&gt;\Delta = I(T \leq C) = I (X = T)&lt;/script&gt;, which is just 1 if we observe the event and 0 if we lose the observation to censoring. Those are the big variables for the introduction, so let’s get into talking about the main functions and some examples.&lt;/p&gt;
+
+&lt;p&gt;There are 3 main functions in survival analysis, and all can be derived from one another. We have the survival function, the hazard function (or hazard rate, or just hazard) and the cumulative hazard function. Starting with the survival function:&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;S(t) = P(T &gt;t)&lt;/script&gt; if t is continuos and &lt;script type=&quot;math/tex&quot;&gt;S(t _ j)= P(T &gt; t _ j) = P(T \geq t_{j-1} )&lt;/script&gt; when t is discrete. How do we define this? We need to define a density first.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_ T(t) = \lim_{\delta\to 0^+}\frac{1}{\delta}P(t  \leq T \leq t + \delta)&lt;/script&gt;
+
+&lt;p&gt;when  $latex T$ is continuous and, simply,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_T(t) = P(T = t)&lt;/script&gt;
+
+&lt;p&gt;when &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is discrete. Now, to define our survival function should be relatively easy.&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;S(t) = P(T  &gt; t) = \displaystyle\int_ {t}^{\infty}f_T(u)du&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is continuous&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;S(t) = P(T &gt;t) = \displaystyle\sum_ {n &gt; t}f_T(t)&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is discrete.&lt;/p&gt;
+
+&lt;p&gt;A few things to note about a survival function. &lt;script type=&quot;math/tex&quot;&gt;S(0) = 1&lt;/script&gt; as we should not have events happening at time 0. &lt;script type=&quot;math/tex&quot;&gt;\lim_ {t\to \infty}S(t) = 0&lt;/script&gt; as we expect everyone to die or have an event as time goes on. Also, the survival function should be monotone decreasing in &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;. It is important to note that, in the discrete case, the survival function is right continuous. That is, it has jumps (down) at the values of &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; where events happen, and is evaluated and the lower probability of survival for those time periods. More formally &lt;script type=&quot;math/tex&quot;&gt;S(t) = \lim_{x\to t^+}S(x) = S(t^+)&lt;/script&gt; This is important when we are estimating… the hazard function! The hazard function is the probability that a person dies at time &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; GIVEN that they have survived until time &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\lambda (t)&lt;/script&gt; denote the survival time.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lambda(t) = \lim_{\delta \to 0^+}\frac{1}{\delta}P(t \leq T \leq t + \delta  \vert T &gt; t)&lt;/script&gt;
+
+&lt;p&gt;when &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is continuous and&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lambda(t) = P(T = t \vert T \geq t)&lt;/script&gt;
+
+&lt;p&gt;when &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is discrete. In general, from the basic probability theory,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(T =t \vert T \geq t) = \frac{P(T = t, T \geq t)}{P(T \geq t)} = \frac{P(T = t)}{P(T \geq t)} = \frac{f_T(t)}{S(t^-)}&lt;/script&gt;
+
+&lt;p&gt;Notice that the hazard function, when continuous, is a rate and, when discrete, is a probability. Finally, let us define &lt;script type=&quot;math/tex&quot;&gt;\Lambda(t)&lt;/script&gt; as the cumulative hazard function. It is pretty much exactly what you would think it was…&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Lambda(t) = \displaystyle\int_{0}^{t}\lambda(u)du&lt;/script&gt;
+
+&lt;p&gt;when continuous and&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Lambda(t) = \displaystyle\sum_{t_i \leq t} \lambda(t_i)&lt;/script&gt;
+
+&lt;p&gt;when discrete. Let’s take a look at an interesting problem involving the cumulative hazard function. Say &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; follows some distribution with cdf &lt;script type=&quot;math/tex&quot;&gt;F_t(t)&lt;/script&gt;. Then its hazard function follows an exponential(1) distribution. To see this&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(\Lambda(T) \leq t) = P( - \Lambda(T)\geq -t ) = P(e^{-\Lambda(T)} \geq e^{-t}) =&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(-e^{-\Lambda(T)} \leq -e^{-t}) = P(1 - e^{-\Lambda(T)} \leq 1 - e^{-t}) =&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(1-S(T) \leq 1- e^{-t}) = P(F_ T(T) \leq 1- e^{-t}) = P(T \leq F_ T^{-1}(1- e^{-t})) = F_ T(F_T^{-1}(1- e^{-t})) = 1- e^{-t}&lt;/script&gt;
+
+&lt;p&gt;which is the cdf of the exponential(1) distribution! Cool, huh? Anyways.&lt;/p&gt;
+
+&lt;p&gt;It is clear what the link between the hazard function and the cumulative hazard function is, but now let us find the explicit link with the survival function. First (and pretty much only..), remember&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lambda(t) = \frac{f(t)}{S(t^-)}&lt;/script&gt;
+
+&lt;p&gt;When &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is continuous, this is equivalent to&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lambda(t) = \frac{f(t)}{S(t^-)} = \frac{f(t)}{S(t)} = \frac{-d\log S(t)}{dt}&lt;/script&gt;
+
+&lt;p&gt;which means&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Lambda(t) = -\log(S(t)&lt;/script&gt;
+
+&lt;p&gt;and, equivalently,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(t) = e^{-\Lambda(t)}&lt;/script&gt;
+
+&lt;p&gt;Nice! Easy. Let’s do an example. Suppose &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is such that its survival function is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(t) = \frac{64}{(t+8)^2}&lt;/script&gt;
+
+&lt;p&gt;This is continuous. First, a fact:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E[T] = \displaystyle\int_{0}^{\infty} S(t)dt&lt;/script&gt;
+
+&lt;p&gt;How to prove?&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E[T] = \displaystyle\int_{0}^{\infty} tf(t)dt = \displaystyle\int_{0}^{\infty}\displaystyle\int_{0}^{t}ds f(t)dt = \displaystyle\int_{0}^{\infty}\displaystyle\int_{s}^{\infty}f(t)dtds = \displaystyle\int_{0}^{\infty}1 - F(s) ds  = \displaystyle\int_{0}^{\infty}S(s)ds&lt;/script&gt;
+
+&lt;p&gt;So, what is our expected survival time in the above case?&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E[T] = 64 \displaystyle\int_{0}^{\infty} (t + 8)^{-2} = 64/8 = 8&lt;/script&gt;
+
+&lt;p&gt;Median survival time? Clearly, that is just where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(t) = 0.5&lt;/script&gt;
+
+&lt;p&gt;so&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{64}{(t_m +8)^2} = 0.5 \implies \sqrt(128) - 8 = t_m = 3.31&lt;/script&gt;
+
+&lt;p&gt;Now, let’s estimate the hazard function (and the cumulative hazard).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Lambda(t) = -\log(S(t)) = 2 \log(t+8) - \log(64)&lt;/script&gt;
+
+&lt;p&gt;Now, we just take the derivative with respect to &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; to find &lt;script type=&quot;math/tex&quot;&gt;\lambda(t)&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lambda(t) = \frac{2}{t+8}&lt;/script&gt;
+
+&lt;p&gt;The discrete case is a liiiiiiitle bit more difficult, but very important for continued study in survival analysis. In practice, unless we have literall infinite observations, we will be dealing with discrete data. Let’s say &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; takes on values &lt;script type=&quot;math/tex&quot;&gt;t_ 1, \dots , t_ n&lt;/script&gt;. Also, remember (more basic probability theory) that &lt;script type=&quot;math/tex&quot;&gt;P(AB) = P(A\vert B)P(B)&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt; is many events, then this formula is recursive. Now, suppose &lt;script type=&quot;math/tex&quot;&gt;t_j \leq t \leq t_{j+1}&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(t) = P(T &gt; t) = P(T &gt; t_j, T &gt; T_{j-1},\dots,T &gt; t_1) =&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(T &gt; t_j \vert T &gt; t_{j-1})\times P(T &gt; t_{j-1} \vert T &gt; t_{j-1})\times \dots \times P(T &gt; t_1)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= [1 - P(T \leq t_j \vert T &gt; t_{j-1})]\times \dots \times [1 - P(T\leq t_1)]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= [1 - P(T = t_j \vert T \geq t_{j})]\times \dots \times [1 - P(T = t_1)]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \displaystyle\prod_{t_i\leq t} [1 - \lambda(t_i)]&lt;/script&gt;
+
+&lt;p&gt;Notice, this formula is recursive! &lt;script type=&quot;math/tex&quot;&gt;S(t_j) = [1 - \lambda(t_j)]S(t_{j-1})&lt;/script&gt; which doesn’t really matter here but .. it makes it easier to compute if, say, you wanted to write up this algorithm to help yourself learn (maybe?).  This actually has an analogous case in the continuous case (if we remember the Taylor Expansion for &lt;script type=&quot;math/tex&quot;&gt;e^{-x}&lt;/script&gt; LOL). To the rescue again..&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;e^{-x} = \displaystyle\sum_{n = 0}^{\infty} \frac{(-x)^n}{n!} \approx 1- x&lt;/script&gt;
+
+&lt;p&gt;when &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is small.&lt;/p&gt;
+
+&lt;p&gt;So, since 
+&lt;script type=&quot;math/tex&quot;&gt;\Lambda(T) = \int_{0}^{t}\lambda(u)du&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(t) = e^{-\Lambda(t)}&lt;/script&gt;
+
+&lt;p&gt;then&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(t) = \displaystyle\prod_{u=0}^t e^{-\lambda(u)du} \approx \displaystyle\prod_{u=0}^t[1 - \lambda(u)du]&lt;/script&gt;
+
+&lt;p&gt;which is sometimes referred to as the product limit form of the survival function. Anyways.. let’s get to some real examples. First, from data.. let’s think of a good way to estimate &lt;script type=&quot;math/tex&quot;&gt;\lambda(t)&lt;/script&gt;. Seems natural to estimate the hazard at a certain time point by looking at the number of events at a time point relative to the number of people at risk for the event at that time point. So, letting &lt;script type=&quot;math/tex&quot;&gt;D_ J&lt;/script&gt; denote the number of events at time &lt;script type=&quot;math/tex&quot;&gt;t_ j&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;Y _ j&lt;/script&gt; denote the number at risk (sill being observed, including the people who experience events) for an event at &lt;script type=&quot;math/tex&quot;&gt;t_j&lt;/script&gt;. Then a natural estimate for &lt;script type=&quot;math/tex&quot;&gt;\lambda(t_j)&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;\frac{D_j}{Y_j}&lt;/script&gt;. Looking at some data (+ indicates a censored observation)…&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;2,5^+,8,12^+,15,21^+,25,29,30^+,34&lt;/script&gt;
+
+&lt;p&gt;Let’s estimate &lt;script type=&quot;math/tex&quot;&gt;S(10)&lt;/script&gt;. Notice, the first term of this estimation will be &lt;script type=&quot;math/tex&quot;&gt;P(T &gt; 10 \vert T &gt; 8)&lt;/script&gt; which is 1, since nothing happens at 10.. so if someone survives past 8, they will survive past 10. For sure. With probability 1. :) SO,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(10) = S(8) =  \displaystyle\prod_{t \in \{2,5,8\}}[1 - \lambda(t)]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= [1- \frac{D_8}{Y_8}][1- \frac{D_5}{Y_5}][1- \frac{D_2}{Y_2}]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= [1- \frac{1}{8}][1- \frac{0}{9}][1- \frac{1}{10}] = \frac{63}{80}&lt;/script&gt;
+
+&lt;p&gt;Notice at 5, the observation was censored, so it does not get included in &lt;script type=&quot;math/tex&quot;&gt;D_5&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Not that this estimate of our survival function will be piece-wise continuous, right continuous with jumps at event times, and will be 0 IF our last observation is a failure. Why can we do this when we have censored data? Because we assume that &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is independent of &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, or else we would have a joint distribution for the hazard. Anyways… this type of estimation is what is referred to as the Kaplan-Meier estimate of the survival function which, along with Nelson-Aalen, is the most popular non-parametric way (or just in general) way to estimate the survival function.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Least Squares via the SVD</title><link href="http://localhost:4000/jekyll/update/2018/04/11/least-squares-via-the-svd.html" rel="alternate" type="text/html" title="Least Squares via the SVD" /><published>2018-04-11T23:00:00-04:00</published><updated>2018-04-11T23:00:00-04:00</updated><id>http://localhost:4000/jekyll/update/2018/04/11/least-squares-via-the-svd</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/04/11/least-squares-via-the-svd.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;Let’s say you have some matrix of features (covariates) &lt;script type=&quot;math/tex&quot;&gt;A \in \mathbb{R}^{m \times n}&lt;/script&gt; and a response vector &lt;script type=&quot;math/tex&quot;&gt;y \in \mathbb{R}^m&lt;/script&gt;. We want to find the input vector &lt;script type=&quot;math/tex&quot;&gt;x \in \mathbb{R}^n&lt;/script&gt; that solves this problem or gives us the best possible solution. How should we define best? That is subjective - but the most common idea is to take the real response &lt;script type=&quot;math/tex&quot;&gt;y_i&lt;/script&gt; and the predicted response &lt;script type=&quot;math/tex&quot;&gt;A[i,:] x&lt;/script&gt; and square the difference for each response. We can formalize this problem as&lt;/p&gt;

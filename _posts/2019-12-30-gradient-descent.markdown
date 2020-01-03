@@ -2,7 +2,6 @@
 layout: post
 title:  "Gradient Descent"
 date:   2019-12-30 22:21:32 -0700
-categories: jekyll update
 ---
 
 <script type="text/javascript" async

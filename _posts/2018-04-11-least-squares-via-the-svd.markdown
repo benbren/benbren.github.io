@@ -54,7 +54,7 @@ $$
 
 which is the eigendecomposition. So, clearly, the eigenvectors of $$ A^TA $$ are found in $$ V $$. Same can be said of $$ U $$. Another observation we can make here is that $$ \Sigma^T\Sigma = \Lambda $$, so the elements of $$ \Sigma $$ , $$ \{\sigma_ i\}_{i=1}^{r} $$ are the square roots of the eigenvalues of both $$ A^TA $$ and $$ AA^T $$. These values are called the singular values of $$ A $$!
 
-So now, we have a tool to solve our least squares problem. How do we use it? If we want to form a basis for $latex \mathcal{R}(A) $. Well, $latex \mathcal{R}(A) $ is just the span of the columns of $latex A$. Extending this notion to the SVD,
+So now, we have a tool to solve our least squares problem. How do we use it? If we want to form a basis for $$ \mathcal{R}(A) $$. Well, $$ \mathcal{R}(A) $$ is just the span of the columns of $$ A$$. Extending this notion to the SVD,
 
 $$
 Ax = \sum_ {i=1}^{r} \sigma_ i u_ i v_ i^Tx

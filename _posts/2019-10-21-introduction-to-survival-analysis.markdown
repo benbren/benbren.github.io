@@ -18,7 +18,7 @@ $$
 f_ T(t) = \lim_{\delta\to 0^+}\frac{1}{\delta}P(t  \leq T \leq t + \delta)
 $$
 
-when  $latex T$ is continuous and, simply, 
+when  $$ T$$ is continuous and, simply, 
 
 $$ 
 f_T(t) = P(T = t)

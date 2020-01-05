@@ -1,4 +1,4 @@
-I"�<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"�0<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Survival Analysis: the branch of statistics that pretty much everyone I know only associates with biostatistics. I get it - that makes sense. Sure, survival implies.. surviving, but lots of things survive. My attempt to be a vegetarian (still going) is something that ‘survives’. Your T.V., your willingness to stay on an email list. Things like that. Survival analysis takes on many different names (for instance, reliability in engineering). Essentially, it deals with data that has ‘failure’ times and ‘censoring’ times - so it takes into account actual and observational failure times. For example, a failure time could be death (actual failure) and a censoring time could be a patient lost to follow-up (observational failure). It’s a cool subject - one that is applicable to almost every field, so let’s dive into some of the basics. The first : <script type="math/tex">T</script>. Big one. The time to event, which is a random variable. The second: <script type="math/tex">C</script>. Also a big one, the time to censoring. And finally, the first and second combined into the third(?): <script type="math/tex">X = min(T,C)</script> which is the event we actually observe. Ok, now actually finally, we have <script type="math/tex">\Delta = I(T \leq C) = I (X = T)</script>, which is just 1 if we observe the event and 0 if we lose the observation to censoring. Those are the big variables for the introduction, so let’s get into talking about the main functions and some examples.</p>
@@ -9,7 +9,7 @@
 
 <script type="math/tex; mode=display">f_ T(t) = \lim_{\delta\to 0^+}\frac{1}{\delta}P(t  \leq T \leq t + \delta)</script>
 
-<p>when  $latex T$ is continuous and, simply,</p>
+<p>when  <script type="math/tex">T</script> is continuous and, simply,</p>
 
 <script type="math/tex; mode=display">f_T(t) = P(T = t)</script>
 
@@ -96,4 +96,50 @@
 <p>Now, we just take the derivative with respect to <script type="math/tex">t</script> to find <script type="math/tex">\lambda(t)</script></p>
 
 <script type="math/tex; mode=display">\lambda(t) = \frac{2}{t+8}</script>
+
+<p>The discrete case is a liiiiiiitle bit more difficult, but very important for continued study in survival analysis. In practice, unless we have literall infinite observations, we will be dealing with discrete data. Let’s say <script type="math/tex">t</script> takes on values <script type="math/tex">t_ 1, \dots , t_ n</script>. Also, remember (more basic probability theory) that <script type="math/tex">P(AB) = P(A\vert B)P(B)</script>. If <script type="math/tex">B</script> is many events, then this formula is recursive. Now, suppose <script type="math/tex">t_j \leq t \leq t_{j+1}</script></p>
+
+<script type="math/tex; mode=display">S(t) = P(T > t) = P(T > t_j, T > T_{j-1},\dots,T > t_1) =</script>
+
+<script type="math/tex; mode=display">P(T > t_j \vert T > t_{j-1})\times P(T > t_{j-1} \vert T > t_{j-1})\times \dots \times P(T > t_1)</script>
+
+<script type="math/tex; mode=display">= [1 - P(T \leq t_j \vert T > t_{j-1})]\times \dots \times [1 - P(T\leq t_1)]</script>
+
+<script type="math/tex; mode=display">= [1 - P(T = t_j \vert T \geq t_{j})]\times \dots \times [1 - P(T = t_1)]</script>
+
+<script type="math/tex; mode=display">= \displaystyle\prod_{t_i\leq t} [1 - \lambda(t_i)]</script>
+
+<p>Notice, this formula is recursive! <script type="math/tex">S(t_j) = [1 - \lambda(t_j)]S(t_{j-1})</script> which doesn’t really matter here but .. it makes it easier to compute if, say, you wanted to write up this algorithm to help yourself learn (maybe?).  This actually has an analogous case in the continuous case (if we remember the Taylor Expansion for <script type="math/tex">e^{-x}</script> LOL). To the rescue again..</p>
+
+<script type="math/tex; mode=display">e^{-x} = \displaystyle\sum_{n = 0}^{\infty} \frac{(-x)^n}{n!} \approx 1- x</script>
+
+<p>when <script type="math/tex">x</script> is small.</p>
+
+<p>So, since 
+<script type="math/tex">\Lambda(T) = \int_{0}^{t}\lambda(u)du</script></p>
+
+<p>and</p>
+
+<script type="math/tex; mode=display">S(t) = e^{-\Lambda(t)}</script>
+
+<p>then</p>
+
+<script type="math/tex; mode=display">S(t) = \displaystyle\prod_{u=0}^t e^{-\lambda(u)du} \approx \displaystyle\prod_{u=0}^t[1 - \lambda(u)du]</script>
+
+<p>which is sometimes referred to as the product limit form of the survival function. Anyways.. let’s get to some real examples. First, from data.. let’s think of a good way to estimate <script type="math/tex">\lambda(t)</script>. Seems natural to estimate the hazard at a certain time point by looking at the number of events at a time point relative to the number of people at risk for the event at that time point. So, letting <script type="math/tex">D_ J</script> denote the number of events at time <script type="math/tex">t_ j</script> and <script type="math/tex">Y _ j</script> denote the number at risk (sill being observed, including the people who experience events) for an event at <script type="math/tex">t_j</script>. Then a natural estimate for <script type="math/tex">\lambda(t_j)</script> is <script type="math/tex">\frac{D_j}{Y_j}</script>. Looking at some data (+ indicates a censored observation)…</p>
+
+<script type="math/tex; mode=display">2,5^+,8,12^+,15,21^+,25,29,30^+,34</script>
+
+<p>Let’s estimate <script type="math/tex">S(10)</script>. Notice, the first term of this estimation will be <script type="math/tex">P(T > 10 \vert T > 8)</script> which is 1, since nothing happens at 10.. so if someone survives past 8, they will survive past 10. For sure. With probability 1. :) SO,</p>
+
+<script type="math/tex; mode=display">S(10) = S(8) =  \displaystyle\prod_{t \in \{2,5,8\}}[1 - \lambda(t)]</script>
+
+<script type="math/tex; mode=display">= [1- \frac{D_8}{Y_8}][1- \frac{D_5}{Y_5}][1- \frac{D_2}{Y_2}]</script>
+
+<script type="math/tex; mode=display">= [1- \frac{1}{8}][1- \frac{0}{9}][1- \frac{1}{10}] = \frac{63}{80}</script>
+
+<p>Notice at 5, the observation was censored, so it does not get included in <script type="math/tex">D_5</script>.</p>
+
+<p>Note that this estimate of our survival function will be piece-wise continuous, right continuous with jumps at event times, and will be 0 IF our last observation is a failure. Why can we do this when we have censored data? Because we assume that <script type="math/tex">T</script> is independent of <script type="math/tex">C</script>, or else we would have a joint distribution for the hazard. Anyways… this type of estimation is what is referred to as the Kaplan-Meier estimate of the survival function which, along with Nelson-Aalen, is the most popular non-parametric (or just in general) way to estimate the survival function.</p>
+
 :ET

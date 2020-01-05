@@ -2,8 +2,6 @@
 layout: post
 title:  "Least Squares via the SVD"
 date:   2018-04-11 20:00:00 -0700
-categories: jekyll update
-
 ---
 
 <script type="text/javascript" async
@@ -101,7 +99,7 @@ $$
 for any matrix $$ A \in \mathbb{R}^{m \times n} $$. Therefore, we have shown there is a general solution to the least-squares problem
 
 $$
- argmin_ x ||Ax - b||_2^2
+ \textrm{argmin} _ x ||Ax - b||_2^2
 $$
 
 An interesting thing to note here:

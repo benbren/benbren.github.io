@@ -217,5 +217,5 @@ $$
 
 Notice at 5, the observation was censored, so it does not get included in $$ D_5$$.
 
-Not that this estimate of our survival function will be piece-wise continuous, right continuous with jumps at event times, and will be 0 IF our last observation is a failure. Why can we do this when we have censored data? Because we assume that $$T$$ is independent of $$ C$$, or else we would have a joint distribution for the hazard. Anyways... this type of estimation is what is referred to as the Kaplan-Meier estimate of the survival function which, along with Nelson-Aalen, is the most popular non-parametric way (or just in general) way to estimate the survival function. 
+Note that this estimate of our survival function will be piece-wise continuous, right continuous with jumps at event times, and will be 0 IF our last observation is a failure. Why can we do this when we have censored data? Because we assume that $$T$$ is independent of $$ C$$, or else we would have a joint distribution for the hazard. Anyways... this type of estimation is what is referred to as the Kaplan-Meier estimate of the survival function which, along with Nelson-Aalen, is the most popular non-parametric (or just in general) way to estimate the survival function. 
 

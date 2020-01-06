@@ -1,0 +1,102 @@
+I"�!<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Linear Regression… the bread and butter of applied statistics.</p>
+
+<p>At one point or another, you have encountered linear regression. Did you read a statistic in the paper this morning? Was that statistic not a percent? Does anybody read the paper anymore?… Anyways, that number was probably derived via running a regression.</p>
+
+<p>A linear regression is used to describe an association (NOT A CAUSAL THING) between one (continuous) response variable, <script type="math/tex">Y</script> and a vector of (continuous or not, whatever) explanatory variables <script type="math/tex">\mathbf{X}</script>. Why is it called linear regression? Well, remember from algebra that a line can be described by</p>
+
+<script type="math/tex; mode=display">y = mx + b</script>
+
+<p>where <script type="math/tex">x</script> is the independent (explanatory) variable and <script type="math/tex">y</script> is the dependent (response) variable. We assume there is a number <script type="math/tex">m</script>, the slope, that describes the relationship here. Essentially, we are saying the same thing with linear regression. We want to find the best <script type="math/tex">\beta_ 0</script> and <script type="math/tex">\beta_1</script> such that the formula</p>
+
+<script type="math/tex; mode=display">Y_i = \beta_0 + \beta_1*X_i + \epsilon_i</script>
+
+<p>is the best fit given our data. It doesn’t matter if <script type="math/tex">X</script> is linear, quadratic, exponential.. only that the relationship is linear in the <script type="math/tex">\beta</script> parameters. <script type="math/tex">\epsilon</script> is an error term for every <script type="math/tex">i</script>  observation. So the problem is really trying to find <script type="math/tex">\beta_0</script> and <script type="math/tex">\beta_1</script> such that <script type="math/tex">\epsilon</script> is minimum overall, i.e. taking into account each observation. The math behind linear regression is all about how we best do that. For this post, we will only explore simple linear regression where we have one explanatory variable. This need not need be the case, and we will cover that another time - but it involves some linear algebra and is a little more involved. The rest of this post assumes some knowledge of statistics, just at a basic level like expected values and distributions.</p>
+
+<p>So, we have this model</p>
+
+<script type="math/tex; mode=display">Y_i = \beta_0 + \beta_1*X_i + \epsilon_i</script>
+
+<p>where <script type="math/tex">Y_i</script> is the response variable, <script type="math/tex">\beta_0</script> is the intercept (fixed), <script type="math/tex">\beta_1</script> is the slope (fixed), <script type="math/tex">X_i</script> is a covariate (fixed) and <script type="math/tex">\epsilon</script> is the error term, which is random and unobservable. As always, we need some assumptions in order to make this workable.. We assume that the errors are normally distributed and unrelated… that is,</p>
+
+<ol>
+  <li>
+    <script type="math/tex; mode=display">\epsilon_i \sim N(0,\sigma^2)</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">E[\epsilon_i\epsilon_j] = 0</script>
+  </li>
+</ol>
+
+<p>These assumptions lead us to some key implicit assumptions of linear regression. <em>Linearity</em>,  <em>constant variance</em>, <em>independence</em> and <em>normally distributed</em>. That is,</p>
+
+<ol>
+  <li>
+    <script type="math/tex; mode=display">E[Y_i \vert X_i ] = \beta_0 + \beta_1X_i</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">\sigma_i^2 =  V[Y_i \vert X_i] = \sigma^2</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">Y_i \perp Y_j, i \neq j</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">Y_i \sim N(\beta_0 + \beta_1X_i,\sigma^2)</script>
+  </li>
+</ol>
+
+<p>We treat the covariates as fixed, but sometimes they aren’t.  For instance, there could be measurement error in the covariates. Really, the goal is to keep that randomness small.</p>
+
+<p>Let’s talk about <script type="math/tex">\beta_0</script> and <script type="math/tex">\beta_1</script>. How should we interpret them? Well, they are part of a linear relationship. We are  going to estimate them such that we fit a line to the data that should give us the expected value of the response given some input parameters.  That is,</p>
+
+<script type="math/tex; mode=display">E[ Y_i | X_i ] = \hat{\beta_0} + \hat{\beta_1}X_i</script>
+
+<p>The little hat things mean they are estimated, not the true parameters… more on that later. So, <script type="math/tex">\hat{\beta_0}</script> is the average value of <script type="math/tex">Y</script>  when <script type="math/tex">X = 0</script>. Furthermore, <script type="math/tex">\hat{\beta_1}</script> is the average change in <script type="math/tex">Y</script> for a unit increase in <script type="math/tex">X</script>. In general, it is best to not extrapolate beyond what your limits for <script type="math/tex">X</script> are. If your covariate is age, and you only have observations for people aged 15 - 30, don’t make the assumption that the model works for a 90-year-old… please.</p>
+
+<p>Okay! Now to the fun stuff… math. We wanna estimate the parameters here. How do we do that? Calculus. :)</p>
+
+<p>First, we need to define best. What is the <em>best</em> fit? That’s arbitrary, as there are many ways to do this. We are going to do it via ordinary least squares, or OLS, which is the default way that any linear regression is fit. What this means is that we want to minimize the <strong>Sum of Squared Errors (SSE)</strong>, or, in math,</p>
+
+<script type="math/tex; mode=display">\sum_{i=1}^{n} \hat{\epsilon_i}^2</script>
+
+<p>So, we need a definition of <script type="math/tex">\hat{\epsilon_i}</script>, Well, it is just <script type="math/tex">Y_i - \hat{Y_i}</script> or, even better, <script type="math/tex">Y_i - (\hat{\beta_0} + \hat{\beta_1}X_i)</script> , since that is how we are guessing our reponse variable. This is good because now we have written <script type="math/tex">\hat{\epsilon_i}</script> as a function of <script type="math/tex">\hat{\beta_0}</script> and <script type="math/tex">\hat{\beta_1}</script>, which are our tuneable parameters. Now we will need a little bit of calculus. This function will reach a critical value when</p>
+
+<script type="math/tex; mode=display">\textbf{\(*\)} \frac{\partial SSE}{\partial \beta_0} = 0</script>
+
+<p>and</p>
+
+<script type="math/tex; mode=display">\textbf{\(**\)} \frac{\partial SSE}{\partial \beta_1} = 0</script>
+
+<p>Remember? ;)</p>
+
+<p>Let’s solve (*) first.</p>
+
+<script type="math/tex; mode=display">\frac{\partial SSE}{\partial \beta_0} = 0</script>
+
+<script type="math/tex; mode=display">\implies -2 \sum_{i=1}^{n}(Y_i - \hat{\beta_0} -\hat{\beta_1}X_i) = 0</script>
+
+<script type="math/tex; mode=display">\implies \sum_{i=1}^{n}Y_i  - \hat{\beta_1}\sum_{i=1}^{n}X_i= n\hat{\beta_0}</script>
+
+<script type="math/tex; mode=display">\implies \hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}</script>
+
+<p>So, if we know <script type="math/tex">\hat{\beta_1}</script>, we can estimate <script type="math/tex">\hat{\beta_0}</script> . Now, looking at (**) and subbing in this result,</p>
+
+<script type="math/tex; mode=display">\frac{\partial SSE}{\partial \beta_1} = 0</script>
+
+<script type="math/tex; mode=display">\implies -2 \sum_{i=1}^{n}X_i (Y_i - \hat{\beta_0} -\hat{\beta_1}X_i) = 0</script>
+
+<script type="math/tex; mode=display">\implies -2 \sum_{i=1}^{n}X_i (Y_i -\bar{Y} +\hat{\beta_1}\bar{X} -\hat{\beta_1}X_i) = 0</script>
+
+<script type="math/tex; mode=display">\implies \sum_{i=1}^{n}X_i(Y_i - \bar{Y}) = \hat{\beta_1} \sum_{i=1}^{n}X_i(X_i - \bar{X})</script>
+
+<script type="math/tex; mode=display">\implies \hat{\beta_1} = \frac{SSXY}{SSX}</script>
+
+<p>where <script type="math/tex">SSXY = \sum_{i=1}^{n}X_i(Y_i - \bar{Y})</script> and <script type="math/tex">SSX =  \sum_{i=1}^{n}X_i(X_i - \bar{X})</script></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">	</span></code></pre></figure>
+
+:ET

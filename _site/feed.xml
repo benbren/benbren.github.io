@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-05T15:06:01-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-06T13:58:00-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;You’ll remember in OLS, we had something called the &lt;strong&gt;normal equations&lt;/strong&gt; - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.&lt;/p&gt;
@@ -348,4 +348,222 @@
 
 &lt;p&gt;That is, what we are doing is projecting the error onto the the orthogonal complement of &lt;script type=&quot;math/tex&quot;&gt;P_ {\mathcal{R}(A)}&lt;/script&gt;. This is exactly what the figure above is showing! Our error should be directly orthogonal to &lt;script type=&quot;math/tex&quot;&gt;P_{\mathcal{R}(A)}&lt;/script&gt; for the objective function to be minimized.&lt;/p&gt;
 
-&lt;p&gt;Now we have a bit of intuition into how we can use the Singular Value Decomposition to solve the least squares problem. This helps when you have a feature matrix and outcomes and want to find the specific weights associated with each covariate in the feature matrix. Least squares is used to solve for the parameters in linear regression and can be used to find the weights associated with neural networks… it has lots of applications. Hopefully, now you can apply it!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;Now we have a bit of intuition into how we can use the Singular Value Decomposition to solve the least squares problem. This helps when you have a feature matrix and outcomes and want to find the specific weights associated with each covariate in the feature matrix. Least squares is used to solve for the parameters in linear regression and can be used to find the weights associated with neural networks… it has lots of applications. Hopefully, now you can apply it!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Linear Regression</title><link href="http://localhost:4000/2018/03/10/linear-regression.Rmd" rel="alternate" type="text/html" title="Linear Regression" /><published>2018-03-10T22:00:00-05:00</published><updated>2018-03-10T22:00:00-05:00</updated><id>http://localhost:4000/2018/03/10/linear-regression</id><content type="html" xml:base="http://localhost:4000/2018/03/10/linear-regression.Rmd">&lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+Linear Regression... the bread and butter of applied statistics.
+
+At one point or another, you have encountered linear regression. Did you read a statistic in the paper this morning? Was that statistic not a percent? Does anybody read the paper anymore?... Anyways, that number was probably derived via running a regression.
+
+A linear regression is used to describe an association (NOT A CAUSAL THING) between one (continuous) response variable, $$ Y$$ and a vector of (continuous or not, whatever) explanatory variables $$ \mathbf{X}$$. Why is it called linear regression? Well, remember from algebra that a line can be described by
+
+$$ 
+y = mx + b
+$$
+
+where $$x$$ is the independent (explanatory) variable and $$ y$$ is the dependent (response) variable. We assume there is a number $$ m$$, the slope, that describes the relationship here. Essentially, we are saying the same thing with linear regression. We want to find the best $$ \beta_ 0$$ and $$ \beta_1 $$ such that the formula
+
+$$ 
+Y_i = \beta_0 + \beta_1*X_i + \epsilon_i
+$$
+
+is the best fit given our data. It doesn't matter if $$X$$ is linear, quadratic, exponential.. only that the relationship is linear in the $$ \beta $$ parameters. $$ \epsilon $$ is an error term for every $$ i $$  observation. So the problem is really trying to find $$ \beta_0 $$ and $$ \beta_1$$ such that $$ \epsilon$$ is minimum overall, i.e. taking into account each observation. The math behind linear regression is all about how we best do that. For this post, we will only explore simple linear regression where we have one explanatory variable. This need not need be the case, and we will cover that another time - but it involves some linear algebra and is a little more involved. The rest of this post assumes some knowledge of statistics, just at a basic level like expected values and distributions.
+
+So, we have this model
+
+$$ 
+Y_i = \beta_0 + \beta_1*X_i + \epsilon_i
+$$
+
+where $$ Y_i $$ is the response variable, $$ \beta_0 $$ is the intercept (fixed), $$ \beta_1 $$ is the slope (fixed), $$ X_i$$ is a covariate (fixed) and $$ \epsilon $$ is the error term, which is random and unobservable. As always, we need some assumptions in order to make this workable.. We assume that the errors are normally distributed and unrelated... that is,
+
+1. $$ \epsilon_i \sim N(0,\sigma^2) $$
+2. $$ E[\epsilon_i\epsilon_j] = 0 $$
+
+These assumptions lead us to some key implicit assumptions of linear regression. *Linearity*,  *constant variance*, *independence* and *normally distributed*. That is,
+
+1. $$ E[Y_i \vert X_i ] = \beta_0 + \beta_1X_i $$
+2. $$ \sigma_i^2 =  V[Y_i \vert X_i] = \sigma^2 $$
+3. $$ Y_i \perp Y_j, i \neq j $$
+4. $$ Y_i \sim N(\beta_0 + \beta_1X_i,\sigma^2) $$
+
+We treat the covariates as fixed, but sometimes they aren't.  For instance, there could be measurement error in the covariates. Really, the goal is to keep that randomness small.
+
+Let's talk about $$ \beta_0 $$ and $$ \beta_1 $$. How should we interpret them? Well, they are part of a linear relationship. We are  going to estimate them such that we fit a line to the data that should give us the expected value of the response given some input parameters.  That is,
+
+$$ 
+E[ Y_i | X_i ] = \hat{\beta_0} + \hat{\beta_1}X_i
+$$
+
+The little hat things mean they are estimated, not the true parameters... more on that later. So, $$ \hat{\beta_0} $$ is the average value of $$ Y $$  when $$ X = 0 $$. Furthermore, $$ \hat{\beta_1} $$ is the average change in $$ Y $$ for a unit increase in $$ X $$. In general, it is best to not extrapolate beyond what your limits for $$ X $$ are. If your covariate is age, and you only have observations for people aged 15 - 30, don't make the assumption that the model works for a 90-year-old... please.
+
+Okay! Now to the fun stuff... math. We wanna estimate the parameters here. How do we do that? Calculus. :)
+
+First, we need to define best. What is the *best* fit? That's arbitrary, as there are many ways to do this. We are going to do it via ordinary least squares, or OLS, which is the default way that any linear regression is fit. What this means is that we want to minimize the **Sum of Squared Errors (SSE)**, or, in math,
+
+$$ 
+\sum_{i=1}^{n} \hat{\epsilon_i}^2
+$$
+
+So, we need a definition of $$ \hat{\epsilon_i} $$, Well, it is just $$ Y_i - \hat{Y_i} $$ or, even better, $$ Y_i - (\hat{\beta_0} + \hat{\beta_1}X_i) $$ , since that is how we are guessing our reponse variable. This is good because now we have written $$ \hat{\epsilon_i} $$ as a function of $$ \hat{\beta_0} $$ and $$ \hat{\beta_1} $$, which are our tuneable parameters. Now we will need a little bit of calculus. This function will reach a critical value when
+
+$$ 
+\textbf{\(*\)} \frac{\partial SSE}{\partial \beta_0} = 0
+$$
+
+and 
+
+$$
+\textbf{\(**\)} \frac{\partial SSE}{\partial \beta_1} = 0
+$$
+
+Remember? ;)
+
+Let's solve (*) first.
+
+$$ 
+\frac{\partial SSE}{\partial \beta_0} = 0 
+$$
+
+$$ 
+\implies -2 \sum_{i=1}^{n}(Y_i - \hat{\beta_0} -\hat{\beta_1}X_i) = 0 
+$$
+
+$$ 
+\implies \sum_{i=1}^{n}Y_i  - \hat{\beta_1}\sum_{i=1}^{n}X_i= n\hat{\beta_0}
+$$
+
+$$ 
+\implies \hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}
+$$
+
+So, if we know $$ \hat{\beta_1} $$, we can estimate $$ \hat{\beta_0} $$ . Now, looking at (**) and subbing in this result,
+
+$$ 
+\frac{\partial SSE}{\partial \beta_1} = 0 
+$$
+
+$$
+\implies -2 \sum_{i=1}^{n}X_i (Y_i - \hat{\beta_0} -\hat{\beta_1}X_i) = 0
+$$
+
+$$
+\implies -2 \sum_{i=1}^{n}X_i (Y_i -\bar{Y} +\hat{\beta_1}\bar{X} -\hat{\beta_1}X_i) = 0
+$$
+
+$$ 
+\implies \sum_{i=1}^{n}X_i(Y_i - \bar{Y}) = \hat{\beta_1} \sum_{i=1}^{n}X_i(X_i - \bar{X})
+$$
+
+$$ 
+\implies \hat{\beta_1} = \frac{SSXY}{SSX}
+$$
+
+where $$ SSXY = \sum_{i=1}^{n}X_i(Y_i - \bar{Y})$$ and $$ SSX =  \sum_{i=1}^{n}X_i(X_i - \bar{X})$$
+
+
+```{r, echo = T}
+data(mtcars)
+names(mtcars)
+str(mtcars)	
+```</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Linear Regression</title><link href="http://localhost:4000/2018/03/10/linear-regression.html" rel="alternate" type="text/html" title="Linear Regression" /><published>2018-03-10T22:00:00-05:00</published><updated>2018-03-10T22:00:00-05:00</updated><id>http://localhost:4000/2018/03/10/linear-regression</id><content type="html" xml:base="http://localhost:4000/2018/03/10/linear-regression.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;Linear Regression… the bread and butter of applied statistics.&lt;/p&gt;
+
+&lt;p&gt;At one point or another, you have encountered linear regression. Did you read a statistic in the paper this morning? Was that statistic not a percent? Does anybody read the paper anymore?… Anyways, that number was probably derived via running a regression.&lt;/p&gt;
+
+&lt;p&gt;A linear regression is used to describe an association (NOT A CAUSAL THING) between one (continuous) response variable, &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; and a vector of (continuous or not, whatever) explanatory variables &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt;. Why is it called linear regression? Well, remember from algebra that a line can be described by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;y = mx + b&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is the independent (explanatory) variable and &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is the dependent (response) variable. We assume there is a number &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt;, the slope, that describes the relationship here. Essentially, we are saying the same thing with linear regression. We want to find the best &lt;script type=&quot;math/tex&quot;&gt;\beta_ 0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\beta_1&lt;/script&gt; such that the formula&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Y_i = \beta_0 + \beta_1*X_i + \epsilon_i&lt;/script&gt;
+
+&lt;p&gt;is the best fit given our data. It doesn’t matter if &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is linear, quadratic, exponential.. only that the relationship is linear in the &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; parameters. &lt;script type=&quot;math/tex&quot;&gt;\epsilon&lt;/script&gt; is an error term for every &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;  observation. So the problem is really trying to find &lt;script type=&quot;math/tex&quot;&gt;\beta_0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\beta_1&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;\epsilon&lt;/script&gt; is minimum overall, i.e. taking into account each observation. The math behind linear regression is all about how we best do that. For this post, we will only explore simple linear regression where we have one explanatory variable. This need not need be the case, and we will cover that another time - but it involves some linear algebra and is a little more involved. The rest of this post assumes some knowledge of statistics, just at a basic level like expected values and distributions.&lt;/p&gt;
+
+&lt;p&gt;So, we have this model&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Y_i = \beta_0 + \beta_1*X_i + \epsilon_i&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;Y_i&lt;/script&gt; is the response variable, &lt;script type=&quot;math/tex&quot;&gt;\beta_0&lt;/script&gt; is the intercept (fixed), &lt;script type=&quot;math/tex&quot;&gt;\beta_1&lt;/script&gt; is the slope (fixed), &lt;script type=&quot;math/tex&quot;&gt;X_i&lt;/script&gt; is a covariate (fixed) and &lt;script type=&quot;math/tex&quot;&gt;\epsilon&lt;/script&gt; is the error term, which is random and unobservable. As always, we need some assumptions in order to make this workable.. We assume that the errors are normally distributed and unrelated… that is,&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\epsilon_i \sim N(0,\sigma^2)&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;E[\epsilon_i\epsilon_j] = 0&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These assumptions lead us to some key implicit assumptions of linear regression. &lt;em&gt;Linearity&lt;/em&gt;,  &lt;em&gt;constant variance&lt;/em&gt;, &lt;em&gt;independence&lt;/em&gt; and &lt;em&gt;normally distributed&lt;/em&gt;. That is,&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;E[Y_i \vert X_i ] = \beta_0 + \beta_1X_i&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\sigma_i^2 =  V[Y_i \vert X_i] = \sigma^2&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;Y_i \perp Y_j, i \neq j&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;Y_i \sim N(\beta_0 + \beta_1X_i,\sigma^2)&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We treat the covariates as fixed, but sometimes they aren’t.  For instance, there could be measurement error in the covariates. Really, the goal is to keep that randomness small.&lt;/p&gt;
+
+&lt;p&gt;Let’s talk about &lt;script type=&quot;math/tex&quot;&gt;\beta_0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\beta_1&lt;/script&gt;. How should we interpret them? Well, they are part of a linear relationship. We are  going to estimate them such that we fit a line to the data that should give us the expected value of the response given some input parameters.  That is,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E[ Y_i | X_i ] = \hat{\beta_0} + \hat{\beta_1}X_i&lt;/script&gt;
+
+&lt;p&gt;The little hat things mean they are estimated, not the true parameters… more on that later. So, &lt;script type=&quot;math/tex&quot;&gt;\hat{\beta_0}&lt;/script&gt; is the average value of &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt;  when &lt;script type=&quot;math/tex&quot;&gt;X = 0&lt;/script&gt;. Furthermore, &lt;script type=&quot;math/tex&quot;&gt;\hat{\beta_1}&lt;/script&gt; is the average change in &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; for a unit increase in &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;. In general, it is best to not extrapolate beyond what your limits for &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; are. If your covariate is age, and you only have observations for people aged 15 - 30, don’t make the assumption that the model works for a 90-year-old… please.&lt;/p&gt;
+
+&lt;p&gt;Okay! Now to the fun stuff… math. We wanna estimate the parameters here. How do we do that? Calculus. :)&lt;/p&gt;
+
+&lt;p&gt;First, we need to define best. What is the &lt;em&gt;best&lt;/em&gt; fit? That’s arbitrary, as there are many ways to do this. We are going to do it via ordinary least squares, or OLS, which is the default way that any linear regression is fit. What this means is that we want to minimize the &lt;strong&gt;Sum of Squared Errors (SSE)&lt;/strong&gt;, or, in math,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum_{i=1}^{n} \hat{\epsilon_i}^2&lt;/script&gt;
+
+&lt;p&gt;So, we need a definition of &lt;script type=&quot;math/tex&quot;&gt;\hat{\epsilon_i}&lt;/script&gt;, Well, it is just &lt;script type=&quot;math/tex&quot;&gt;Y_i - \hat{Y_i}&lt;/script&gt; or, even better, &lt;script type=&quot;math/tex&quot;&gt;Y_i - (\hat{\beta_0} + \hat{\beta_1}X_i)&lt;/script&gt; , since that is how we are guessing our reponse variable. This is good because now we have written &lt;script type=&quot;math/tex&quot;&gt;\hat{\epsilon_i}&lt;/script&gt; as a function of &lt;script type=&quot;math/tex&quot;&gt;\hat{\beta_0}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\hat{\beta_1}&lt;/script&gt;, which are our tuneable parameters. Now we will need a little bit of calculus. This function will reach a critical value when&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\textbf{\(*\)} \frac{\partial SSE}{\partial \beta_0} = 0&lt;/script&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\textbf{\(**\)} \frac{\partial SSE}{\partial \beta_1} = 0&lt;/script&gt;
+
+&lt;p&gt;Remember? ;)&lt;/p&gt;
+
+&lt;p&gt;Let’s solve (*) first.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial SSE}{\partial \beta_0} = 0&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies -2 \sum_{i=1}^{n}(Y_i - \hat{\beta_0} -\hat{\beta_1}X_i) = 0&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies \sum_{i=1}^{n}Y_i  - \hat{\beta_1}\sum_{i=1}^{n}X_i= n\hat{\beta_0}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies \hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}&lt;/script&gt;
+
+&lt;p&gt;So, if we know &lt;script type=&quot;math/tex&quot;&gt;\hat{\beta_1}&lt;/script&gt;, we can estimate &lt;script type=&quot;math/tex&quot;&gt;\hat{\beta_0}&lt;/script&gt; . Now, looking at (**) and subbing in this result,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial SSE}{\partial \beta_1} = 0&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies -2 \sum_{i=1}^{n}X_i (Y_i - \hat{\beta_0} -\hat{\beta_1}X_i) = 0&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies -2 \sum_{i=1}^{n}X_i (Y_i -\bar{Y} +\hat{\beta_1}\bar{X} -\hat{\beta_1}X_i) = 0&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies \sum_{i=1}^{n}X_i(Y_i - \bar{Y}) = \hat{\beta_1} \sum_{i=1}^{n}X_i(X_i - \bar{X})&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies \hat{\beta_1} = \frac{SSXY}{SSX}&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;SSXY = \sum_{i=1}^{n}X_i(Y_i - \bar{Y})&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;SSX =  \sum_{i=1}^{n}X_i(X_i - \bar{X})&lt;/script&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mtcars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mtcars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mtcars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;	&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

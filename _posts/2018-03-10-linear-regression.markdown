@@ -118,11 +118,6 @@ $$
 
 where $$ SSXY = \sum_{i=1}^{n}X_i(Y_i - \bar{Y})$$ and $$ SSX =  \sum_{i=1}^{n}X_i(X_i - \bar{X})$$
 
-{% highlight r %}
-
-data(mtcars)
-names(mtcars)
-str(mtcars)	
-{%endhighlight%}
+Awesome! Now, given a vector of covariates and a vector of responses, you can estimate both paramaters quite easily! We didn't really need to do this though. It is good for understanding... but we didn't need to do the calculus, we have ```R``` to do this!
 
 

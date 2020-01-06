@@ -1,4 +1,4 @@
-I"�!<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"� <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Linear Regression… the bread and butter of applied statistics.</p>
@@ -95,8 +95,6 @@
 
 <p>where <script type="math/tex">SSXY = \sum_{i=1}^{n}X_i(Y_i - \bar{Y})</script> and <script type="math/tex">SSX =  \sum_{i=1}^{n}X_i(X_i - \bar{X})</script></p>
 
-<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
-</span><span class="nf">names</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
-</span><span class="n">str</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">	</span></code></pre></figure>
+<p>Awesome! Now, given a vector of covariates and a vector of responses, you can estimate both paramaters quite easily! We didn’t really need to do this though. It is good for understanding… but we didn’t need to do the calculus, we have <code class="highlighter-rouge">R</code> to do this!</p>
 
 :ET

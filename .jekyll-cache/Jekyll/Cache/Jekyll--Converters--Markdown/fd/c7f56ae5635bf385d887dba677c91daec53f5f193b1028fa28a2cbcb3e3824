@@ -1,0 +1,17 @@
+I"7<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>When most people think about statistics, they think about flipping a coin or gambling or having flashbacks to dropping out of high school because they hated the class so much… moral of the story is, it’s just one thing to think about. What if I told you that that wasn’t necessarily true? I am about to tell you that. Statistics is the science of modeling randomness. But what is random, and what is not? That is a fundamental question in statistics and splits the subject into two separate approaches - Bayesian and Frequentist.</p>
+
+<p>What does it mean to say that I am 50 \% certain it will rain tomorrow? That is not so much a statement of probability, but rather of uncertainty. It will rain or it will not rain, but that outcome is something you are uncertain of. Consider another example: flip a coin and cover it up immediately once it lands, so you don’t know what the result is. What’re the chances that the coin is heads? From a traditional, frequentist perspective, there is no answer to this question. It already happened. There is already a result - you’re just ignorant. But that’s not really how we think, is it? We don’t know what the result is - we are uncertain of it. Let’s consider a medical example. Say you’re getting screened for the flu, and the result comes out positive. Do you actually have the flu? In the frequentist approach, that doesn’t make sense to ask. We do have sensitivity and specificity. Let <script type="math/tex">\theta = 1</script> if you have the flu and <script type="math/tex">\theta = 0</script> if you don’t. Then the sensitivity is the probability the test is positive given that you have the flue, or <script type="math/tex">P(T = 1 \vert \theta = 1)</script> and the specificity is <script type="math/tex">P(T = 0 \vert \theta = 0)</script>, the probability the test is negative when you don’t have the flu. If specificity is not 1, you might get tested positive but not have the disease. It makes sense then to ask ‘“Do I actually have the flu?”, but does it make statistical sense to ask ‘Do I have the flu?’? That is, what is <script type="math/tex">P(\theta =1 \vert T = 1)</script>? A frequentist says ‘Bad question. <script type="math/tex">\theta</script> is fixed’. A Bayesian will come in and say ‘Hold on, <script type="math/tex">\theta</script> is not actually fixed. We can estimate this’</p>
+
+<p>This is the whole premise of Bayesian statistics - to use probability theory to not <em>only</em> quantify probability but also to quantify uncertainty. Much better!! Solving problems that were disregarded earlier - we like that!</p>
+
+<p>Okay, moving on… now that I’ve converted you to the Bayesian approach to statistics…</p>
+
+<p>:)</p>
+
+<p>Let’s talk about the setup. In a frequentist approach, we have a random variable <script type="math/tex">\mathbf{X}</script>, observed data from that random variable, a model, and a parameter <script type="math/tex">\theta \in \Omega</script> that is unknown but <em>fixed</em>. In the Bayesian framework, we don’t consider that italicized part. It’s a subtle change that makes a huge difference. Now, we have</p>
+
+<script type="math/tex; mode=display">\theta \sim \pi(\theta)</script>
+:ET

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-07T19:15:37-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-07T19:49:46-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;You’ll remember in OLS, we had something called the &lt;strong&gt;normal equations&lt;/strong&gt; - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.&lt;/p&gt;
@@ -254,7 +254,93 @@
 
 &lt;p&gt;Notice at 5, the observation was censored, so it does not get included in &lt;script type=&quot;math/tex&quot;&gt;D_5&lt;/script&gt;.&lt;/p&gt;
 
-&lt;p&gt;Note that this estimate of our survival function will be piece-wise continuous, right continuous with jumps at event times, and will be 0 IF our last observation is a failure. Why can we do this when we have censored data? Because we assume that &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is independent of &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, or else we would have a joint distribution for the hazard. Anyways… this type of estimation is what is referred to as the Kaplan-Meier estimate of the survival function which, along with Nelson-Aalen, is the most popular non-parametric (or just in general) way to estimate the survival function.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Least Squares via the SVD</title><link href="http://localhost:4000/2018/04/11/least-squares-via-the-svd.html" rel="alternate" type="text/html" title="Least Squares via the SVD" /><published>2018-04-11T23:00:00-04:00</published><updated>2018-04-11T23:00:00-04:00</updated><id>http://localhost:4000/2018/04/11/least-squares-via-the-svd</id><content type="html" xml:base="http://localhost:4000/2018/04/11/least-squares-via-the-svd.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;p&gt;Note that this estimate of our survival function will be piece-wise continuous, right continuous with jumps at event times, and will be 0 IF our last observation is a failure. Why can we do this when we have censored data? Because we assume that &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is independent of &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, or else we would have a joint distribution for the hazard. Anyways… this type of estimation is what is referred to as the Kaplan-Meier estimate of the survival function which, along with Nelson-Aalen, is the most popular non-parametric (or just in general) way to estimate the survival function.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Bayesian Estimation</title><link href="http://localhost:4000/2018/07/13/bayesian-estimation.html" rel="alternate" type="text/html" title="Bayesian Estimation" /><published>2018-07-13T01:21:32-04:00</published><updated>2018-07-13T01:21:32-04:00</updated><id>http://localhost:4000/2018/07/13/bayesian-estimation</id><content type="html" xml:base="http://localhost:4000/2018/07/13/bayesian-estimation.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;When most people think about statistics, they think about flipping a coin or gambling or having flashbacks to dropping out of high school because they hated the class so much… moral of the story is, it’s just one thing to think about. What if I told you that that wasn’t necessarily true? I am about to tell you that. Statistics is the science of modeling randomness. But what is random, and what is not? That is a fundamental question in statistics and splits the subject into two separate approaches - Bayesian and Frequentist.&lt;/p&gt;
+
+&lt;p&gt;What does it mean to say that I am 50% certain it will rain tomorrow? That is not so much a statement of probability, but rather of uncertainty. It will rain or it will not rain, but that outcome is something you are uncertain of. Consider another example: flip a coin and cover it up immediately once it lands, so you don’t know what the result is. What’re the chances that the coin is heads? From a traditional, frequentist perspective, there is no answer to this question. It already happened. There is already a result - you’re just ignorant. But that’s not really how we think, is it? We don’t know what the result is - we are uncertain of it. Let’s consider a medical example. Say you’re getting screened for the flu, and the result comes out positive. Do you actually have the flu? In the frequentist approach, that doesn’t make sense to ask. We do have sensitivity and specificity. Let &lt;script type=&quot;math/tex&quot;&gt;\theta = 1&lt;/script&gt; if you have the flu and &lt;script type=&quot;math/tex&quot;&gt;\theta = 0&lt;/script&gt; if you don’t. Then the sensitivity is the probability the test is positive given that you have the flue, or &lt;script type=&quot;math/tex&quot;&gt;P(T = 1 \vert \theta = 1)&lt;/script&gt; and the specificity is &lt;script type=&quot;math/tex&quot;&gt;P(T = 0 \vert \theta = 0)&lt;/script&gt;, the probability the test is negative when you don’t have the flu. If specificity is not 1, you might get tested positive but not have the disease. It makes sense then to ask ‘“Do I actually have the flu?”, but does it make statistical sense to ask ‘Do I have the flu?’? That is, what is &lt;script type=&quot;math/tex&quot;&gt;P(\theta =1 \vert T = 1)&lt;/script&gt;? A frequentist says ‘Bad question. &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; is fixed’. A Bayesian will come in and say ‘Hold on, &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; is not actually fixed. We can estimate this’&lt;/p&gt;
+
+&lt;p&gt;This is the whole premise of Bayesian statistics - to use probability theory to not &lt;em&gt;only&lt;/em&gt; quantify probability but also to quantify uncertainty. Much better!! Solving problems that were disregarded earlier - we like that!&lt;/p&gt;
+
+&lt;p&gt;Okay, moving on… now that I’ve converted you to the Bayesian approach to statistics…&lt;/p&gt;
+
+&lt;p&gt;:)&lt;/p&gt;
+
+&lt;p&gt;Let’s talk about the setup. In a frequentist approach, we have a random variable &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt;, observed data from that random variable, a model, and a parameter &lt;script type=&quot;math/tex&quot;&gt;\theta \in \Omega&lt;/script&gt; that is unknown but &lt;em&gt;fixed&lt;/em&gt;. In the Bayesian framework, we don’t consider that italicized part. It’s a subtle change that makes a huge difference. Now, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta \sim \pi(\theta)&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;\pi&lt;/script&gt; is called a &lt;em&gt;prior distribution&lt;/em&gt;. Now, we need to make an adjustment to your original data’s distribution. Now, we have a conditional distribution!&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf{X} \vert \theta \sim f(\mathbf{x}\vert \theta)&lt;/script&gt;
+
+&lt;p&gt;and, by Bayes rule, the joint distribution of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(\mathbf{x},\theta) = \pi(\theta)f(\mathbf{x}|\theta)&lt;/script&gt;
+
+&lt;p&gt;and, thus, the marginal distribution of  &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;m(\mathbf{x}) = \displaystyle\int_{\theta \in \Omega} {f(\mathbf{x},\theta)d\theta}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\pi(\theta \vert \mathbf{x}) = \frac{\pi(\theta)f(\mathbf{x} \vert \theta)}{m(\mathbf{x}) }&lt;/script&gt;
+
+&lt;p&gt;We now have all the tools we need to do some basic Bayesian analysis!&lt;/p&gt;
+
+&lt;p&gt;and, so, by Bayes rule again, the posterior distribution of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; is&lt;/p&gt;
+
+&lt;p&gt;Let us look at &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim Bernoulli(p)&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;p \sim Beta(\alpha, \beta)&lt;/script&gt;. Then we could calculate &lt;script type=&quot;math/tex&quot;&gt;\pi(\theta \vert \mathbf{x}) = \frac{\pi(p)f(\mathbf{x}\vert \theta)}{m(\mathbf{x}) }&lt;/script&gt;, but that would take forever. Does &lt;script type=&quot;math/tex&quot;&gt;m(\mathbf{x})&lt;/script&gt; matter? No. Why? Think about it. We want the posterior distribtion of &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, right? So &lt;script type=&quot;math/tex&quot;&gt;m(\mathbf{x})&lt;/script&gt; has &lt;em&gt;literally&lt;/em&gt; (millenials…) nothing to do with &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, therefore it just acts as a normalizing constant in the equation to make sure that &lt;script type=&quot;math/tex&quot;&gt;\pi(p \vert \mathbf{x})&lt;/script&gt; is a true pdf. Therefore, we can just look at the numerator of the expression and recognize the kernel of the distribution to understand what family the posterior distribution comes from. Soo, in math,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\pi(p \vert \mathbf{x}) \propto \pi(p)f(\mathbf{x} \vert p)&lt;/script&gt;
+
+&lt;p&gt;We know&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(\mathbf{x}\vert p) = \displaystyle \prod_{i=1}^{n} f(\mathbf{x_i}\vert p) = \displaystyle \prod_{i=1}^{n} (p^{x_i}(1 - p)^{1-x_i})&lt;/script&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\pi(p) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha -1}(1 - p)^{\beta -1}&lt;/script&gt;
+
+&lt;p&gt;so&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\pi(p \vert \mathbf{x}) \propto\displaystyle \prod_{i=1}^{n} (p^{x_i}(1 - p)^{1-x_i}) \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha -1}(1 - p)^{\beta -1}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= p^{\sum_{i=1}^{n}x_i}(1-p)^{n - \sum_{i=1}^{n}x_i}\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha -1}(1 - p)^{\beta -1}&lt;/script&gt;
+
+&lt;p&gt;which is the same as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha + \sum_{i=1}^{n}x_i -1} (1 - p)^{\beta +n - \sum_{i=1}^{n}x_i - 1}&lt;/script&gt;
+
+&lt;p&gt;Looking at the part of this expression that has to do with &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, what do we see? It is the kernel of a Beta distribution! So, now we know that &lt;script type=&quot;math/tex&quot;&gt;\pi(p\
+vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)&lt;/script&gt;. Cool. Another thing to notice here: the prior and the posterior distribution are from the same family. This, informally, is what you call a &lt;strong&gt;conjugate family&lt;/strong&gt;.  Anyways, now that we have the prior distribution, we can do some estimation.&lt;/p&gt;
+
+&lt;p&gt;If we remember, one of the frequentist approaches to estimation is Maximum Likelihood. Here, our parameter follows a distribution so it makes sense to just say ‘hey… what’s its expected value?’ . So that’s what people do! The Bayes estimator is literally just &lt;script type=&quot;math/tex&quot;&gt;E[p\vert \mathbf{x}]&lt;/script&gt;. We know &lt;script type=&quot;math/tex&quot;&gt;\pi(p \vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)&lt;/script&gt; . Since we know the expected value of &lt;script type=&quot;math/tex&quot;&gt;Beta(\alpha,\beta)&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;\frac{\alpha}{\alpha + \beta}&lt;/script&gt;, it follows that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E[p \vert \mathbf{x}] = \frac{\alpha + \sum_{i=1}^{n}x_i}{\alpha + \sum_{i=1}^{n}x_i + \beta + n - \sum_{i=1}^{n}x_i} = \frac{\alpha + \sum_{i=1}^{n}x_i}{\alpha + \beta + n}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \bar{X}(\frac{n}{\alpha + \beta + n}) + \frac{\alpha}{\alpha + \beta}(\frac{\alpha + \beta }{\alpha + \beta + n})&lt;/script&gt;
+
+&lt;p&gt;So the Bayes estimator is just a weighted average of the prior mean and the MLE! When n is large, the MLE is weighted much more and, when n is small, we trust the prior distribution’s estimate. This is a very cool result, in my opinion.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at another example. Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots , X_n \vert \lambda \sim Poisson(\lambda)&lt;/script&gt; and let &lt;script type=&quot;math/tex&quot;&gt;\pi(\lambda) \sim Gamma(\alpha, \beta)&lt;/script&gt;. Then&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\pi(\lambda \vert \mathbf{x}) \propto f(\mathbf{x}\vert \lambda )\pi(\lambda)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \frac{\lambda^{\sum_{i=1}^{n}x_i} e^{-n\lambda}}{\prod_{i=1}^{n}x_i !} \frac{1}{\Gamma(\alpha)\beta^{\alpha}} \lambda^{\alpha-1}e^{\frac{-\lambda}{\beta}}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \frac{1}{\prod_{i=1}^{n}x_i! \, \Gamma(\alpha)\beta^{\alpha}} \lambda^{\sum_{i=1}^{n}x_i +\alpha -1} e^{-\lambda(n + \frac{1}{\beta})}&lt;/script&gt;
+
+&lt;p&gt;and we should recognize the kernel (part with &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;) of this distribution and conclude that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\pi(\lambda\vert \mathbf{x}) \sim Gamma(\sum_{i=1}^{n}x_i + \alpha , (n + \frac{1}{\beta})^{-1})&lt;/script&gt;
+
+&lt;p&gt;Another conjugate family! The Bayes estimator here is just&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E[ \lambda | \mathbf{x}] = \frac{\sum_{i=1}^{n}x_i + \alpha }{n + \frac{1}{\beta}}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \bar{X} (\frac{n}{n + \frac{1}{\beta}}) + \alpha \beta (\frac{1}{n\beta + 1})&lt;/script&gt;
+
+&lt;p&gt;In summary, its quite simple to find the posterior distribution in these cases - but this is obviously not true in general. Sometimes the posterior takes an unknown form, and the best we can do is draw samples from this posterior using different methods (Gibbs Sampling, Importance Sampling). These examples above are cases where the posterior follows almost immediately from the joint distribution (conjugate family in both cases, actually) and makes our lives very easy. There is much more to go into about Bayesian Estimation, and I will do so here in the future. For now, you’ve got a good start on it!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Least Squares via the SVD</title><link href="http://localhost:4000/2018/04/11/least-squares-via-the-svd.html" rel="alternate" type="text/html" title="Least Squares via the SVD" /><published>2018-04-11T23:00:00-04:00</published><updated>2018-04-11T23:00:00-04:00</updated><id>http://localhost:4000/2018/04/11/least-squares-via-the-svd</id><content type="html" xml:base="http://localhost:4000/2018/04/11/least-squares-via-the-svd.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;Let’s say you have some matrix of features (covariates) &lt;script type=&quot;math/tex&quot;&gt;A \in \mathbb{R}^{m \times n}&lt;/script&gt; and a response vector &lt;script type=&quot;math/tex&quot;&gt;y \in \mathbb{R}^m&lt;/script&gt;. We want to find the input vector &lt;script type=&quot;math/tex&quot;&gt;x \in \mathbb{R}^n&lt;/script&gt; that solves this problem or gives us the best possible solution. How should we define best? That is subjective - but the most common idea is to take the real response &lt;script type=&quot;math/tex&quot;&gt;y_i&lt;/script&gt; and the predicted response &lt;script type=&quot;math/tex&quot;&gt;A[i,:] x&lt;/script&gt; and square the difference for each response. We can formalize this problem as&lt;/p&gt;

@@ -23,3 +23,7 @@ I am currently a graduate student in Biostatistics at the University of Michigan
 
 Outside of school, I enjoy snowboarding, rock-climbing, scuba diving, playing guitar, and reading. Pretty typical.  I am also an avid traveler - I love learning about new cultures, ideas and ways of life. To date, I have been to Thailand, Cambodia, Vietnam, Bolivia, Peru, Colombia, Guatemala, Nicaragua, Mexico, and Cuba.  
 
+I am using this site mostly to share blog posts about material that interests me and material that I find useful to explain in order for myself and my friends to understand better. I am also using this site to better understand how to build a website! Currently, I am applying to PhD programs in statistics and biostatistics, and will continue to use this site as an academic site (conditional on my acceptance to a graduate program). 
+
+Thanks for looking! 
+

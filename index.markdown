@@ -7,7 +7,7 @@ layout: post
 
 My name is Ben. 
 
-<img src="/assets/pics/fam.jpg" width ="200" align ="middle"><img src="/assets/pics/me_n_dodge2.jpg" width ="200" align ="middle"><img src="/assets/pics/boiz.jpg" width ="200" align ="middle">
+<img src="/assets/pics/fam.jpg" width ="200" align ="middle">     <img src="/assets/pics/me_n_dodge2.jpg" width ="200" align ="middle">     <img src="/assets/pics/boiz.jpg" width ="200" align ="middle">
 
 I was born and raised in Albuquerque, New Mexico. Some answers to common follow-up questions to that fact:
 
@@ -21,7 +21,7 @@ Half of my undergraduate career was done at the University of New Mexico (Go Lob
 
 I am currently a graduate student in Biostatistics at the University of Michigan, where I have been both a Graduate Student Research Assistant and a Graduate Student Instructor. I am interested in lots of things associated with statistics - machine learning, causal inference, longitudinal data, missing data.. etc. I am also very interested in practical applications such collaborative research and statistical computing. My overarching goal is to use quantitative techniques to improve the lives of other people. 
 
-Outside of school, I enjoy snowboarding, rock-climbing, scuba diving, playing guitar, and reading. Pretty typical.  I am also an avid traveler - I love learning about new cultures, ideas and ways of life. To date, I have been to Thailand, Cambodia, Vietnam, Bolivia, Peru, Colombia, Guatemala, Nicaragua, Mexico, and Cuba.  
+Outside of school, I enjoy snowboarding, playing soccer, rock-climbing, scuba diving, playing guitar, and reading... pretty typical. Importantly, I am a Chelsea fan and a University of Michigan fan. I am also an avid traveler - I love learning about new cultures, ideas and ways of life. To date, I have been to Thailand, Cambodia, Vietnam, Bolivia, Peru, Colombia, Guatemala, Nicaragua, Mexico, and Cuba.  
 
 I am using this site mostly to share blog posts about material that interests me and material that I find useful to explain in order for myself and my friends to understand better. I am also using this site to better understand how to build a website! Currently, I am applying to PhD programs in statistics and biostatistics, and will continue to use this site as an academic site (conditional on my acceptance to a graduate program). 
 

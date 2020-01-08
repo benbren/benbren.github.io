@@ -84,8 +84,8 @@ $$
 \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha + \sum_{i=1}^{n}x_i -1} (1 - p)^{\beta +n - \sum_{i=1}^{n}x_i - 1}
 $$
 
-Looking at the part of this expression that has to do with $$ p$$, what do we see? It is the kernel of a Beta distribution! So, now we know that $$ \pi(p\
-vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)$$. Cool. Another thing to notice here: the prior and the posterior distribution are from the same family. This, informally, is what you call a **conjugate family**.  Anyways, now that we have the prior distribution, we can do some estimation.
+Looking at the part of this expression that has to do with $$ p$$, what do we see? It is the kernel of a Beta distribution! So, now we know that $$ \pi(p
+\vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)$$. Cool. Another thing to notice here: the prior and the posterior distribution are from the same family. This, informally, is what you call a **conjugate family**.  Anyways, now that we have the prior distribution, we can do some estimation.
 
 If we remember, one of the frequentist approaches to estimation is Maximum Likelihood. Here, our parameter follows a distribution so it makes sense to just say 'hey... what's its expected value?' . So that's what people do! The Bayes estimator is literally just $$ E[p\vert \mathbf{x}]$$. We know $$ \pi(p \vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)$$ . Since we know the expected value of $$ Beta(\alpha,\beta)$$ is $$ \frac{\alpha}{\alpha + \beta}$$, it follows that
 

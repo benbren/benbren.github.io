@@ -102,8 +102,8 @@
 
 <script type="math/tex; mode=display">\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha + \sum_{i=1}^{n}x_i -1} (1 - p)^{\beta +n - \sum_{i=1}^{n}x_i - 1}</script>
 
-<p>Looking at the part of this expression that has to do with <script type="math/tex">p</script>, what do we see? It is the kernel of a Beta distribution! So, now we know that <script type="math/tex">\pi(p\
-vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)</script>. Cool. Another thing to notice here: the prior and the posterior distribution are from the same family. This, informally, is what you call a <strong>conjugate family</strong>.  Anyways, now that we have the prior distribution, we can do some estimation.</p>
+<p>Looking at the part of this expression that has to do with <script type="math/tex">p</script>, what do we see? It is the kernel of a Beta distribution! So, now we know that <script type="math/tex">\pi(p
+\vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)</script>. Cool. Another thing to notice here: the prior and the posterior distribution are from the same family. This, informally, is what you call a <strong>conjugate family</strong>.  Anyways, now that we have the prior distribution, we can do some estimation.</p>
 
 <p>If we remember, one of the frequentist approaches to estimation is Maximum Likelihood. Here, our parameter follows a distribution so it makes sense to just say ‘hey… what’s its expected value?’ . So that’s what people do! The Bayes estimator is literally just <script type="math/tex">E[p\vert \mathbf{x}]</script>. We know <script type="math/tex">\pi(p \vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)</script> . Since we know the expected value of <script type="math/tex">Beta(\alpha,\beta)</script> is <script type="math/tex">\frac{\alpha}{\alpha + \beta}</script>, it follows that</p>
 

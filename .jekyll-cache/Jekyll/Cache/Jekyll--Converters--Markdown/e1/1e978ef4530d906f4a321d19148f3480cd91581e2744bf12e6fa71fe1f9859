@@ -1,4 +1,4 @@
-I"�<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"�(<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>When most people think about statistics, they think about flipping a coin or gambling or having flashbacks to dropping out of high school because they hated the class so much… moral of the story is, it’s just one thing to think about. What if I told you that that wasn’t necessarily true? I am about to tell you that. Statistics is the science of modeling randomness. But what is random, and what is not? That is a fundamental question in statistics and splits the subject into two separate approaches - Bayesian and Frequentist.</p>
@@ -31,7 +31,7 @@
 
 <p>We now have all the tools we need to do some basic Bayesian analysis!</p>
 
-<p>and, so, by Bayes rule again, the posterior distribution of $latex \theta$ is</p>
+<p>and, so, by Bayes rule again, the posterior distribution of <script type="math/tex">\theta</script> is</p>
 
 <p>Let us look at <script type="math/tex">X_1, \dots, X_n \sim Bernoulli(p)</script> where <script type="math/tex">p \sim Beta(\alpha, \beta)</script>. Then we could calculate <script type="math/tex">\pi(\theta \vert \mathbf{x}) = \frac{\pi(p)f(\mathbf{x}\vert \theta)}{m(\mathbf{x}) }</script>, but that would take forever. Does <script type="math/tex">m(\mathbf{x})</script> matter? No. Why? Think about it. We want the posterior distribtion of <script type="math/tex">p</script>, right? So <script type="math/tex">m(\mathbf{x})</script> has <em>literally</em> (millenials…) nothing to do with <script type="math/tex">p</script>, therefore it just acts as a normalizing constant in the equation to make sure that <script type="math/tex">\pi(p \vert \mathbf{x})</script> is a true pdf. Therefore, we can just look at the numerator of the expression and recognize the kernel of the distribution to understand what family the posterior distribution comes from. Soo, in math,</p>
 
@@ -50,4 +50,39 @@
 <script type="math/tex; mode=display">\pi(p \vert \mathbf{x}) \propto\displaystyle \prod_{i=1}^{n} (p^{x_i}(1 - p)^{1-x_i}) \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha -1}(1 - p)^{\beta -1}</script>
 
 <script type="math/tex; mode=display">= p^{\sum_{i=1}^{n}x_i}(1-p)^{n - \sum_{i=1}^{n}x_i}\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha -1}(1 - p)^{\beta -1}</script>
+
+<p>which is the same as</p>
+
+<script type="math/tex; mode=display">\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} p^{\alpha + \sum_{i=1}^{n}x_i -1} (1 - p)^{\beta +n - \sum_{i=1}^{n}x_i - 1}</script>
+
+<p>Looking at the part of this expression that has to do with <script type="math/tex">p</script>, what do we see? It is the kernel of a Beta distribution! So, now we know that <script type="math/tex">\pi(p
+\vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)</script>. Cool. Another thing to notice here: the prior and the posterior distribution are from the same family. This, informally, is what you call a <strong>conjugate family</strong>.  Anyways, now that we have the prior distribution, we can do some estimation.</p>
+
+<p>If we remember, one of the frequentist approaches to estimation is Maximum Likelihood. Here, our parameter follows a distribution so it makes sense to just say ‘hey… what’s its expected value?’ . So that’s what people do! The Bayes estimator is literally just <script type="math/tex">E[p\vert \mathbf{x}]</script>. We know <script type="math/tex">\pi(p \vert \mathbf{x}) \sim Beta(\alpha + \sum_{i=1}^{n}x_i, n + \beta - \sum_{i=1}^{n}x_i)</script> . Since we know the expected value of <script type="math/tex">Beta(\alpha,\beta)</script> is <script type="math/tex">\frac{\alpha}{\alpha + \beta}</script>, it follows that</p>
+
+<script type="math/tex; mode=display">E[p \vert \mathbf{x}] = \frac{\alpha + \sum_{i=1}^{n}x_i}{\alpha + \sum_{i=1}^{n}x_i + \beta + n - \sum_{i=1}^{n}x_i} = \frac{\alpha + \sum_{i=1}^{n}x_i}{\alpha + \beta + n}</script>
+
+<script type="math/tex; mode=display">= \bar{X}(\frac{n}{\alpha + \beta + n}) + \frac{\alpha}{\alpha + \beta}(\frac{\alpha + \beta }{\alpha + \beta + n})</script>
+
+<p>So the Bayes estimator is just a weighted average of the prior mean and the MLE! When n is large, the MLE is weighted much more and, when n is small, we trust the prior distribution’s estimate. This is a very cool result, in my opinion.</p>
+
+<p>Let’s look at another example. Let <script type="math/tex">X_1, \dots , X_n \vert \lambda \sim Poisson(\lambda)</script> and let <script type="math/tex">\pi(\lambda) \sim Gamma(\alpha, \beta)</script>. Then</p>
+
+<script type="math/tex; mode=display">\pi(\lambda \vert \mathbf{x}) \propto f(\mathbf{x}\vert \lambda )\pi(\lambda)</script>
+
+<script type="math/tex; mode=display">= \frac{\lambda^{\sum_{i=1}^{n}x_i} e^{-n\lambda}}{\prod_{i=1}^{n}x_i !} \frac{1}{\Gamma(\alpha)\beta^{\alpha}} \lambda^{\alpha-1}e^{\frac{-\lambda}{\beta}}</script>
+
+<script type="math/tex; mode=display">= \frac{1}{\prod_{i=1}^{n}x_i! \, \Gamma(\alpha)\beta^{\alpha}} \lambda^{\sum_{i=1}^{n}x_i +\alpha -1} e^{-\lambda(n + \frac{1}{\beta})}</script>
+
+<p>and we should recognize the kernel (part with <script type="math/tex">\lambda</script>) of this distribution and conclude that</p>
+
+<script type="math/tex; mode=display">\pi(\lambda\vert \mathbf{x}) \sim Gamma(\sum_{i=1}^{n}x_i + \alpha , (n + \frac{1}{\beta})^{-1})</script>
+
+<p>Another conjugate family! The Bayes estimator here is just</p>
+
+<script type="math/tex; mode=display">E[ \lambda | \mathbf{x}] = \frac{\sum_{i=1}^{n}x_i + \alpha }{n + \frac{1}{\beta}}</script>
+
+<script type="math/tex; mode=display">= \bar{X} (\frac{n}{n + \frac{1}{\beta}}) + \alpha \beta (\frac{1}{n\beta + 1})</script>
+
+<p>In summary, its quite simple to find the posterior distribution in these cases - but this is obviously not true in general. Sometimes the posterior takes an unknown form, and the best we can do is draw samples from this posterior using different methods (Gibbs Sampling, Importance Sampling). These examples above are cases where the posterior follows almost immediately from the joint distribution (conjugate family in both cases, actually) and makes our lives very easy. There is much more to go into about Bayesian Estimation, and I will do so here in the future. For now, you’ve got a good start on it!</p>
 :ET

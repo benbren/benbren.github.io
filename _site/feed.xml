@@ -1,4 +1,138 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-09T13:13:43-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-11T12:41:39-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Sufficient Statistics</title><link href="http://localhost:4000/2020/01/10/sufficient-statistics.html" rel="alternate" type="text/html" title="Sufficient Statistics" /><published>2020-01-10T12:00:00-05:00</published><updated>2020-01-10T12:00:00-05:00</updated><id>http://localhost:4000/2020/01/10/sufficient-statistics</id><content type="html" xml:base="http://localhost:4000/2020/01/10/sufficient-statistics.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;Lots of people go through life talking about statistics and not actually knowing what a statistic &lt;em&gt;is&lt;/em&gt;, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a &lt;em&gt;population&lt;/em&gt; based off a sample. In general, you have a population parameter (&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;) that needs to be estimated (could be high - dimensional - the most we will talk about is &lt;em&gt;max&lt;/em&gt; 2, so no worries) and some data (a random sample, once could say…) &lt;script type=&quot;math/tex&quot;&gt;X_ 1, \dots, X_ n&lt;/script&gt; from that population, from which we observe the data &lt;script type=&quot;math/tex&quot;&gt;x_ 1, \dots, x_ n&lt;/script&gt;. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Inference&lt;/strong&gt; is the process of drawing information about a population based off a sample (like I said above, with a fancy word defining it). The points is - probability theory is based on knowing &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. We never actually know &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, so to do anything in practice we need inference about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. Big time important.&lt;/p&gt;
+
+&lt;p&gt;For example, we can make conclusions about the probability we get a certain number of successes in a certain number of trials (i.e Binomial(&lt;script type=&quot;math/tex&quot;&gt;n,p&lt;/script&gt;), or the probability that a certain metric is less than some value (i.e &lt;script type=&quot;math/tex&quot;&gt;\mathcal{N}(\mu, \sigma^2&lt;/script&gt;)) - but that requires us to know the distribution those values follow in the population (i.e to know the population parameters).&lt;/p&gt;
+
+&lt;p&gt;This post will be about a key concept in inference - the &lt;em&gt;sufficient statistic&lt;/em&gt;. First - and back to the beginning - what is a statistic?!&lt;/p&gt;
+
+&lt;p&gt;A statistics takes a random variable &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; and maps it via some function &lt;script type=&quot;math/tex&quot;&gt;T(.)&lt;/script&gt;. That is,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;T(x_1, \dots, x_n) = T(\mathbf{X}): \mathbb{R}^n \rightarrow \mathbb{R}^m&lt;/script&gt;
+
+&lt;p&gt;A few things. &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is also a random variable, obviously. There is no restriction on &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt;, but I think you probably get the idea that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+m &lt; n %]]&gt;&lt;/script&gt;, because it doesn’t really make sense to make our data more complicated. We also don’t want to lose information in this mapping - this is a key point. For instance, if &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = X_1&lt;/script&gt;, we have lost so much information contained in our data by using this transformation.&lt;/p&gt;
+
+&lt;p&gt;So, in summary, we want to take our data and use some transformation &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; to make that data simpler and no less informative. That is what makes a good statistic good. This is why we use some statistics, and not others - as we will see. Anyways, this seems easy. Not like there’s a million choices for &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; or anything…&lt;/p&gt;
+
+&lt;p&gt;Anyways. Let’s define what a sufficient statistic is. A statistic &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is called a &lt;em&gt;sufficient statistic&lt;/em&gt; for the parameter &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; if the distribution of the data &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; given &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; does not depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. Why? This means that, given that we know the value of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt;, the information left in the sample does not contain any information about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. This should be obvious - if the distribution of the data does not depend on the parameter, how can you get information about the parameter from that distribution ya know? Formally, if&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert T(\mathbf{X}) = t) = g(\mathbf{x})&lt;/script&gt;
+
+&lt;p&gt;then &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at an example: assume &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim \textrm{Bernoulli}(p)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = \sum_{i=1}^n X_i&lt;/script&gt;. Is &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; sufficient for &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;? Yep. Next.&lt;/p&gt;
+
+&lt;p&gt;Just kidding. Let’s see why.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert T(\mathbf{X}) = t) = g(\mathbf{x}) = P(\mathbf{X} = \mathbf{x} \vert T(\mathbf{X}) = t) = \frac{P(\mathbf{X} = \mathbf{x}, T(\mathbf{X}) = t)}{P(T(\mathbf{X}) = t))}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+= \begin{cases} 
+	\frac{P(\mathbf{X} = \mathbf{x})}{P(T(\mathbf{X}) = t))} &amp; \textrm{if} \; T(\mathbf{X}) = t \\
+	0 &amp; \textrm{else} 
+ 	\end{cases} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;(only considering the top case)&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \frac{f_{\mathbf{X}}(\mathbf{x} \vert p)}{q_{T(\mathbf{X})}(t \vert p)}&lt;/script&gt;
+
+&lt;p&gt;Now, notice the distribution of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) \sim \textrm{Binomial}(n,p)&lt;/script&gt;. Therefore,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f_{\mathbf{X}}(\mathbf{x})}{f_{T(\mathbf{X})}(t)} = \frac{\displaystyle\prod_{i=1}^n p^{x_i}(1-p)^{1 - x_i}}{\binom{n}{t}p^{\sum_{i=1}^n x_i}(1-p)^{n - \sum_{i=1}^n x_i}} =  \frac{1}{\binom{n}{t}}&lt;/script&gt;
+
+&lt;p&gt;which doesn’t contain &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. So now - yep, &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;!&lt;/p&gt;
+
+&lt;p&gt;Now, in typical fashion, lets define like a million more ways to show something is sufficient. The first - shown through example. From above we showed that the original definiton could  boil down to&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f_{\mathbf{X}}(\mathbf{x} \vert \theta)}{q_{T(\mathbf{X})}(t \vert \theta)} = \frac{f_{\mathbf{X}}(\mathbf{x} \vert \theta)}{q(T(\mathbf{x}) \vert \theta)}&lt;/script&gt;
+
+&lt;p&gt;so, if this ratio is free of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt; in the support of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;(T(\mathbf{X})&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, the example above boils down to&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\displaystyle\prod_{i=1}^n p^{x_i}(1-p)^{1 - x_i}}{\binom{n}{T(\mathbf{x})}p^{\sum_{i=1}^n x_i}(1-p)^{n - \sum_{i=1}^n x_i}} =  \frac{1}{\binom{n}{T(\mathbf{x})}}&lt;/script&gt;
+
+&lt;p&gt;which does not depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; so we come to the same conclusion. This seems redundant. It is, really, but the benefit is we don’t have to consider &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = t&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) \neq t&lt;/script&gt;. So, originally, we &lt;em&gt;techincally&lt;/em&gt; had to say that 0 did not depend on &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, which is obvious. In this second definition, we don’t even need to consider that.&lt;/p&gt;
+
+&lt;p&gt;Let’s try another example using this second definition of sufficiency. Let’s check whether &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = \bar{X}&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; in the normal distribution (with known variance &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_X(x \vert \mu) = \frac{1}{\sqrt{2\pi\sigma^2}}\textrm{exp}\left( \frac{-(x - \mu)^2}{2\sigma^2}\right)&lt;/script&gt;
+
+&lt;p&gt;Recall that &lt;script type=&quot;math/tex&quot;&gt;\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})&lt;/script&gt;. Therefore,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f_{\mathbf{X}}(\mathbf{x} \vert \mu)}{q(T(\mathbf{X}) \vert \mu)} = \frac{(\frac{1}{\sqrt{2\pi\sigma^2}})^n\textrm{exp}\left(- \displaystyle\sum_{i=1}^n\frac{(x_i - \mu)^2}{2\sigma^2}\right)}{\frac{\sqrt{n}}{\sqrt{2\pi\sigma^2}}\textrm{exp}\left( \frac{-n(\bar{x} - \mu)^2}{2\sigma^2}\right)} = \mathcal{K} \frac{\textrm{exp}\left(\frac{- \sum_{i=1}^n(x_i^2 - 2x_i\mu)}{2\sigma^2}\right)}{\textrm{exp}\left( \frac{2\bar{x}n \mu - n\bar{x}^2}{2 \sigma^2}\right)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \mathcal{K}\frac{\textrm{exp}\left( \frac{-\sum_{i=1}^{n}x_i^2}{2 \sigma^2}\right)}{\textrm{exp}\left(\frac{-n\bar{x}^2}{2 \sigma^2}\right)}&lt;/script&gt;
+
+&lt;p&gt;which doesn’t depend on &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt;! So, the sample mean is a sufficient statistic for the population average in a normal distribution - hence why we use it all the time!&lt;/p&gt;
+
+&lt;p&gt;Now, moving on to even more ways to show sufficiency…&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Factorization Theorem&lt;/strong&gt; : &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is sufficient if &lt;em&gt;and only if&lt;/em&gt; there exists &lt;script type=&quot;math/tex&quot;&gt;g(t\vert \theta)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;h(\theta)&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;\forall \mathbf{x}, \theta&lt;/script&gt;,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert \theta) = g(T(\mathbf{x})\vert \theta)h(\mathbf{x})&lt;/script&gt;
+
+&lt;p&gt;Since this is an &lt;em&gt;iff&lt;/em&gt;, we have to prove it in both directions. First,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Proof&lt;/strong&gt;: Sufficiency &lt;script type=&quot;math/tex&quot;&gt;\implies&lt;/script&gt; Factorization&lt;/p&gt;
+
+&lt;p&gt;This is the easy case.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x}\vert \theta) = P(\mathbf{X} = \mathbf{x} \vert \theta)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= P(\mathbf{X} = \mathbf{x}, T(\mathbf{X}) = t \vert \theta)&lt;/script&gt;
+
+&lt;p&gt;and, by the definition of conditional probability,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= P(T(\mathbf{X}) = t \vert \theta)P(\mathbf{X} = \mathbf{x} \vert T(\mathbf{X}) = t,\theta)&lt;/script&gt;
+
+&lt;p&gt;and, by sufficiency (i.e. we assume given &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt;, the distribution of the data is free of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= P(T(\mathbf{X}) = t \vert \theta)P(\mathbf{X} = \mathbf{x} \vert T(\mathbf{X}) = t)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= g(t \vert \theta)h(\mathbf{x})&lt;/script&gt;
+
+&lt;p&gt;and we have proved that direction. Now,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Proof&lt;/strong&gt;: Factorization &lt;script type=&quot;math/tex&quot;&gt;\implies&lt;/script&gt; Sufficiency&lt;/p&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;q(y \vert \theta)&lt;/script&gt; be the pmf of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; and let &lt;script type=&quot;math/tex&quot;&gt;A_t&lt;/script&gt; be the set containing all the possible data that yield a statistics &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = t&lt;/script&gt;. That is,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;A_t = \{ \mathbf{y}: T(\mathbf{y}) = t\}&lt;/script&gt;
+
+&lt;p&gt;Then,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;q(t \vert \theta) = P(T(\mathbf{X}) = t \vert \theta) = \displaystyle\sum_{\mathbf{y} \in A_t} f_{\mathbf{X}}(\mathbf{y}\vert \theta)&lt;/script&gt;
+
+&lt;p&gt;So, since we are assuming factorization,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f_{\mathbf{X}}(\mathbf{x}\vert\theta)}{q(t \vert \theta)} = \frac{g(T(\mathbf{x})\vert \theta)h(\mathbf{x})}{\sum_{\mathbf{y} \in A_t} f_{\mathbf{X}}(\mathbf{y}\vert \theta)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \frac{g(T(\mathbf{x})\vert \theta)h(\mathbf{x})}{\sum_{\mathbf{y} \in A_t} g(T(\mathbf{y}) \vert \theta) h(\mathbf{y})}&lt;/script&gt;
+
+&lt;p&gt;and, since for &lt;script type=&quot;math/tex&quot;&gt;y \in A_t&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{y}) = t = T(\mathbf{x})&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \frac{h(\mathbf{x})}{\sum_{y \in A_T}h(\mathbf{y})}&lt;/script&gt;
+
+&lt;p&gt;and this does not ever depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, so &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is sufficient and we have completed the proof!&lt;/p&gt;
+
+&lt;p&gt;So, this makes things wicked easy…. let’s go back to the two examples we have done above. First, &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X} \sim \textrm{Bernoulli}(p)&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(\mathbf{x} \vert p) = \displaystyle\prod p^{x_i}(1-p)^{1- x_i} = p^{\sum x_i}(1-p)^{n - \sum x_i} = p^t(1-p)^{n-t}&lt;/script&gt;
+
+&lt;p&gt;and then &lt;script type=&quot;math/tex&quot;&gt;g(t \vert p) = p^t(1-p)^{n-p}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;h(\mathbf{y}) = 1&lt;/script&gt;, then we can see that &lt;script type=&quot;math/tex&quot;&gt;\sum_{i= 1}^n X_i&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, let us consider the second, normal with known variance, example.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_X(\mathbf{x} \vert \mu) = \displaystyle\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}\textrm{exp}\left( \frac{-(x_i - \mu)^2}{2\sigma^2}\right)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right) \times \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)&lt;/script&gt;
+
+&lt;p&gt;so &lt;script type=&quot;math/tex&quot;&gt;h(\mathbf{x}) = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;g(t \vert \mu) = \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;t = \bar{x}&lt;/script&gt;, so the sample mean is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;You’ll remember in OLS, we had something called the &lt;strong&gt;normal equations&lt;/strong&gt; - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.&lt;/p&gt;

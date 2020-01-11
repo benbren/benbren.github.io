@@ -1,0 +1,9 @@
+I"]<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Lots of people go through life talking about statistics and not actually knowing what a statistic <em>is</em>, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a <em>population</em> based off a sample. In general, you have a population parameter (<script type="math/tex">\theta</script>) that needs to be estimated (could be high - dimensional - the most we will talk about is <em>max</em> 2, so no worries) and some data (a random sample, once could say…) <script type="math/tex">X_ 1, \dots, X_ n</script> from that population, from which we observe the data <script type="math/tex">X_ 1, \dots, X_ n</script>. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.</p>
+
+<p><strong>Inference</strong> is the process of drawing information about a population based off a sample (like I said above, with a fancy word defining it). The points is - probability theory is based on knowing <script type="math/tex">\theta</script>. We never actually know <script type="math/tex">\theta</script>, so to do anything in practice we need inference about <script type="math/tex">\theta</script>. Big time important.</p>
+
+<p>For example, we know can make conclusions about the probability we get a certain number of successes in a certain number of trials (i.e Binomial(<script type="math/tex">n,p</script>), or the probability the a certain metric is less than some value (i.e <script type="math/tex">\mathcal{N}(\mu, \sigma^2</script>) - but that requires us to know the distribution those values follow in the population.</p>
+:ET

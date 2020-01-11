@@ -25,7 +25,7 @@ A few things. $$T(\mathbf{X})$$ is also a random variable, obviously. There is n
 
 So, in summary, we want to take our data and use some transformation $$T(\mathbf{X})$$ to make that data simpler and no less informative. That is what makes a good statistic good. This is why we use some statistics, and not others - as we will see. Anyways, this seems easy. Not like there's a million choices for $$T$$ or anything... 
 
-Anyways. Let's define what a sufficient statistic is. A statistic $$T(\mathbf{X})$$ is called a *sufficient statistic* for the parameter $$\theta$$ if the distribution of the data $$\mathbf{X}$$ given $$T(\mathbf{X})$$ does not depend on $$\theta$$. Why? This means that, given that we know the value of $$T(\mathbf{X})$$, the information left in the sample does not contain any information about $$\theta$$. This should be obvious - if the distribution of the data does not depend on the parameter, how can you get information about the parameter from that distribution ya know? Formally, if 
+Anyways. Let's define what a sufficient statistic is. A statistic $$T(\mathbf{X})$$ is called a *sufficient statistic* for the parameter $$\theta$$ if the distribution of $$\mathbf{X}$$ given $$T(\mathbf{X})$$ does not depend on $$\theta$$. Why? This means that, given that we know the value of $$T(\mathbf{X})$$, the information left in the sample does not contain any information about $$\theta$$. This should be obvious - if the distribution of the data does not depend on the parameter, how can you get information about the parameter from that distribution ya know? Formally, if 
 
 $$
 f_{\mathbf{X}}(\mathbf{x} \vert T(\mathbf{X}) = t) = g(\mathbf{x})

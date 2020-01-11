@@ -1,4 +1,4 @@
-I"�4<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"�F<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Lots of people go through life talking about statistics and not actually knowing what a statistic <em>is</em>, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a <em>population</em> based off a sample. In general, you have a population parameter (<script type="math/tex">\theta</script>) that needs to be estimated (could be high - dimensional - the most we will talk about is <em>max</em> 2, so no worries) and some data (a random sample, once could say…) <script type="math/tex">X_ 1, \dots, X_ n</script> from that population, from which we observe the data <script type="math/tex">x_ 1, \dots, x_ n</script>. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.</p>
@@ -132,5 +132,58 @@ m < n %]]></script>, because it doesn’t really make sense to make our data mor
 
 <script type="math/tex; mode=display">= \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right) \times \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)</script>
 
-<p>so <script type="math/tex">h(\mathbf{x}) = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right)</script> and <script type="math/tex">g(t \vert \mu) = \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)</script> when <script type="math/tex">t = \bar{x}</script>, so the sample mean is sufficient for <script type="math/tex">\mu</script>.</p>
+<p>so <script type="math/tex">h(\mathbf{x}) = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right)</script> and <script type="math/tex">g(t \vert \mu) = \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)</script> when <script type="math/tex">t = \bar{x}</script>, so the sample mean is sufficient for <script type="math/tex">\mu</script>. Way easier - we like that.</p>
+
+<p>Let’s try a new example. Consider <script type="math/tex">\mathbf{X} \sim \textrm{Uniform}(0,\theta)</script>. What is a sufficient statistic for <script type="math/tex">\theta</script>? To assess this, let’s use the factorization theorem. Remember,</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+f(x \vert \theta) = \begin{cases} 
+\frac{1}{\theta} & \textrm{if} \; x \in [0,\theta] \\
+0 & \textrm{else}
+\end{cases} %]]></script>
+
+<p>which is identical to</p>
+
+<script type="math/tex; mode=display">\frac{1}{\theta}I(0 \leq x) I (x \leq \theta)</script>
+
+<p>so, therefore,</p>
+
+<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \theta) = \displaystyle\prod_{i=1}^n \frac{1}{\theta}I(0 \leq x_i) I (x_i \leq \theta) = \theta^{-n}I(x_{(n)} \leq \theta) I(0 \leq x_{(1)})</script>
+
+<p>so we can conclude that the max, <script type="math/tex">X_{(n)}</script>, is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
+
+<p>Now, let’s consider a two-dimensional (<em>whoa</em>) sufficient statistic! When I learned this, the professor made this seem very straight forward - but I know things get real iffy real quick when the dimension of things increase - so lets take it slow. What we are looking for now is <script type="math/tex">T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X}))</script> such that the factorization theorem still applies. Let’s consider a normal distribution with unknown variance. Now, what we need is to find a factorization</p>
+
+<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = g(T_1(\mathbf{x}), T_2(\mathbf{X}) \vert \mu, \sigma^2)h(\mathbf{x})</script>
+
+<p>This differs from the one dimensional case where we kind of just tossed the parts of the exponent that did not depend on <script type="math/tex">\mu</script> into the constant and called it a day. Now, we can do that but only for the parts of the exponent that don’t depend on <script type="math/tex">\mu</script> and <script type="math/tex">\sigma^2</script> which is none of them so trick-statement you can’t toss anything into the constant from the exponent. Turns out that constant infront isn’t even a constant anymore since it involves <script type="math/tex">\sigma^2</script>. Bummer. All this means, though, is more algebra - which, although it is tedious, is not difficult if you pay attention (which <em>I know</em> is difficult). So, let’s get to it.</p>
+
+<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \displaystyle\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}\textrm{exp}\left( \frac{-(x_i - \mu)^2}{2\sigma^2}\right)</script>
+
+<script type="math/tex; mode=display">= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-\sum_{i=1}^n((x_i - \bar{x}) + (\bar{x} - \mu))^2}{2\sigma^2}\right)</script>
+
+<script type="math/tex; mode=display">= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 +2 \sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu)  - n(\bar{x} - \mu)^2\right)\right)</script>
+
+<p>and now note that 
+<script type="math/tex">\sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu) = \bar{x}\sum x_i - \mu\sum x_i - n\bar{x} + n\bar{x}\mu = 0</script></p>
+
+<p>so, therefore,</p>
+
+<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 - n(\bar{x} - \mu)^2\right)\right)</script>
+
+<p>and by using <script type="math/tex">h(\mathbf{x}) = 1</script>, we have the factorization theorem! Therefore,</p>
+
+<script type="math/tex; mode=display">T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (\bar{X}, \sum_{i=1}^n (X_i - \bar{X})^2)</script>
+
+<p>is a sufficient statistic for <script type="math/tex">\mathbf{\phi} = (\mu, \sigma^2)</script></p>
+
+<p>Let’s try another one - <script type="math/tex">\mathbf{X} \sim \textrm{Uniform}(\alpha, \theta)</script>. Extending our knowledge of the one-dimensional case, this should be fairly simple.</p>
+
+<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \theta, \alpha) = \displaystyle\prod_{i=1}^n \frac{1}{\theta - \alpha}I(\alpha \leq x_i) I (x_i \leq \theta) = (\theta - \alpha)^{-n}I(x_{(n)} \leq \theta) I(\alpha \leq x_{(1)})</script>
+
+<p>so we can conclude that</p>
+
+<script type="math/tex; mode=display">T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (X_{(1)}, X_{(n)})</script>
+
+<p>is suffcient for <script type="math/tex">\phi = (\alpha,theta)</script></p>
 :ET

@@ -186,4 +186,84 @@ $$
  = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right) \times \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)
 $$
 
-so $$h(\mathbf{x}) = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right)$$ and $$g(t \vert \mu) = \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)$$ when $$t = \bar{x}$$, so the sample mean is sufficient for $$\mu$$.
+so $$h(\mathbf{x}) = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right)$$ and $$g(t \vert \mu) = \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)$$ when $$t = \bar{x}$$, so the sample mean is sufficient for $$\mu$$. Way easier - we like that. 
+
+Let's try a new example. Consider $$\mathbf{X} \sim \textrm{Uniform}(0,\theta)$$. What is a sufficient statistic for $$\theta$$? To assess this, let's use the factorization theorem. Remember, 
+
+$$
+f(x \vert \theta) = \begin{cases} 
+\frac{1}{\theta} & \textrm{if} \; x \in [0,\theta] \\
+0 & \textrm{else}
+\end{cases}
+$$ 
+
+which is identical to 
+
+$$
+\frac{1}{\theta}I(0 \leq x) I (x \leq \theta)
+$$
+
+so, therefore, 
+
+$$
+f_{\mathbf{X}}(\mathbf{x} \vert \theta) = \displaystyle\prod_{i=1}^n \frac{1}{\theta}I(0 \leq x_i) I (x_i \leq \theta) = \theta^{-n}I(x_{(n)} \leq \theta) I(0 \leq x_{(1)}) 
+$$
+
+so we can conclude that the max, $$X_{(n)}$$, is a sufficient statistic for $$\theta$$.
+
+Now, let's consider a two-dimensional (*whoa*) sufficient statistic! When I learned this, the professor made this seem very straight forward - but I know things get real iffy real quick when the dimension of things increase - so lets take it slow. What we are looking for now is $$T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X}))$$ such that the factorization theorem still applies. Let's consider a normal distribution with unknown variance. Now, what we need is to find a factorization 
+
+$$
+f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = g(T_1(\mathbf{x}), T_2(\mathbf{X}) \vert \mu, \sigma^2)h(\mathbf{x})
+$$
+
+This differs from the one dimensional case where we kind of just tossed the parts of the exponent that did not depend on $$\mu$$ into the constant and called it a day. Now, we can do that but only for the parts of the exponent that don't depend on $$\mu$$ and $$\sigma^2$$ which is none of them so trick-statement you can't toss anything into the constant from the exponent. Turns out that constant infront isn't even a constant anymore since it involves $$\sigma^2$$. Bummer. All this means, though, is more algebra - which, although it is tedious, is not difficult if you pay attention (which *I know* is difficult). So, let's get to it. 
+
+$$
+f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \displaystyle\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}\textrm{exp}\left( \frac{-(x_i - \mu)^2}{2\sigma^2}\right)
+$$
+
+$$
+= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-\sum_{i=1}^n((x_i - \bar{x}) + (\bar{x} - \mu))^2}{2\sigma^2}\right)
+$$
+
+$$
+= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 +2 \sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu)  - n(\bar{x} - \mu)^2\right)\right)
+$$
+
+and now note that 
+$$
+\sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu) = \bar{x}\sum x_i - \mu\sum x_i - n\bar{x} + n\bar{x}\mu = 0
+$$
+
+so, therefore,  
+
+$$
+f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 - n(\bar{x} - \mu)^2\right)\right)
+$$
+
+and by using $$h(\mathbf{x}) = 1$$, we have the factorization theorem! Therefore, 
+
+$$
+
+T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (\bar{X}, \sum_{i=1}^n (X_i - \bar{X})^2)
+
+$$
+
+is a sufficient statistic for $$\mathbf{\phi} = (\mu, \sigma^2)$$
+
+Let's try another one - $$\mathbf{X} \sim \textrm{Uniform}(\alpha, \theta)$$. Extending our knowledge of the one-dimensional case, this should be fairly simple. 
+
+$$
+f_{\mathbf{X}}(\mathbf{x} \vert \theta, \alpha) = \displaystyle\prod_{i=1}^n \frac{1}{\theta - \alpha}I(\alpha \leq x_i) I (x_i \leq \theta) = (\theta - \alpha)^{-n}I(x_{(n)} \leq \theta) I(\alpha \leq x_{(1)}) 
+$$
+
+so we can conclude that 
+
+$$
+T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (X_{(1)}, X_{(n)})
+$$
+
+is suffcient for $$\phi = (\alpha,\theta)$$
+
+As you have (hopefully) noticed, sufficient statistics are not even close to unique. For instance, the sample itself is always sufficient. The order statistics are also always sufficient as we can set $$h(\mathbf{x})$$ to be 1 and then the joint distribution is the same, just reordered. Also, any one-to-one function of a sufficient statistic is also a sufficient statistic, as that value maps uniquely back to the original sufficient statistic. Therefore, we need some notion of *better* when it comes to these types of statistics. That is what the idea of a **minimal sufficient statistic** is.  

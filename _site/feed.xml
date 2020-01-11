@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-11T13:10:55-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Sufficient Statistics</title><link href="http://localhost:4000/2020/01/10/sufficient-statistics.html" rel="alternate" type="text/html" title="Sufficient Statistics" /><published>2020-01-10T12:00:00-05:00</published><updated>2020-01-10T12:00:00-05:00</updated><id>http://localhost:4000/2020/01/10/sufficient-statistics</id><content type="html" xml:base="http://localhost:4000/2020/01/10/sufficient-statistics.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-11T15:13:54-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Sufficient Statistics</title><link href="http://localhost:4000/2020/01/10/sufficient-statistics.html" rel="alternate" type="text/html" title="Sufficient Statistics" /><published>2020-01-10T12:00:00-05:00</published><updated>2020-01-10T12:00:00-05:00</updated><id>http://localhost:4000/2020/01/10/sufficient-statistics</id><content type="html" xml:base="http://localhost:4000/2020/01/10/sufficient-statistics.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;Lots of people go through life talking about statistics and not actually knowing what a statistic &lt;em&gt;is&lt;/em&gt;, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a &lt;em&gt;population&lt;/em&gt; based off a sample. In general, you have a population parameter (&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;) that needs to be estimated (could be high - dimensional - the most we will talk about is &lt;em&gt;max&lt;/em&gt; 2, so no worries) and some data (a random sample, once could say…) &lt;script type=&quot;math/tex&quot;&gt;X_ 1, \dots, X_ n&lt;/script&gt; from that population, from which we observe the data &lt;script type=&quot;math/tex&quot;&gt;x_ 1, \dots, x_ n&lt;/script&gt;. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.&lt;/p&gt;
@@ -132,7 +132,62 @@ m &lt; n %]]&gt;&lt;/script&gt;, because it doesn’t really make sense to make 
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;= \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right) \times \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)&lt;/script&gt;
 
-&lt;p&gt;so &lt;script type=&quot;math/tex&quot;&gt;h(\mathbf{x}) = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;g(t \vert \mu) = \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;t = \bar{x}&lt;/script&gt;, so the sample mean is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;p&gt;so &lt;script type=&quot;math/tex&quot;&gt;h(\mathbf{x}) = \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) ^n \textrm{exp}\left( - \sum x_i^2 \right)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;g(t \vert \mu) = \textrm{exp}\left( n(2 \mu \bar{x} - \mu) \right)&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;t = \bar{x}&lt;/script&gt;, so the sample mean is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt;. Way easier - we like that.&lt;/p&gt;
+
+&lt;p&gt;Let’s try a new example. Consider &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X} \sim \textrm{Uniform}(0,\theta)&lt;/script&gt;. What is a sufficient statistic for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;? To assess this, let’s use the factorization theorem. Remember,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+f(x \vert \theta) = \begin{cases} 
+\frac{1}{\theta} &amp; \textrm{if} \; x \in [0,\theta] \\
+0 &amp; \textrm{else}
+\end{cases} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;which is identical to&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{1}{\theta}I(0 \leq x) I (x \leq \theta)&lt;/script&gt;
+
+&lt;p&gt;so, therefore,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert \theta) = \displaystyle\prod_{i=1}^n \frac{1}{\theta}I(0 \leq x_i) I (x_i \leq \theta) = \theta^{-n}I(x_{(n)} \leq \theta) I(0 \leq x_{(1)})&lt;/script&gt;
+
+&lt;p&gt;so we can conclude that the max, &lt;script type=&quot;math/tex&quot;&gt;X_{(n)}&lt;/script&gt;, is a sufficient statistic for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s consider a two-dimensional (&lt;em&gt;whoa&lt;/em&gt;) sufficient statistic! When I learned this, the professor made this seem very straight forward - but I know things get real iffy real quick when the dimension of things increase - so lets take it slow. What we are looking for now is &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X}))&lt;/script&gt; such that the factorization theorem still applies. Let’s consider a normal distribution with unknown variance. Now, what we need is to find a factorization&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = g(T_1(\mathbf{x}), T_2(\mathbf{X}) \vert \mu, \sigma^2)h(\mathbf{x})&lt;/script&gt;
+
+&lt;p&gt;This differs from the one dimensional case where we kind of just tossed the parts of the exponent that did not depend on &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; into the constant and called it a day. Now, we can do that but only for the parts of the exponent that don’t depend on &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt; which is none of them so trick-statement you can’t toss anything into the constant from the exponent. Turns out that constant infront isn’t even a constant anymore since it involves &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;. Bummer. All this means, though, is more algebra - which, although it is tedious, is not difficult if you pay attention (which &lt;em&gt;I know&lt;/em&gt; is difficult). So, let’s get to it.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \displaystyle\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}\textrm{exp}\left( \frac{-(x_i - \mu)^2}{2\sigma^2}\right)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-\sum_{i=1}^n((x_i - \bar{x}) + (\bar{x} - \mu))^2}{2\sigma^2}\right)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 +2 \sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu)  - n(\bar{x} - \mu)^2\right)\right)&lt;/script&gt;
+
+&lt;p&gt;and now note that 
+&lt;script type=&quot;math/tex&quot;&gt;\sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu) = \bar{x}\sum x_i - \mu\sum x_i - n\bar{x} + n\bar{x}\mu = 0&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;so, therefore,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 - n(\bar{x} - \mu)^2\right)\right)&lt;/script&gt;
+
+&lt;p&gt;and by using &lt;script type=&quot;math/tex&quot;&gt;h(\mathbf{x}) = 1&lt;/script&gt;, we have the factorization theorem! Therefore,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (\bar{X}, \sum_{i=1}^n (X_i - \bar{X})^2)&lt;/script&gt;
+
+&lt;p&gt;is a sufficient statistic for &lt;script type=&quot;math/tex&quot;&gt;\mathbf{\phi} = (\mu, \sigma^2)&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s try another one - &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X} \sim \textrm{Uniform}(\alpha, \theta)&lt;/script&gt;. Extending our knowledge of the one-dimensional case, this should be fairly simple.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{\mathbf{X}}(\mathbf{x} \vert \theta, \alpha) = \displaystyle\prod_{i=1}^n \frac{1}{\theta - \alpha}I(\alpha \leq x_i) I (x_i \leq \theta) = (\theta - \alpha)^{-n}I(x_{(n)} \leq \theta) I(\alpha \leq x_{(1)})&lt;/script&gt;
+
+&lt;p&gt;so we can conclude that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (X_{(1)}, X_{(n)})&lt;/script&gt;
+
+&lt;p&gt;is suffcient for &lt;script type=&quot;math/tex&quot;&gt;\phi = (\alpha,\theta)&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;As you have (hopefully) noticed, sufficient statistics are not even close to unique. For instance, the sample itself is always sufficient. The order statistics are also always sufficient as we can set &lt;script type=&quot;math/tex&quot;&gt;h(\mathbf{x})&lt;/script&gt; to be 1 and then the joint distribution is the same, just reordered. Also, any one-to-one function of a sufficient statistic is also a sufficient statistic, as that value maps uniquely back to the original sufficient statistic. Therefore, we need some notion of &lt;em&gt;better&lt;/em&gt; when it comes to these types of statistics. That is what the idea of a &lt;strong&gt;minimal sufficient statistic&lt;/strong&gt; is.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;You’ll remember in OLS, we had something called the &lt;strong&gt;normal equations&lt;/strong&gt; - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.&lt;/p&gt;

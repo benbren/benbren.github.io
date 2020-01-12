@@ -1,4 +1,4 @@
-I"WI<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"�F<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Lots of people go through life talking about statistics and not actually knowing what a statistic <em>is</em>, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a <em>population</em> based off a sample. In general, you have a population parameter (<script type="math/tex">\theta</script>) that needs to be estimated (could be high - dimensional - the most we will talk about is <em>max</em> 2, so no worries) and some data (a random sample, once could say…) <script type="math/tex">X_ 1, \dots, X_ n</script> from that population, from which we observe the data <script type="math/tex">x_ 1, \dots, x_ n</script>. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.</p>
@@ -18,7 +18,7 @@ m < n %]]></script>, because it doesn’t really make sense to make our data mor
 
 <p>So, in summary, we want to take our data and use some transformation <script type="math/tex">T(\mathbf{X})</script> to make that data simpler and no less informative. That is what makes a good statistic good. This is why we use some statistics, and not others - as we will see. Anyways, this seems easy. Not like there’s a million choices for <script type="math/tex">T</script> or anything…</p>
 
-<p>Anyways. Let’s define what a sufficient statistic is. A statistic <script type="math/tex">T(\mathbf{X})</script> is called a <em>sufficient statistic</em> for the parameter <script type="math/tex">\theta</script> if the distribution of <script type="math/tex">\mathbf{X}</script> given <script type="math/tex">T(\mathbf{X})</script> does not depend on <script type="math/tex">\theta</script>. Why? This means that, given that we know the value of <script type="math/tex">T(\mathbf{X})</script>, the information left in the sample does not contain any information about <script type="math/tex">\theta</script>. This should be obvious - if the distribution of the data does not depend on the parameter, how can you get information about the parameter from that distribution ya know? Formally, if</p>
+<p>Anyways. Let’s define what a sufficient statistic is. A statistic <script type="math/tex">T(\mathbf{X})</script> is called a <em>sufficient statistic</em> for the parameter <script type="math/tex">\theta</script> if the distribution of the data <script type="math/tex">\mathbf{X}</script> given <script type="math/tex">T(\mathbf{X})</script> does not depend on <script type="math/tex">\theta</script>. Why? This means that, given that we know the value of <script type="math/tex">T(\mathbf{X})</script>, the information left in the sample does not contain any information about <script type="math/tex">\theta</script>. This should be obvious - if the distribution of the data does not depend on the parameter, how can you get information about the parameter from that distribution ya know? Formally, if</p>
 
 <script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert T(\mathbf{X}) = t) = g(\mathbf{x})</script>
 
@@ -114,9 +114,9 @@ m < n %]]></script>, because it doesn’t really make sense to make our data mor
 
 <script type="math/tex; mode=display">= \frac{g(T(\mathbf{x})\vert \theta)h(\mathbf{x})}{\sum_{\mathbf{y} \in A_t} g(T(\mathbf{y}) \vert \theta) h(\mathbf{y})}</script>
 
-<p>and, since for <script type="math/tex">\mathbf{y} \in A_t</script>, <script type="math/tex">T(\mathbf{y}) = t = T(\mathbf{x})</script></p>
+<p>and, since for <script type="math/tex">y \in A_t</script>, <script type="math/tex">T(\mathbf{y}) = t = T(\mathbf{x})</script></p>
 
-<script type="math/tex; mode=display">= \frac{h(\mathbf{x})}{\sum_{\mathbf{y} \in A_T}h(\mathbf{y})}</script>
+<script type="math/tex; mode=display">= \frac{h(\mathbf{x})}{\sum_{y \in A_T}h(\mathbf{y})}</script>
 
 <p>and this does not ever depend on <script type="math/tex">\theta</script>, so <script type="math/tex">T(\mathbf{X})</script> is sufficient and we have completed the proof!</p>
 
@@ -185,7 +185,5 @@ f(x \vert \theta) = \begin{cases}
 
 <script type="math/tex; mode=display">T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (X_{(1)}, X_{(n)})</script>
 
-<p>is suffcient for <script type="math/tex">\phi = (\alpha,\theta)</script></p>
-
-<p>As you have (hopefully) noticed, sufficient statistics are not even close to unique. For instance, the sample itself is always sufficient. The order statistics are also always sufficient as we can set <script type="math/tex">h(\mathbf{x})</script> to be 1 and then the joint distribution is the same, just reordered. Also, any one-to-one function of a sufficient statistic is also a sufficient statistic, as that value maps uniquely back to the original sufficient statistic. Therefore, we need some notion of <em>better</em> when it comes to these types of statistics. That is what the idea of a <strong>minimal sufficient statistic</strong> is.</p>
+<p>is suffcient for <script type="math/tex">\phi = (\alpha,theta)</script></p>
 :ET

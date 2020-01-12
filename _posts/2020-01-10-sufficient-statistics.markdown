@@ -160,10 +160,10 @@ $$
  = \frac{g(T(\mathbf{x})\vert \theta)h(\mathbf{x})}{\sum_{\mathbf{y} \in A_t} g(T(\mathbf{y}) \vert \theta) h(\mathbf{y})}
 $$
 
-and, since for $$\mathbf{y} \in A_t$$, $$T(\mathbf{y}) = t = T(\mathbf{x})$$
+and, since for $$y \in A_t$$, $$T(\mathbf{y}) = t = T(\mathbf{x})$$
 
 $$
-= \frac{h(\mathbf{x})}{\sum_{\mathbf{y} \in A_T}h(\mathbf{y})}
+= \frac{h(\mathbf{x})}{\sum_{y \in A_T}h(\mathbf{y})}
 $$
 
 and this does not ever depend on $$\theta$$, so $$T(\mathbf{X})$$ is sufficient and we have completed the proof! 

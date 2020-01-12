@@ -1,51 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Sufficient Statistics | Ben Brennan</title>
-<meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Sufficient Statistics" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking." />
-<meta property="og:description" content="Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking." />
-<link rel="canonical" href="http://localhost:4000/2020/01/10/sufficient-statistics.html" />
-<meta property="og:url" content="http://localhost:4000/2020/01/10/sufficient-statistics.html" />
-<meta property="og:site_name" content="Ben Brennan" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-01-10T12:00:00-05:00" />
-<script type="application/ld+json">
-{"description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","datePublished":"2020-01-10T12:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/01/10/sufficient-statistics.html"},"url":"http://localhost:4000/2020/01/10/sufficient-statistics.html","headline":"Sufficient Statistics","dateModified":"2020-01-10T12:00:00-05:00","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ben Brennan" /></head>
-<body><header class="site-header" role="banner">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Ben Brennan</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/blog/">Blog</a><a class="page-link" href="/cv/">CV</a><a class="page-link" href="/donate/">Donate</a><a class="page-link" href="/projects/">Projects</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Sufficient Statistics</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="2020-01-10T12:00:00-05:00" itemprop="datePublished">Jan 10, 2020
-      </time></p>
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"{8<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Lots of people go through life talking about statistics and not actually knowing what a statistic <em>is</em>, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a <em>population</em> based off a sample. In general, you have a population parameter (<script type="math/tex">\theta</script>) that needs to be estimated (could be high - dimensional - the most we will talk about is <em>max</em> 2, so no worries) and some data (a random sample, once could say…) <script type="math/tex">X_ 1, \dots, X_ n</script> from that population, from which we observe the data <script type="math/tex">x_ 1, \dots, x_ n</script>. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.</p>
@@ -195,75 +148,8 @@ f(x \vert \theta) = \begin{cases}
 
 <p>so, therefore,</p>
 
-<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \theta) = \displaystyle\prod_{i=1}^n \frac{1}{\theta}I(0 \leq x_i) I (x_i \leq \theta) = \theta^{-n}I(x_{(n)} \leq \theta) I(0 \leq x_{(1)})</script>
+<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \theta) = \displaystyle\prod_{i=1}^n \frac{1}{\theta}I(0 \leq x_i) I (x_i \leq \theta) = \theta^{-n}I(x_n \leq \theta) I(0 \leq x_{1})</script>
 
-<p>so we can conclude that the max, <script type="math/tex">X_{(n)}</script>, is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
+<p>so we can conclude that the max, <script type="math/tex">x_n</script> is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
 
-<p>Now, let’s consider a two-dimensional (<em>whoa</em>) sufficient statistic! When I learned this, the professor made this seem very straight forward - but I know things get real iffy real quick when the dimension of things increase - so lets take it slow. What we are looking for now is <script type="math/tex">T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X}))</script> such that the factorization theorem still applies. Let’s consider a normal distribution with unknown variance. Now, what we need is to find a factorization</p>
-
-<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = g(T_1(\mathbf{x}), T_2(\mathbf{X}) \vert \mu, \sigma^2)h(\mathbf{x})</script>
-
-<p>This differs from the one dimensional case where we kind of just tossed the parts of the exponent that did not depend on <script type="math/tex">\mu</script> into the constant and called it a day. Now, we can do that but only for the parts of the exponent that don’t depend on <script type="math/tex">\mu</script> and <script type="math/tex">\sigma^2</script> which is none of them so trick-statement you can’t toss anything into the constant from the exponent. Turns out that constant infront isn’t even a constant anymore since it involves <script type="math/tex">\sigma^2</script>. Bummer. All this means, though, is more algebra - which, although it is tedious, is not difficult if you pay attention (which <em>I know</em> is difficult). So, let’s get to it.</p>
-
-<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \displaystyle\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}\textrm{exp}\left( \frac{-(x_i - \mu)^2}{2\sigma^2}\right)</script>
-
-<script type="math/tex; mode=display">= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-\sum_{i=1}^n((x_i - \bar{x}) + (\bar{x} - \mu))^2}{2\sigma^2}\right)</script>
-
-<script type="math/tex; mode=display">= \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 +2 \sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu)  - n(\bar{x} - \mu)^2\right)\right)</script>
-
-<p>and now note that 
-<script type="math/tex">\sum_{i=1}^n(x_i - \bar{x})(\bar{x} - \mu) = \bar{x}\sum x_i - \mu\sum x_i - n\bar{x} + n\bar{x}\mu = 0</script></p>
-
-<p>so, therefore,</p>
-
-<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \mu, \sigma^2) = \left( \frac{1}{\sqrt{2\pi\sigma^2}} \right) ^n \textrm{exp}\left( \frac{-1}{2\sigma^2}\left(\sum_{i=1}^n(x_i - \bar{x})^2 - n(\bar{x} - \mu)^2\right)\right)</script>
-
-<p>and by using <script type="math/tex">h(\mathbf{x}) = 1</script>, we have the factorization theorem! Therefore,</p>
-
-<script type="math/tex; mode=display">T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (\bar{X}, \sum_{i=1}^n (X_i - \bar{X})^2)</script>
-
-<p>is a sufficient statistic for <script type="math/tex">\mathbf{\phi} = (\mu, \sigma^2)</script></p>
-
-<p>Let’s try another one - <script type="math/tex">\mathbf{X} \sim \textrm{Uniform}(\alpha, \theta)</script>. Extending our knowledge of the one-dimensional case, this should be fairly simple.</p>
-
-<script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert \theta, \alpha) = \displaystyle\prod_{i=1}^n \frac{1}{\theta - \alpha}I(\alpha \leq x_i) I (x_i \leq \theta) = (\theta - \alpha)^{-n}I(x_{(n)} \leq \theta) I(\alpha \leq x_{(1)})</script>
-
-<p>so we can conclude that</p>
-
-<script type="math/tex; mode=display">T(\mathbf{X}) = (T_1(\mathbf{X}), T_2(\mathbf{X})) = (X_{(1)}, X_{(n)})</script>
-
-<p>is suffcient for <script type="math/tex">\phi = (\alpha,\theta)</script></p>
-
-<p>As you have (hopefully) noticed, sufficient statistics are not even close to unique. For instance, the sample itself is always sufficient. The order statistics are also always sufficient as we can set <script type="math/tex">h(\mathbf{x})</script> to be 1 and then the joint distribution is the same, just reordered. Also, any one-to-one function of a sufficient statistic is also a sufficient statistic, as that value maps uniquely back to the original sufficient statistic. Therefore, we need some notion of <em>better</em> when it comes to these types of statistics. That is what the idea of a <strong>minimal sufficient statistic</strong> is.</p>
-
-  </div><a class="u-url" href="/2020/01/10/sufficient-statistics.html" hidden></a>
-</article>
-
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">Ben Brennan</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Ben Brennan</li><li><a class="u-email" href="mailto:brennben@umich.edu">brennben@umich.edu</a></li></ul>
-      </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/benbren"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">benbren</span></a></li><li><a href="https://instagram.com/benjuum"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg> <span class="username">benjuum</span></a></li><li><a href="https://www.linkedin.com/in/ben-brenn"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">ben-brenn</span></a></li><li><a href="https://www.twitter.com/benbrenn"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">benbrenn</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Hi, I&#39;m Ben. This is my website/blog. Views are my own. Thanks for looking.</p>
-      </div>
-    </div>
-
-  </div>
-
-</footer>
-</body>
-
-</html>
+:ET

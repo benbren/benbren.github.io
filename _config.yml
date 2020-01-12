@@ -31,8 +31,8 @@ instagram_username: benjuum
 
 # Build settings
 markdown: kramdown
-theme: minima
-# theme: jekyll-theme-architect
+# theme: minima
+theme: jekyll-theme-architect
 plugins:
   - jekyll-feed
 

@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-01-10T12:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","datePublished":"2020-01-10T12:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/01/10/sufficient-statistics.html"},"url":"http://localhost:4000/2020/01/10/sufficient-statistics.html","headline":"Sufficient Statistics","dateModified":"2020-01-10T12:00:00-05:00","@context":"https://schema.org"}</script>
+{"description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","headline":"Sufficient Statistics","dateModified":"2020-01-10T12:00:00-05:00","datePublished":"2020-01-10T12:00:00-05:00","@type":"BlogPosting","url":"http://localhost:4000/2020/01/10/sufficient-statistics.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/01/10/sufficient-statistics.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ben Brennan" /></head>
 <body><header class="site-header" role="banner">
@@ -65,7 +65,7 @@ m < n %]]></script>, because it doesn’t really make sense to make our data mor
 
 <p>So, in summary, we want to take our data and use some transformation <script type="math/tex">T(\mathbf{X})</script> to make that data simpler and no less informative. That is what makes a good statistic good. This is why we use some statistics, and not others - as we will see. Anyways, this seems easy. Not like there’s a million choices for <script type="math/tex">T</script> or anything…</p>
 
-<p>Anyways. Let’s define what a sufficient statistic is. A statistic <script type="math/tex">T(\mathbf{X})</script> is called a <em>sufficient statistic</em> for the parameter <script type="math/tex">\theta</script> if the distribution of the data <script type="math/tex">\mathbf{X}</script> given <script type="math/tex">T(\mathbf{X})</script> does not depend on <script type="math/tex">\theta</script>. Why? This means that, given that we know the value of <script type="math/tex">T(\mathbf{X})</script>, the information left in the sample does not contain any information about <script type="math/tex">\theta</script>. This should be obvious - if the distribution of the data does not depend on the parameter, how can you get information about the parameter from that distribution ya know? Formally, if</p>
+<p>Anyways. Let’s define what a sufficient statistic is. A statistic <script type="math/tex">T(\mathbf{X})</script> is called a <em>sufficient statistic</em> for the parameter <script type="math/tex">\theta</script> if the distribution of <script type="math/tex">\mathbf{X}</script> given <script type="math/tex">T(\mathbf{X})</script> does not depend on <script type="math/tex">\theta</script>. Why? This means that, given that we know the value of <script type="math/tex">T(\mathbf{X})</script>, the information left in the sample does not contain any information about <script type="math/tex">\theta</script>. This should be obvious - if the distribution of the data does not depend on the parameter, how can you get information about the parameter from that distribution ya know? Formally, if</p>
 
 <script type="math/tex; mode=display">f_{\mathbf{X}}(\mathbf{x} \vert T(\mathbf{X}) = t) = g(\mathbf{x})</script>
 
@@ -161,9 +161,9 @@ m < n %]]></script>, because it doesn’t really make sense to make our data mor
 
 <script type="math/tex; mode=display">= \frac{g(T(\mathbf{x})\vert \theta)h(\mathbf{x})}{\sum_{\mathbf{y} \in A_t} g(T(\mathbf{y}) \vert \theta) h(\mathbf{y})}</script>
 
-<p>and, since for <script type="math/tex">y \in A_t</script>, <script type="math/tex">T(\mathbf{y}) = t = T(\mathbf{x})</script></p>
+<p>and, since for <script type="math/tex">\mathbf{y} \in A_t</script>, <script type="math/tex">T(\mathbf{y}) = t = T(\mathbf{x})</script></p>
 
-<script type="math/tex; mode=display">= \frac{h(\mathbf{x})}{\sum_{y \in A_T}h(\mathbf{y})}</script>
+<script type="math/tex; mode=display">= \frac{h(\mathbf{x})}{\sum_{\mathbf{y} \in A_T}h(\mathbf{y})}</script>
 
 <p>and this does not ever depend on <script type="math/tex">\theta</script>, so <script type="math/tex">T(\mathbf{X})</script> is sufficient and we have completed the proof!</p>
 

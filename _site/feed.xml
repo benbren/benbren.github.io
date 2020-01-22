@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-16T11:11:36-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Intro to Inference</title><link href="http://localhost:4000/2020/01/10/intro-to-inference.html" rel="alternate" type="text/html" title="Intro to Inference" /><published>2020-01-10T12:00:00-05:00</published><updated>2020-01-10T12:00:00-05:00</updated><id>http://localhost:4000/2020/01/10/intro-to-inference</id><content type="html" xml:base="http://localhost:4000/2020/01/10/intro-to-inference.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-21T22:33:52-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Intro to Inference</title><link href="http://localhost:4000/2020/01/10/intro-to-inference.html" rel="alternate" type="text/html" title="Intro to Inference" /><published>2020-01-10T12:00:00-05:00</published><updated>2020-01-10T12:00:00-05:00</updated><id>http://localhost:4000/2020/01/10/intro-to-inference</id><content type="html" xml:base="http://localhost:4000/2020/01/10/intro-to-inference.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;Lots of people go through life talking about statistics and not actually knowing what a statistic &lt;em&gt;is&lt;/em&gt;, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a &lt;em&gt;population&lt;/em&gt; based off a sample. In general, you have a population parameter (&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;) that needs to be estimated (could be high - dimensional - the most we will talk about is &lt;em&gt;max&lt;/em&gt; 2, so no worries) and some data (a random sample, once could say…) &lt;script type=&quot;math/tex&quot;&gt;X_ 1, \dots, X_ n&lt;/script&gt; from that population, from which we observe the data &lt;script type=&quot;math/tex&quot;&gt;x_ 1, \dots, x_ n&lt;/script&gt;. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.&lt;/p&gt;
@@ -7,7 +7,7 @@
 
 &lt;p&gt;For example, we can make conclusions about the probability we get a certain number of successes in a certain number of trials (i.e Binomial(&lt;script type=&quot;math/tex&quot;&gt;n,p&lt;/script&gt;), or the probability that a certain metric is less than some value (i.e &lt;script type=&quot;math/tex&quot;&gt;\mathcal{N}(\mu, \sigma^2&lt;/script&gt;)) - but that requires us to know the distribution those values follow in the population (i.e to know the population parameters).&lt;/p&gt;
 
-&lt;p&gt;This post will be about a key concept in inference - the &lt;em&gt;sufficient statistic&lt;/em&gt;. First - and back to the beginning - what is a statistic?!&lt;/p&gt;
+&lt;p&gt;First - and back to the beginning - what is a statistic?!&lt;/p&gt;
 
 &lt;p&gt;A statistics takes a random variable &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; and maps it via some function &lt;script type=&quot;math/tex&quot;&gt;T(.)&lt;/script&gt;. That is,&lt;/p&gt;
 
@@ -207,18 +207,18 @@ f(x \vert \theta) = \begin{cases}
 
 &lt;p&gt;This is helpful! We can use this practically. The proof is a bit difficult, but you can see this definition as arising from the Factorization Theorem. Before we see some examples with some known distributions, lets talk facts about this minimal sufficient statistic.&lt;/p&gt;
 
-&lt;p&gt;Is a minimal sufficient statistic unique? &lt;strong&gt;No&lt;/strong&gt;. It turns out that any injective function of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is also a minimal sufficient statistic. Why does this make sense? Intuitively, a one to one function of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; maps the partitions created by &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; uniquely to partitions in a different partitioned space. Since &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is a minimal sufficient statistic, it achieves the coarsest possible partition space (i.e with the smallest cardinality), so the mapping of a function of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; has to map to the smallest number of possible partitions, by default.&lt;/p&gt;
+&lt;p&gt;Is a minimal sufficient statistic unique? &lt;strong&gt;No&lt;/strong&gt;. This is the first fact. It turns out that any injective function of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is also a minimal sufficient statistic. Why does this make sense? Intuitively, a one to one function of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; maps the partitions created by &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; uniquely to partitions in a different partitioned space. Since &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is a minimal sufficient statistic, it achieves the coarsest possible partition space (i.e with the smallest cardinality), so the mapping of a function of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; has to map to the smallest number of possible partitions, by default.&lt;/p&gt;
 
 &lt;p&gt;A more formal proof is as follows. To understand why this proof is as follows, remember that &lt;em&gt;only&lt;/em&gt; a 1-1 function has an inverse:&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Proof&lt;/strong&gt;: 
-(&lt;em&gt;Sufficiency&lt;/em&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Proof&lt;/strong&gt;:&lt;/p&gt;
 
-&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X}) = b(T(\mathbf{X}))&lt;/script&gt; be a one-to-one function. Then, &lt;script type=&quot;math/tex&quot;&gt;\exists \; b^{-1}&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;b^{-1}(T^*(\mathbf{X})) = T(\mathbf{X})&lt;/script&gt;. Thus, knowing &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X})&lt;/script&gt; assures that we know &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; via &lt;script type=&quot;math/tex&quot;&gt;b^{-1}(.)&lt;/script&gt;. We can also see that, by the factorization theorem, when &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is sufficient, &lt;script type=&quot;math/tex&quot;&gt;\exists \; h, \; g&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x}) = g(b^{-1}(T^*(\mathbf{X}))\vert \theta)h(\mathbf{x})&lt;/script&gt;. Thus, &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X})&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X}) = b(T(\mathbf{X}))&lt;/script&gt; be a one-to-one function. Then, &lt;script type=&quot;math/tex&quot;&gt;\exists \; b^{-1}&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;b^{-1}(T^*(\mathbf{X})) = T(\mathbf{X})&lt;/script&gt;. Thus, knowing &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X})&lt;/script&gt; assures that we know &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; via &lt;script type=&quot;math/tex&quot;&gt;b^{-1}(.)&lt;/script&gt;. We can also see that, by the factorization theorem, when &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is sufficient, &lt;script type=&quot;math/tex&quot;&gt;\exists \; h, \; g&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x}) = g(b^{-1}(T^*(\mathbf{X}))\vert \theta)h(\mathbf{x})&lt;/script&gt;. Thus, &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X})&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. This shows that &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X})&lt;/script&gt; is a sufficient by the Factorization Theorem. Now, assume there is another sufficient statistic &lt;script type=&quot;math/tex&quot;&gt;T_1(\mathbf{X})&lt;/script&gt;. Since &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; (the original one) is minimal sufficient, then &lt;script type=&quot;math/tex&quot;&gt;T = q(T_1(\mathbf{X}))&lt;/script&gt;. Therefore, &lt;script type=&quot;math/tex&quot;&gt;T^* = b(T) = b(q(T_1))&lt;/script&gt;. Therefore, &lt;script type=&quot;math/tex&quot;&gt;T^*(\mathbf{X})&lt;/script&gt; is a function of any other sufficient statistic, and is thus a minimal sufficient statistic.&lt;/p&gt;
 
-&lt;p&gt;The proof for minimal sufficiency is quite straightforward, just noticing that if two statistics are equal, a one-to-one function of those two statistics will also be equal.&lt;/p&gt;
+&lt;p&gt;This fact actually leads us to the next fact - there is &lt;em&gt;always&lt;/em&gt; a one-to-one function between two minimally sufficient statistics. To show this, suppose there are two minimally sufficient statistics &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T_1}, 
+\mathbf{T_2}&lt;/script&gt;. Then, &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T_1} = f(\mathbf{T_2})&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T_2} = g(\mathbf{T_1})&lt;/script&gt;. Thus, &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T_1} =f(g(\mathbf{T_1}))&lt;/script&gt; which implies that &lt;script type=&quot;math/tex&quot;&gt;f= g^{-1}&lt;/script&gt; and therefore &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; is one-to-one. The same can be shown for &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt;. What this means practically is that the partition created by a minimal sufficient statistic is unique.&lt;/p&gt;
 
-&lt;p&gt;And… now to examples, so you can pass your class. ;).&lt;/p&gt;
+&lt;p&gt;And… now some totally non-boring to examples, so you can pass your class. ;).&lt;/p&gt;
 
 &lt;p&gt;Lets go back to the OG example of this post. Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim \textrm{Binomial}(n,p)&lt;/script&gt;. Is &lt;script type=&quot;math/tex&quot;&gt;\sum X_i&lt;/script&gt; a minimal sufficient statistic? We know it is sufficient because we already proved it so refresh your memory if you already forgot about this. To prove minimal sufficiency, we have to prove it both ways. So first, lets look at the ratio&lt;/p&gt;
 
@@ -234,9 +234,92 @@ f(x \vert \theta) = \begin{cases}
 
 &lt;p&gt;So, this is free of &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = T(\mathbf{y})&lt;/script&gt;. But, is it free of &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; only if that is the case? No! If &lt;script type=&quot;math/tex&quot;&gt;y_3  = x_1 + x_2&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_3 = y_1 + y_2&lt;/script&gt;, then it is free of &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; but the statistics are not equal! This is exactly what our intuition above says. If we switch the order of the ordered pair, we map to the same partition in the partition space of another statistic (namely the one defined above). So we can always define a statistic with a coarser partition (a more basic statistic that contains the same information about &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;).&lt;/p&gt;
 
+&lt;h3 id=&quot;ancillary-statistics&quot;&gt;Ancillary Statistics&lt;/h3&gt;
+
+&lt;p&gt;Now - we will talk about ancillary statistics. This mean seem like it is out of left field, and it is, but it is still a pretty basic part of inference (and a type of statistic) so we are going to cover it.&lt;/p&gt;
+
+&lt;p&gt;First, lets talk about the word ancillary. The first time I heard this word, actually, was from a professor I had who was from India and had learned English with a British accent, so I now say ancillary ancíllary, not ancilláry. Anyways - to the point.&lt;/p&gt;
+
+&lt;p&gt;A statistic is ancillary if its distribution does not depend on the parameter &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;How is this different from a sufficient statistic? At first glance, the definitions seem kind’ve similiar. They aren’t at all. A sufficient statistic is a statistic that contains all the relevant information about $\theta$ in the data. An ancillary statistic, by defintion, do not contain any information about the parameter at all. I know what you are thinking - so, if they contain no information about the parameter, why in the &lt;em&gt;world&lt;/em&gt; should I care about these things? We will get back to that point.&lt;/p&gt;
+
+&lt;p&gt;First, some examples. Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots,X_n \sim \mathcal{N}(\mu,\sigma^2)&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt; is known. Consider &lt;script type=&quot;math/tex&quot;&gt;T_1 = X_1 - \mu&lt;/script&gt;. This is not, because the statistic is a function of the parameter &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt;. What about &lt;script type=&quot;math/tex&quot;&gt;T_2 = X_1 - X_2&lt;/script&gt;? Yes. Since both are Gaussian, the distribution of &lt;script type=&quot;math/tex&quot;&gt;T_2&lt;/script&gt; is Gaussian with expected value 0 and variance &lt;script type=&quot;math/tex&quot;&gt;2\sigma^2&lt;/script&gt;, by convolusion. Therefore, the distribution of &lt;script type=&quot;math/tex&quot;&gt;T_2&lt;/script&gt; does not depend on &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; and thus is ancillary. Also, remember &lt;script type=&quot;math/tex&quot;&gt;\frac{(n-1)s^2}{\sigma^2} \sim \chi_{n-1}^2&lt;/script&gt;. So, the sample standard deviation is also an ancillary statistic for &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt;! These are some realtively simple examples, and ones that maybe we should have known off the top of our heads (just an assumption, since you are reading this). How about we look at something a bit more difficult?&lt;/p&gt;
+
+&lt;p&gt;What if we have &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim \mathcal{N}(0,\sigma^2)&lt;/script&gt; and we define Y_i to be &lt;script type=&quot;math/tex&quot;&gt;X_i/sigma&lt;/script&gt;. Then, while is not ancillary because it is a function of &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;, it does follow a standard normal distribution now. Therefore, we can show that &lt;script type=&quot;math/tex&quot;&gt;\frac{X_1}{X_2} = \frac{\sigma Y_1}{\sigma Y_2} = \frac{Y_1}{Y_2}&lt;/script&gt; which, from ratio distributions, is distributed Cauchy. So, by using that transform, we have found a way to use the original data to create an ancillary statistic. Notice, actually, that any function of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{Y}&lt;/script&gt; does not depend on &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt; at all, so constructing ancillary statistics is not hard at all, in this case.  Now let’s look at a much more difficult problem.&lt;/p&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots , X_n \sim \textrm{Uniform}(\theta, \theta +1)&lt;/script&gt;. Show that the range, &lt;script type=&quot;math/tex&quot;&gt;R = X_{(n)} - X_{(1)}&lt;/script&gt; is an ancillary statistic. There are two ways to do this - we can go through both. The first is to find the distribution of &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; and show that it does not depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; - not trivial. To start, we need the joint distribution of the min and the max. This is given in Casella &amp;amp; Berger, Thm. 5.4.6. For any pair of order statistics, the joint distribution is given by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{X_{(i)},X_{(j)}}{y_1,y_2 \vert \theta} = \frac{n!}{(i-1)!(j-1-i)!(n-j)!}f_{X}(y_1)f_{X}(y_2) \left[ F(y_1) \right]^{i-1} \left[ F(y_2) - F(y_1)\right]^{j-i-1}[1-F(y_2)]^{n-j}&lt;/script&gt;
+
+&lt;p&gt;Therefore, the joint distrbution of the min and the max is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{n!}{(n-2)!}f_X(x_{(1)})f_X(x_{(n)})[F(x_{(n)}) - F(x_{(1)})]^{n-2}&lt;/script&gt;
+
+&lt;p&gt;Now, we use our knowledge of the uniform distribution! Note that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+f_X(x \vert \theta) = I(\theta &lt; x \ \theta + 1) %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;and that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+F_X(x \vert \theta ) = 
+\begin{cases}
+   0 &amp; \;\;\textrm{if} \;\; x \leq \theta \\
+   x - \theta &amp; \;\;\textrm{if} \;\; \theta &lt; x &lt; \theta +1 \\
+   1 &amp; \;\;\textrm{if} \;\; x \geq \theta + 1 \\
+   
+\end{cases} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Therefore, the join distribution of &lt;script type=&quot;math/tex&quot;&gt;X_{(1)}, X_{(n)}&lt;/script&gt; is given by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{cases}
+n(n-1)(x_{(n)} - x_{(1)})^{n-2} &amp; \;\; \textrm{if} \;\; \theta &lt; x_{(1)} &lt; x_{(n)} &lt; \theta + 1 \\
+0 &amp; \;\; \textrm{else}
+\end{cases} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Now, we need to find the distribution of the range! To do this, let &lt;script type=&quot;math/tex&quot;&gt;M = \frac{X_{(1)} + X_{(n)}}{2}&lt;/script&gt; be the median. Then, &lt;script type=&quot;math/tex&quot;&gt;X_{(1)} = \frac{2M - R}{2}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;X_{(n)} = \frac{2M+R}{2}&lt;/script&gt;. The Jacobian is then&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\mathbf{J} = 
+\left[\begin{matrix}
+\frac{\partial X_{(1)}}{\partial R} &amp; \frac{\partial X_{(1)}}{\partial M} \\ 
+\frac{\partial X_{(n)}}{\partial R} &amp; \frac{\partial X_{(n)}}{\partial M}
+\end{matrix}\right] = 
+\left[\begin{matrix}
+-\frac{1}{2} &amp; 1 \\ 
+\frac{1}{2} &amp; 1
+\end{matrix}\right] %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;and the determinant here is 1. Therfore me can just plug and chug, no need to add in &lt;script type=&quot;math/tex&quot;&gt;\vert \mathbf{J} \vert&lt;/script&gt; to our new pdf. We have the same domain restrictions, just now &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\theta &lt; \frac{2m - r}{2} &lt; \frac{2m + r}{2} &lt; \theta + 1 %]]&gt;&lt;/script&gt;. If we fix &lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt;, we can see that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\theta + r/2 &lt; m &lt; \theta + 1 - r/2 %]]&gt;&lt;/script&gt; and we can see that the domain of &lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;(0,1)&lt;/script&gt;. This is all the information we now need to know to derive the distribution of &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt;. It follows from this that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_R(r) = \displaystyle\int_{\theta + r/2}^{\theta + 1 - r/2} n(n-1)r^{n-2}dm = n(n-1)r^{n-2}(1-r)&lt;/script&gt;
+
+&lt;p&gt;and this doesn’t depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;! So the range is ancillary. Another thing to notice here - this totally sucked to derive. I know it. You know it. We &lt;em&gt;all&lt;/em&gt; know it. Lets do it a way easier way! Define &lt;script type=&quot;math/tex&quot;&gt;Y =  X_i - \theta&lt;/script&gt;. Then,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+f_Y(y) = I(\theta &lt; y + \theta &lt; \theta + 1) \vert \frac{dx}{dy}\vert = I(0 &lt; y &lt; 1) %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;which is Uniform(0,1). Wow, so now &lt;script type=&quot;math/tex&quot;&gt;R = X_{(n)} - X_{(1)} = (Y_{(n)} + \theta )-(Y_{(1)} + \theta) = Y_{(n)} - Y_{(1)}&lt;/script&gt; which has nothing to do with &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, andwe can conclude the range is ancillary. Way easier. And similar to the example above the hard example above. Kinda seems like there might be a point.. there is!&lt;/p&gt;
+
+&lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X} \sim f(x - \theta)&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; is an arbitrary distrbution. Define &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; as above. Then &lt;script type=&quot;math/tex&quot;&gt;f_Y(y) = f_X{y + \theta - \theta}&lt;/script&gt; which does not depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. So the range cancels out the &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; as it does above, and we again get a distribution that does not depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. Seems like for siome distributions, we can just divide the random variables and get an ancillary statistic, and for other types of distributions we can just use the range. This is where the idea of a &lt;em&gt;location-scale family&lt;/em&gt; comes in.&lt;/p&gt;
+
+&lt;p&gt;If &lt;script type=&quot;math/tex&quot;&gt;f(x)&lt;/script&gt; is a pdf, the &lt;script type=&quot;math/tex&quot;&gt;\frac{1}{\sigma}f(\frac{x - \mu}{\sigma})&lt;/script&gt; is also a pdf, specifically a &lt;em&gt;location-scale family with standard pdf&lt;/em&gt; &lt;script type=&quot;math/tex&quot;&gt;f(x)&lt;/script&gt;. Here, &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; is called the location parameter and &lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt; is called the scale parameter. For instance, &lt;script type=&quot;math/tex&quot;&gt;\mathcal{N}(\mu,\sigma^2)&lt;/script&gt; is a location-scale family with standard pdf &lt;script type=&quot;math/tex&quot;&gt;\mathcal{N}(0,1)&lt;/script&gt; and location parameter &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; and scale parameter &lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;We showed above that the range is an ancillary statistic for a location family. Now, we can show that the ratio &lt;script type=&quot;math/tex&quot;&gt;X_1/X_n&lt;/script&gt; is an ancillary statistic for an arbitrary scale family with pdf &lt;script type=&quot;math/tex&quot;&gt;f(x/\sigma)/\sigma&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;\sigma &gt; 0&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Define &lt;script type=&quot;math/tex&quot;&gt;Y = \frac{X}{\sigma}&lt;/script&gt;. Then, &lt;script type=&quot;math/tex&quot;&gt;X = \sigma Y&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;dx/dy = \sigma&lt;/script&gt;. Thefore, &lt;script type=&quot;math/tex&quot;&gt;f_Y(y) = \frac{1}{\sigma}f_X(\sigma y/\sigma) \sigma = f(y)&lt;/script&gt;. Then, &lt;script type=&quot;math/tex&quot;&gt;\frac{X_1}{X_n} = \frac{\sigma Y_1}{\sigma Y_n} = \frac{Y_1}{Y_{n}}&lt;/script&gt; which does not depend on &lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;So its been fun learning about ancillary statistics.. but why does it matter again? Turns out that, while ancillary statistics do not contain any information about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, they can help up the precision in our estimation of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. How, do you say? Consider the Uniform(&lt;script type=&quot;math/tex&quot;&gt;\theta, \theta + 1&lt;/script&gt;) case, and say we know the range is 0.8. This doesn’t tell us anything about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; &lt;em&gt;alone&lt;/em&gt;. But say we also know the median is 1. Now, we now that &lt;script type=&quot;math/tex&quot;&gt;X_{(1)} = 0.6&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;X_{(n)} = 1.4&lt;/script&gt;. From this information, we can gather that &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; must be in the range of &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+0.4 &lt; \theta &lt; 0.6 %]]&gt;&lt;/script&gt; because it can’t be more than 0.6 (or we wouldn’t observe the minimum we have) and vice versa for 0.4. So, in summary, ancillary statistics, &lt;em&gt;when combined with other statistics&lt;/em&gt;, can improve our understanding of the parameter. However, alone, they do nothing for us. They’re like a friend’s friend. Lots of fun to hang out with, but only when your mutual friend is around. Otherwise it is weird and you just want to go home.&lt;/p&gt;
+
 &lt;h2 id=&quot;more-examples&quot;&gt;More Examples&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n&lt;/script&gt; but iid fraom a density function of the form:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n&lt;/script&gt; but iid from a density function of the form:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
 f(x \vert \sigma) = \frac{1}{\sigma}e^{-\frac{1}{\sigma}(x - \mu)}, \; \; \mu &lt; x, \;\; 0 &lt; \sigma %]]&gt;&lt;/script&gt;

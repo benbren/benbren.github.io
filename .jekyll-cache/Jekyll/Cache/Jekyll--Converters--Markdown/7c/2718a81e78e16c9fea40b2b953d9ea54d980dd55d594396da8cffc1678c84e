@@ -1,4 +1,4 @@
-I",�<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"��<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Lots of people go through life talking about statistics and not actually knowing what a statistic <em>is</em>, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a <em>population</em> based off a sample. In general, you have a population parameter (<script type="math/tex">\theta</script>) that needs to be estimated (could be high - dimensional - the most we will talk about is <em>max</em> 2, so no worries) and some data (a random sample, once could say…) <script type="math/tex">X_ 1, \dots, X_ n</script> from that population, from which we observe the data <script type="math/tex">x_ 1, \dots, x_ n</script>. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.</p>
@@ -7,7 +7,7 @@
 
 <p>For example, we can make conclusions about the probability we get a certain number of successes in a certain number of trials (i.e Binomial(<script type="math/tex">n,p</script>), or the probability that a certain metric is less than some value (i.e <script type="math/tex">\mathcal{N}(\mu, \sigma^2</script>)) - but that requires us to know the distribution those values follow in the population (i.e to know the population parameters).</p>
 
-<p>This post will be about a key concept in inference - the <em>sufficient statistic</em>. First - and back to the beginning - what is a statistic?!</p>
+<p>First - and back to the beginning - what is a statistic?!</p>
 
 <p>A statistics takes a random variable <script type="math/tex">\mathbf{X}</script> and maps it via some function <script type="math/tex">T(.)</script>. That is,</p>
 
@@ -207,18 +207,18 @@ f(x \vert \theta) = \begin{cases}
 
 <p>This is helpful! We can use this practically. The proof is a bit difficult, but you can see this definition as arising from the Factorization Theorem. Before we see some examples with some known distributions, lets talk facts about this minimal sufficient statistic.</p>
 
-<p>Is a minimal sufficient statistic unique? <strong>No</strong>. It turns out that any injective function of <script type="math/tex">T(\mathbf{X})</script> is also a minimal sufficient statistic. Why does this make sense? Intuitively, a one to one function of <script type="math/tex">T(\mathbf{X})</script> maps the partitions created by <script type="math/tex">T(\mathbf{X})</script> uniquely to partitions in a different partitioned space. Since <script type="math/tex">T(\mathbf{X})</script> is a minimal sufficient statistic, it achieves the coarsest possible partition space (i.e with the smallest cardinality), so the mapping of a function of <script type="math/tex">T(\mathbf{X})</script> has to map to the smallest number of possible partitions, by default.</p>
+<p>Is a minimal sufficient statistic unique? <strong>No</strong>. This is the first fact. It turns out that any injective function of <script type="math/tex">T(\mathbf{X})</script> is also a minimal sufficient statistic. Why does this make sense? Intuitively, a one to one function of <script type="math/tex">T(\mathbf{X})</script> maps the partitions created by <script type="math/tex">T(\mathbf{X})</script> uniquely to partitions in a different partitioned space. Since <script type="math/tex">T(\mathbf{X})</script> is a minimal sufficient statistic, it achieves the coarsest possible partition space (i.e with the smallest cardinality), so the mapping of a function of <script type="math/tex">T(\mathbf{X})</script> has to map to the smallest number of possible partitions, by default.</p>
 
 <p>A more formal proof is as follows. To understand why this proof is as follows, remember that <em>only</em> a 1-1 function has an inverse:</p>
 
-<p><strong>Proof</strong>: 
-(<em>Sufficiency</em>)</p>
+<p><strong>Proof</strong>:</p>
 
-<p>Let <script type="math/tex">T^*(\mathbf{X}) = b(T(\mathbf{X}))</script> be a one-to-one function. Then, <script type="math/tex">\exists \; b^{-1}</script> such that <script type="math/tex">b^{-1}(T^*(\mathbf{X})) = T(\mathbf{X})</script>. Thus, knowing <script type="math/tex">T^*(\mathbf{X})</script> assures that we know <script type="math/tex">T(\mathbf{X})</script> via <script type="math/tex">b^{-1}(.)</script>. We can also see that, by the factorization theorem, when <script type="math/tex">T</script> is sufficient, <script type="math/tex">\exists \; h, \; g</script> such that <script type="math/tex">f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x}) = g(b^{-1}(T^*(\mathbf{X}))\vert \theta)h(\mathbf{x})</script>. Thus, <script type="math/tex">T^*(\mathbf{X})</script> is sufficient for <script type="math/tex">\theta</script>.</p>
+<p>Let <script type="math/tex">T^*(\mathbf{X}) = b(T(\mathbf{X}))</script> be a one-to-one function. Then, <script type="math/tex">\exists \; b^{-1}</script> such that <script type="math/tex">b^{-1}(T^*(\mathbf{X})) = T(\mathbf{X})</script>. Thus, knowing <script type="math/tex">T^*(\mathbf{X})</script> assures that we know <script type="math/tex">T(\mathbf{X})</script> via <script type="math/tex">b^{-1}(.)</script>. We can also see that, by the factorization theorem, when <script type="math/tex">T</script> is sufficient, <script type="math/tex">\exists \; h, \; g</script> such that <script type="math/tex">f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x}) = g(b^{-1}(T^*(\mathbf{X}))\vert \theta)h(\mathbf{x})</script>. Thus, <script type="math/tex">T^*(\mathbf{X})</script> is sufficient for <script type="math/tex">\theta</script>. This shows that <script type="math/tex">T^*(\mathbf{X})</script> is a sufficient by the Factorization Theorem. Now, assume there is another sufficient statistic <script type="math/tex">T_1(\mathbf{X})</script>. Since <script type="math/tex">T</script> (the original one) is minimal sufficient, then <script type="math/tex">T = q(T_1(\mathbf{X}))</script>. Therefore, <script type="math/tex">T^* = b(T) = b(q(T_1))</script>. Therefore, <script type="math/tex">T^*(\mathbf{X})</script> is a function of any other sufficient statistic, and is thus a minimal sufficient statistic.</p>
 
-<p>The proof for minimal sufficiency is quite straightforward, just noticing that if two statistics are equal, a one-to-one function of those two statistics will also be equal.</p>
+<p>This fact actually leads us to the next fact - there is <em>always</em> a one-to-one function between two minimally sufficient statistics. To show this, suppose there are two minimally sufficient statistics <script type="math/tex">\mathbf{T_1}, 
+\mathbf{T_2}</script>. Then, <script type="math/tex">\mathbf{T_1} = f(\mathbf{T_2})</script> and <script type="math/tex">\mathbf{T_2} = g(\mathbf{T_1})</script>. Thus, <script type="math/tex">\mathbf{T_1} =f(g(\mathbf{T_1}))</script> which implies that <script type="math/tex">f= g^{-1}</script> and therefore <script type="math/tex">f</script> is one-to-one. The same can be shown for <script type="math/tex">g</script>. What this means practically is that the partition created by a minimal sufficient statistic is unique.</p>
 
-<p>And… now to examples, so you can pass your class. ;).</p>
+<p>And… now some totally non-boring to examples, so you can pass your class. ;).</p>
 
 <p>Lets go back to the OG example of this post. Let <script type="math/tex">X_1, \dots, X_n \sim \textrm{Binomial}(n,p)</script>. Is <script type="math/tex">\sum X_i</script> a minimal sufficient statistic? We know it is sufficient because we already proved it so refresh your memory if you already forgot about this. To prove minimal sufficiency, we have to prove it both ways. So first, lets look at the ratio</p>
 
@@ -234,9 +234,85 @@ f(x \vert \theta) = \begin{cases}
 
 <p>So, this is free of <script type="math/tex">p</script> if <script type="math/tex">T(\mathbf{x}) = T(\mathbf{y})</script>. But, is it free of <script type="math/tex">p</script> only if that is the case? No! If <script type="math/tex">y_3  = x_1 + x_2</script> and <script type="math/tex">x_3 = y_1 + y_2</script>, then it is free of <script type="math/tex">p</script> but the statistics are not equal! This is exactly what our intuition above says. If we switch the order of the ordered pair, we map to the same partition in the partition space of another statistic (namely the one defined above). So we can always define a statistic with a coarser partition (a more basic statistic that contains the same information about <script type="math/tex">p</script>).</p>
 
+<h3 id="ancillary-statistics">Ancillary Statistics</h3>
+
+<p>Now - we will talk about ancillary statistics. This mean seem like it is out of left field, and it is, but it is still a pretty basic part of inference (and a type of statistic) so we are going to cover it.</p>
+
+<p>First, lets talk about the word ancillary. The first time I heard this word, actually, was from a professor I had who was from India and had learned English with a British accent, so I now say ancillary ancíllary, not ancilláry. Anyways - to the point.</p>
+
+<p>A statistic is ancillary if its distribution does not depend on the parameter <script type="math/tex">\theta</script>.</p>
+
+<p>How is this different from a sufficient statistic? At first glance, the definitions seem kind’ve similiar. They aren’t at all. A sufficient statistic is a statistic that contains all the relevant information about $\theta$ in the data. An ancillary statistic, by defintion, do not contain any information about the parameter at all. I know what you are thinking - so, if they contain no information about the parameter, why in the <em>world</em> should I care about these things? We will get back to that point.</p>
+
+<p>First, some examples. Let <script type="math/tex">X_1, \dots,X_n \sim \mathcal{N}(\mu,\sigma^2)</script> where <script type="math/tex">\sigma^2</script> is known. Consider <script type="math/tex">T_1 = X_1 - \mu</script>. This is not, because the statistic is a function of the parameter <script type="math/tex">\mu</script>. What about <script type="math/tex">T_2 = X_1 - X_2</script>? Yes. Since both are Gaussian, the distribution of <script type="math/tex">T_2</script> is Gaussian with expected value 0 and variance <script type="math/tex">2\sigma^2</script>, by convolusion. Therefore, the distribution of <script type="math/tex">T_2</script> does not depend on <script type="math/tex">\mu</script> and thus is ancillary. Also, remember <script type="math/tex">\frac{(n-1)s^2}{\sigma^2} \sim \chi_{n-1}^2</script>. So, the sample standard deviation is also an ancillary statistic for <script type="math/tex">\mu</script>! These are some realtively simple examples, and ones that maybe we should have known off the top of our heads (just an assumption, since you are reading this). How about we look at something a bit more difficult?</p>
+
+<p>What if we have <script type="math/tex">X_1, \dots, X_n \sim \mathcal{N}(0,\sigma^2)</script> and we define Y_i to be <script type="math/tex">X_i/sigma</script>. Then, while is not ancillary because it is a function of <script type="math/tex">\sigma^2</script>, it does follow a standard normal distribution now. Therefore, we can show that <script type="math/tex">\frac{X_1}{X_2} = \frac{\sigma Y_1}{\sigma Y_2} = \frac{Y_1}{Y_2}</script> which, from ratio distributions, is distributed Cauchy. So, by using that transform, we have found a way to use the original data to create an ancillary statistic. Notice, actually, that any function of <script type="math/tex">\mathbf{Y}</script> does not depend on <script type="math/tex">\sigma^2</script> at all, so constructing ancillary statistics is not hard at all, in this case.  Now let’s look at a much more difficult problem.</p>
+
+<p>Let <script type="math/tex">X_1, \dots , X_n \sim \textrm{Uniform}(\theta, \theta +1)</script>. Show that the range, <script type="math/tex">R = X_{(n)} - X_{(1)}</script> is an ancillary statistic. There are two ways to do this - we can go through both. The first is to find the distribution of $R$ and show that it does not depend on $\theta$ - not trivial. To start, we need the joint distribution of the min and the max. This is given in Casella &amp; Berger, Thm. 5.4.6. For any pair of order statistics, the joint distribution is given by</p>
+
+<script type="math/tex; mode=display">f_{X_{(i)},X_{(j)}}{y_1,y_2 \vert \ theta} = \frac{n!}{(i-1)!(j-1-i)!(n-j)!}f_{X}(y_1)f_{X}(y_2) \left[ F(y_1) \right]^{i-1} \left[ F(y_2) - F(y_1)\right]^{j-i-1}[1-F(y_2)]^{n-j}</script>
+
+<p>Therfore, the joint distrbution of the min and the max is</p>
+
+<script type="math/tex; mode=display">\frac{n!}{(n-2)!}f_X(x_{(1)})f_X(x_{(n)})[F(x_{(n)}) - F(x_{(1)})]^{n-2}</script>
+
+<p>Now, we use our knowledge of the uniform distribution! Note that</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+f_X(x \vert \theta) = I(\theta < x \ \theta + 1) %]]></script>
+
+<p>and that</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+F_X(x \vert \theta ) = 
+\begin{cases}
+   0 & \;\;\textrm{if} \;\; x \leq \theta \\
+   x - \theta & \;\;\textrm{if} \;\; \theta < x < \theta +1 \\
+   1 & \;\;\textrm{if} \;\; x \geq \theta + 1 \\
+   
+\end{cases} %]]></script>
+
+<p>Therefore, the join distribution of <script type="math/tex">X_{(1)}, X_{(n)}</script> is given by</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{cases}
+n(n-1)(x_{(n)} - x_{(1)})^{n-2} & \;\; \textrm{if} \;\; \theta < x_{(1)} < x_{(n)} < \theta + 1 \\
+0 & \;\; \textrm{else}
+\end{cases} %]]></script>
+
+<p>Now, we need to find the distribution of the range! To do this, let <script type="math/tex">M = \frac{X_{(1)} + X_{(n)}}{2}</script> be the median. Then, <script type="math/tex">X_{(1)} = \frac{2M - R}{2}</script> and <script type="math/tex">X_{(n)} = \frac{2M+R}{2}</script>. The Jacobian is then</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{J} = 
+\left[\begin{matrix}
+\frac{\partial X_{(1)}}{\partial R} & \frac{\partial X_{(1)}}{\partial M} \\ 
+\frac{\partial X_{(n)}}{\partial R} & \frac{\partial X_{(n)}}{\partial M}
+\end{matrix}\right] = 
+\left[\begin{matrix}
+-\frac{1}{2} & 1 \\ 
+\frac{1}{2} & 1
+\end{matrix}\right] %]]></script>
+
+<p>and the determinant here is 1. Therfore me can just plug and chug, no need to add in <script type="math/tex">\vert \mathbf{J} \vert</script> to our new pdf. We have the same domain restrictions, just now <script type="math/tex">% <![CDATA[
+\theta < \frac{2m - r}{2} < \frac{2m + r}{2} < \theta + 1 %]]></script>. If we fix <script type="math/tex">r</script>, we can see that <script type="math/tex">% <![CDATA[
+\theta + r/2 < m < \theta + 1 - r/2 %]]></script> and we can see that the domain of <script type="math/tex">r</script> is <script type="math/tex">(0,1)</script>. This is all the information we now need to know to derive the distribution of <script type="math/tex">R</script>. It follows from this that</p>
+
+<script type="math/tex; mode=display">f_R(r) = \displaystyle\int_{\theta + r/2}^{\theta + 1 - r/2} n(n-1)r^{n-2}dm = n(n-1)r^{n-2}(1-r)</script>
+
+<p>and this doesn’t depend on $\theta$! So the range is ancillary. Another thing to notice here - this totally sucked to derive. I know it. You know it. We <em>all</em> know it. Lets do it a way easier way! Define <script type="math/tex">Y =  X_i - \theta</script>. Then,</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+f_Y(y) = I(\theta < y + \theta < theta + 1) \vert \frac{dx}{dy}\vert = I(0 < y < 1) %]]></script>
+
+<p>which is Uniform(0,1). Wow, so now <script type="math/tex">R = X_{(n)} - X_{(1)} = (Y_{(n)} + \theta )-(Y_{(1)} + \theta) = Y_{(n)} - Y_{(1)}</script> which has nothing to do with <script type="math/tex">\theta</script>, andwe can conclude the range is ancillary. Way easier. And similar to the example above the hard example above. Kinda seems like there might be a point.. there is!</p>
+
+<p>Suppose <script type="math/tex">\mathbf{X} \sim f(x - \theta)</script> where <script type="math/tex">f</script> is an arbitrary distrbution. Define $Y$ as above. Then <script type="math/tex">f_Y(y) = f_X{y + \theta - \theta}</script> which does not depend on <script type="math/tex">\theta</script>. So the range cancels out the <script type="math/tex">\theta</script> as it does above, and we again get a distribution that does not depend on <script type="math/tex">\theta</script>. Seems like for siome distributions, we can just divide the random variables and get an ancillary statistic, and for other types of distributions we can just use the range. This is where the idea of a <em>location-scale family</em> comes in.</p>
+
+<p>If <script type="math/tex">f(x)</script> is a pdf, the <script type="math/tex">\frac{1}{\sigma}f(\frac{x - \mu}{\sigma})</script> is also a pdf, specifically a <em>location-scale family with standard pdf</em> <script type="math/tex">f(x)</script>. Here, <script type="math/tex">\mu</script> is called the location parameter and <script type="math/tex">\sigma</script> is called the scale parameter. For instance, <script type="math/tex">\mathcal{N}(\mu,\sigma^2)</script> is a location-scale family with standard pdf <script type="math/tex">\mathcal{X}(0,1)</script> and location parameter <script type="math/tex">\mu</script> and scale parameter <script type="math/tex">\sigma</script>.</p>
+
 <h2 id="more-examples">More Examples</h2>
 
-<p><strong>1</strong>. Let <script type="math/tex">X_1, \dots, X_n</script> but iid fraom a density function of the form:</p>
+<p><strong>1</strong>. Let <script type="math/tex">X_1, \dots, X_n</script> but iid from a density function of the form:</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 f(x \vert \sigma) = \frac{1}{\sigma}e^{-\frac{1}{\sigma}(x - \mu)}, \; \; \mu < x, \;\; 0 < \sigma %]]></script>

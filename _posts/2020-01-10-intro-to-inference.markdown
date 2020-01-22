@@ -13,7 +13,7 @@ Lots of people go through life talking about statistics and not actually knowing
 
 For example, we can make conclusions about the probability we get a certain number of successes in a certain number of trials (i.e Binomial($$n,p$$), or the probability that a certain metric is less than some value (i.e $$\mathcal{N}(\mu, \sigma^2$$)) - but that requires us to know the distribution those values follow in the population (i.e to know the population parameters). 
 
-This post will be about a key concept in inference - the *sufficient statistic*. First - and back to the beginning - what is a statistic?! 
+First - and back to the beginning - what is a statistic?! 
 
 A statistics takes a random variable $$ \mathbf{X}$$ and maps it via some function $$T(.)$$. That is, 
 
@@ -286,18 +286,18 @@ The ratio $$\frac{f(\mathbf{x} \vert \theta)}{f(\mathbf{y} \vert \theta)}$$ is f
 
 This is helpful! We can use this practically. The proof is a bit difficult, but you can see this definition as arising from the Factorization Theorem. Before we see some examples with some known distributions, lets talk facts about this minimal sufficient statistic. 
 
-Is a minimal sufficient statistic unique? **No**. It turns out that any injective function of $$T(\mathbf{X})$$ is also a minimal sufficient statistic. Why does this make sense? Intuitively, a one to one function of $$T(\mathbf{X})$$ maps the partitions created by $$T(\mathbf{X})$$ uniquely to partitions in a different partitioned space. Since $$T(\mathbf{X})$$ is a minimal sufficient statistic, it achieves the coarsest possible partition space (i.e with the smallest cardinality), so the mapping of a function of $$T(\mathbf{X})$$ has to map to the smallest number of possible partitions, by default. 
+Is a minimal sufficient statistic unique? **No**. This is the first fact. It turns out that any injective function of $$T(\mathbf{X})$$ is also a minimal sufficient statistic. Why does this make sense? Intuitively, a one to one function of $$T(\mathbf{X})$$ maps the partitions created by $$T(\mathbf{X})$$ uniquely to partitions in a different partitioned space. Since $$T(\mathbf{X})$$ is a minimal sufficient statistic, it achieves the coarsest possible partition space (i.e with the smallest cardinality), so the mapping of a function of $$T(\mathbf{X})$$ has to map to the smallest number of possible partitions, by default. 
 
 A more formal proof is as follows. To understand why this proof is as follows, remember that *only* a 1-1 function has an inverse: 
 
 **Proof**: 
-(*Sufficiency*) 
 
-Let $$T^*(\mathbf{X}) = b(T(\mathbf{X}))$$ be a one-to-one function. Then, $$\exists \; b^{-1}$$ such that $$b^{-1}(T^*(\mathbf{X})) = T(\mathbf{X})$$. Thus, knowing $$T^*(\mathbf{X})$$ assures that we know $$T(\mathbf{X})$$ via $$b^{-1}(.)$$. We can also see that, by the factorization theorem, when $$T$$ is sufficient, $$\exists \; h, \; g$$ such that $$ f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x}) = g(b^{-1}(T^*(\mathbf{X}))\vert \theta)h(\mathbf{x})$$. Thus, $$T^*(\mathbf{X})$$ is sufficient for $$\theta$$. 
+Let $$T^*(\mathbf{X}) = b(T(\mathbf{X}))$$ be a one-to-one function. Then, $$\exists \; b^{-1}$$ such that $$b^{-1}(T^*(\mathbf{X})) = T(\mathbf{X})$$. Thus, knowing $$T^*(\mathbf{X})$$ assures that we know $$T(\mathbf{X})$$ via $$b^{-1}(.)$$. We can also see that, by the factorization theorem, when $$T$$ is sufficient, $$\exists \; h, \; g$$ such that $$ f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x}) = g(b^{-1}(T^*(\mathbf{X}))\vert \theta)h(\mathbf{x})$$. Thus, $$T^*(\mathbf{X})$$ is sufficient for $$\theta$$. This shows that $$T^*(\mathbf{X})$$ is a sufficient by the Factorization Theorem. Now, assume there is another sufficient statistic $$T_1(\mathbf{X})$$. Since $$T$$ (the original one) is minimal sufficient, then $$T = q(T_1(\mathbf{X}))$$. Therefore, $$T^* = b(T) = b(q(T_1))$$. Therefore, $$T^*(\mathbf{X})$$ is a function of any other sufficient statistic, and is thus a minimal sufficient statistic.
 
-The proof for minimal sufficiency is quite straightforward, just noticing that if two statistics are equal, a one-to-one function of those two statistics will also be equal. 
+This fact actually leads us to the next fact - there is *always* a one-to-one function between two minimally sufficient statistics. To show this, suppose there are two minimally sufficient statistics $$\mathbf{T_1}, 
+\mathbf{T_2}$$. Then, $$\mathbf{T_1} = f(\mathbf{T_2})$$ and $$\mathbf{T_2} = g(\mathbf{T_1})$$. Thus, $$\mathbf{T_1} =f(g(\mathbf{T_1}))$$ which implies that $$ f= g^{-1}$$ and therefore $$f$$ is one-to-one. The same can be shown for $$g$$. What this means practically is that the partition created by a minimal sufficient statistic is unique.  
 
-And... now to examples, so you can pass your class. ;).
+And... now some totally non-boring to examples, so you can pass your class. ;).
 
 Lets go back to the OG example of this post. Let $$X_1, \dots, X_n \sim \textrm{Binomial}(n,p)$$. Is $$\sum X_i$$ a minimal sufficient statistic? We know it is sufficient because we already proved it so refresh your memory if you already forgot about this. To prove minimal sufficiency, we have to prove it both ways. So first, lets look at the ratio 
 
@@ -319,10 +319,106 @@ $$
 
 So, this is free of $$p$$ if $$T(\mathbf{x}) = T(\mathbf{y})$$. But, is it free of $$p$$ only if that is the case? No! If $$y_3  = x_1 + x_2$$ and $$x_3 = y_1 + y_2$$, then it is free of $$p$$ but the statistics are not equal! This is exactly what our intuition above says. If we switch the order of the ordered pair, we map to the same partition in the partition space of another statistic (namely the one defined above). So we can always define a statistic with a coarser partition (a more basic statistic that contains the same information about $$p$$). 
 
+### Ancillary Statistics 
+
+Now - we will talk about ancillary statistics. This mean seem like it is out of left field, and it is, but it is still a pretty basic part of inference (and a type of statistic) so we are going to cover it. 
+
+First, lets talk about the word ancillary. The first time I heard this word, actually, was from a professor I had who was from India and had learned English with a British accent, so I now say ancillary ancíllary, not ancilláry. Anyways - to the point. 
+
+A statistic is ancillary if its distribution does not depend on the parameter $$\theta$$. 
+
+How is this different from a sufficient statistic? At first glance, the definitions seem kind've similiar. They aren't at all. A sufficient statistic is a statistic that contains all the relevant information about $\theta$ in the data. An ancillary statistic, by defintion, do not contain any information about the parameter at all. I know what you are thinking - so, if they contain no information about the parameter, why in the *world* should I care about these things? We will get back to that point.
+
+First, some examples. Let $$X_1, \dots,X_n \sim \mathcal{N}(\mu,\sigma^2)$$ where $$\sigma^2$$ is known. Consider $$T_1 = X_1 - \mu$$. This is not, because the statistic is a function of the parameter $$\mu$$. What about $$T_2 = X_1 - X_2$$? Yes. Since both are Gaussian, the distribution of $$T_2$$ is Gaussian with expected value 0 and variance $$2\sigma^2$$, by convolusion. Therefore, the distribution of $$T_2$$ does not depend on $$\mu$$ and thus is ancillary. Also, remember $$\frac{(n-1)s^2}{\sigma^2} \sim \chi_{n-1}^2$$. So, the sample standard deviation is also an ancillary statistic for $$\mu$$! These are some realtively simple examples, and ones that maybe we should have known off the top of our heads (just an assumption, since you are reading this). How about we look at something a bit more difficult? 
+
+What if we have $$X_1, \dots, X_n \sim \mathcal{N}(0,\sigma^2)$$ and we define Y_i to be $$ X_i/sigma$$. Then, while is not ancillary because it is a function of $$\sigma^2$$, it does follow a standard normal distribution now. Therefore, we can show that $$\frac{X_1}{X_2} = \frac{\sigma Y_1}{\sigma Y_2} = \frac{Y_1}{Y_2}$$ which, from ratio distributions, is distributed Cauchy. So, by using that transform, we have found a way to use the original data to create an ancillary statistic. Notice, actually, that any function of $$\mathbf{Y}$$ does not depend on $$\sigma^2$$ at all, so constructing ancillary statistics is not hard at all, in this case.  Now let's look at a much more difficult problem.
+
+Let $$X_1, \dots , X_n \sim \textrm{Uniform}(\theta, \theta +1)$$. Show that the range, $$R = X_{(n)} - X_{(1)}$$ is an ancillary statistic. There are two ways to do this - we can go through both. The first is to find the distribution of $$R$$ and show that it does not depend on $$\theta$$ - not trivial. To start, we need the joint distribution of the min and the max. This is given in Casella & Berger, Thm. 5.4.6. For any pair of order statistics, the joint distribution is given by
+
+$$
+f_{X_{(i)},X_{(j)}}{y_1,y_2 \vert \theta} = \frac{n!}{(i-1)!(j-1-i)!(n-j)!}f_{X}(y_1)f_{X}(y_2) \left[ F(y_1) \right]^{i-1} \left[ F(y_2) - F(y_1)\right]^{j-i-1}[1-F(y_2)]^{n-j}
+$$
+
+Therefore, the joint distrbution of the min and the max is 
+
+$$
+\frac{n!}{(n-2)!}f_X(x_{(1)})f_X(x_{(n)})[F(x_{(n)}) - F(x_{(1)})]^{n-2}
+$$
+
+Now, we use our knowledge of the uniform distribution! Note that 
+
+$$
+f_X(x \vert \theta) = I(\theta < x \ \theta + 1)
+$$
+
+and that 
+
+$$
+F_X(x \vert \theta ) = 
+\begin{cases}
+   0 & \;\;\textrm{if} \;\; x \leq \theta \\
+   x - \theta & \;\;\textrm{if} \;\; \theta < x < \theta +1 \\
+   1 & \;\;\textrm{if} \;\; x \geq \theta + 1 \\
+   
+\end{cases}    
+
+$$
+
+Therefore, the join distribution of $$X_{(1)}, X_{(n)}$$ is given by 
+
+$$
+\begin{cases}
+n(n-1)(x_{(n)} - x_{(1)})^{n-2} & \;\; \textrm{if} \;\; \theta < x_{(1)} < x_{(n)} < \theta + 1 \\
+0 & \;\; \textrm{else}
+\end{cases}
+$$
+
+Now, we need to find the distribution of the range! To do this, let $$M = \frac{X_{(1)} + X_{(n)}}{2}$$ be the median. Then, $$X_{(1)} = \frac{2M - R}{2}$$ and $$X_{(n)} = \frac{2M+R}{2}$$. The Jacobian is then 
+
+$$
+\mathbf{J} = 
+\left[\begin{matrix}
+\frac{\partial X_{(1)}}{\partial R} & \frac{\partial X_{(1)}}{\partial M} \\ 
+\frac{\partial X_{(n)}}{\partial R} & \frac{\partial X_{(n)}}{\partial M}
+\end{matrix}\right] = 
+\left[\begin{matrix}
+-\frac{1}{2} & 1 \\ 
+\frac{1}{2} & 1
+\end{matrix}\right]
+$$
+
+and the determinant here is 1. Therfore me can just plug and chug, no need to add in $$\vert \mathbf{J} \vert$$ to our new pdf. We have the same domain restrictions, just now $$\theta < \frac{2m - r}{2} < \frac{2m + r}{2} < \theta + 1$$. If we fix $$r$$, we can see that $$\theta + r/2 < m < \theta + 1 - r/2$$ and we can see that the domain of $$r$$ is $$(0,1)$$. This is all the information we now need to know to derive the distribution of $$R$$. It follows from this that 
+
+$$
+f_R(r) = \displaystyle\int_{\theta + r/2}^{\theta + 1 - r/2} n(n-1)r^{n-2}dm = n(n-1)r^{n-2}(1-r)
+$$
+
+and this doesn't depend on $$\theta$$! So the range is ancillary. Another thing to notice here - this totally sucked to derive. I know it. You know it. We *all* know it. Lets do it a way easier way! Define $$Y =  X_i - \theta$$. Then, 
+
+$$
+f_Y(y) = I(\theta < y + \theta < \theta + 1) \vert \frac{dx}{dy}\vert = I(0 < y < 1)
+$$
+
+which is Uniform(0,1). Wow, so now $$R = X_{(n)} - X_{(1)} = (Y_{(n)} + \theta )-(Y_{(1)} + \theta) = Y_{(n)} - Y_{(1)}$$ which has nothing to do with $$\theta$$, andwe can conclude the range is ancillary. Way easier. And similar to the example above the hard example above. Kinda seems like there might be a point.. there is! 
+
+Suppose $$\mathbf{X} \sim f(x - \theta)$$ where $$f$$ is an arbitrary distrbution. Define $$Y$$ as above. Then $$f_Y(y) = f_X{y + \theta - \theta}$$ which does not depend on $$\theta$$. So the range cancels out the $$\theta$$ as it does above, and we again get a distribution that does not depend on $$\theta$$. Seems like for siome distributions, we can just divide the random variables and get an ancillary statistic, and for other types of distributions we can just use the range. This is where the idea of a *location-scale family* comes in. 
+
+If $$f(x)$$ is a pdf, the $$\frac{1}{\sigma}f(\frac{x - \mu}{\sigma})$$ is also a pdf, specifically a *location-scale family with standard pdf* $$f(x)$$. Here, $$\mu$$ is called the location parameter and $$\sigma$$ is called the scale parameter. For instance, $$\mathcal{N}(\mu,\sigma^2)$$ is a location-scale family with standard pdf $$\mathcal{N}(0,1)$$ and location parameter $$\mu$$ and scale parameter $$\sigma$$. 
+
+We showed above that the range is an ancillary statistic for a location family. Now, we can show that the ratio $$X_1/X_n$$ is an ancillary statistic for an arbitrary scale family with pdf $$f(x/\sigma)/\sigma$$ with $$\sigma > 0$$.
+
+Define $$Y = \frac{X}{\sigma}$$. Then, $$ X = \sigma Y$$ and $$dx/dy = \sigma$$. Thefore, $$f_Y(y) = \frac{1}{\sigma}f_X(\sigma y/\sigma) \sigma = f(y)$$. Then, $$\frac{X_1}{X_n} = \frac{\sigma Y_1}{\sigma Y_n} = \frac{Y_1}{Y_{n}}$$ which does not depend on $$\sigma$$. 
+
+So its been fun learning about ancillary statistics.. but why does it matter again? Turns out that, while ancillary statistics do not contain any information about $$\theta$$, they can help up the precision in our estimation of $$\theta$$. How, do you say? Consider the Uniform($$\theta, \theta + 1$$) case, and say we know the range is 0.8. This doesn't tell us anything about $$\theta$$ *alone*. But say we also know the median is 1. Now, we now that $$X_{(1)} = 0.6$$ and $$X_{(n)} = 1.4$$. From this information, we can gather that $$\theta$$ must be in the range of $$0.4 < \theta < 0.6$$ because it can't be more than 0.6 (or we wouldn't observe the minimum we have) and vice versa for 0.4. So, in summary, ancillary statistics, *when combined with other statistics*, can improve our understanding of the parameter. However, alone, they do nothing for us. They're like a friend's friend. Lots of fun to hang out with, but only when your mutual friend is around. Otherwise it is weird and you just want to go home. 
+
+
+
+
+
 
 ## More Examples 
 
-**1**. Let $$X_1, \dots, X_n$$ but iid fraom a density function of the form: 
+**1**. Let $$X_1, \dots, X_n$$ but iid from a density function of the form: 
 
 $$
 f(x \vert \sigma) = \frac{1}{\sigma}e^{-\frac{1}{\sigma}(x - \mu)}, \; \; \mu < x, \;\; 0 < \sigma

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-21T22:33:52-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Intro to Inference</title><link href="http://localhost:4000/2020/01/10/intro-to-inference.html" rel="alternate" type="text/html" title="Intro to Inference" /><published>2020-01-10T12:00:00-05:00</published><updated>2020-01-10T12:00:00-05:00</updated><id>http://localhost:4000/2020/01/10/intro-to-inference</id><content type="html" xml:base="http://localhost:4000/2020/01/10/intro-to-inference.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-30T09:10:57-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Brennan</title><subtitle>Hi, I'm Ben. This is my website/blog. Views are my own. Thanks for looking.</subtitle><entry><title type="html">Intro to Inference</title><link href="http://localhost:4000/2020/01/10/intro-to-inference.html" rel="alternate" type="text/html" title="Intro to Inference" /><published>2020-01-10T12:00:00-05:00</published><updated>2020-01-10T12:00:00-05:00</updated><id>http://localhost:4000/2020/01/10/intro-to-inference</id><content type="html" xml:base="http://localhost:4000/2020/01/10/intro-to-inference.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;Lots of people go through life talking about statistics and not actually knowing what a statistic &lt;em&gt;is&lt;/em&gt;, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a &lt;em&gt;population&lt;/em&gt; based off a sample. In general, you have a population parameter (&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;) that needs to be estimated (could be high - dimensional - the most we will talk about is &lt;em&gt;max&lt;/em&gt; 2, so no worries) and some data (a random sample, once could say…) &lt;script type=&quot;math/tex&quot;&gt;X_ 1, \dots, X_ n&lt;/script&gt; from that population, from which we observe the data &lt;script type=&quot;math/tex&quot;&gt;x_ 1, \dots, x_ n&lt;/script&gt;. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.&lt;/p&gt;
@@ -7,7 +7,7 @@
 
 &lt;p&gt;For example, we can make conclusions about the probability we get a certain number of successes in a certain number of trials (i.e Binomial(&lt;script type=&quot;math/tex&quot;&gt;n,p&lt;/script&gt;), or the probability that a certain metric is less than some value (i.e &lt;script type=&quot;math/tex&quot;&gt;\mathcal{N}(\mu, \sigma^2&lt;/script&gt;)) - but that requires us to know the distribution those values follow in the population (i.e to know the population parameters).&lt;/p&gt;
 
-&lt;p&gt;First - and back to the beginning - what is a statistic?!&lt;/p&gt;
+&lt;p&gt;First - and back to the beginning - what is a statistic?! (FYI - this is less of a post, more of a literal book chapter.. fair warning!)&lt;/p&gt;
 
 &lt;p&gt;A statistics takes a random variable &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; and maps it via some function &lt;script type=&quot;math/tex&quot;&gt;T(.)&lt;/script&gt;. That is,&lt;/p&gt;
 
@@ -314,8 +314,59 @@ f_Y(y) = I(\theta &lt; y + \theta &lt; \theta + 1) \vert \frac{dx}{dy}\vert = I(
 
 &lt;p&gt;Define &lt;script type=&quot;math/tex&quot;&gt;Y = \frac{X}{\sigma}&lt;/script&gt;. Then, &lt;script type=&quot;math/tex&quot;&gt;X = \sigma Y&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;dx/dy = \sigma&lt;/script&gt;. Thefore, &lt;script type=&quot;math/tex&quot;&gt;f_Y(y) = \frac{1}{\sigma}f_X(\sigma y/\sigma) \sigma = f(y)&lt;/script&gt;. Then, &lt;script type=&quot;math/tex&quot;&gt;\frac{X_1}{X_n} = \frac{\sigma Y_1}{\sigma Y_n} = \frac{Y_1}{Y_{n}}&lt;/script&gt; which does not depend on &lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt;.&lt;/p&gt;
 
-&lt;p&gt;So its been fun learning about ancillary statistics.. but why does it matter again? Turns out that, while ancillary statistics do not contain any information about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, they can help up the precision in our estimation of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. How, do you say? Consider the Uniform(&lt;script type=&quot;math/tex&quot;&gt;\theta, \theta + 1&lt;/script&gt;) case, and say we know the range is 0.8. This doesn’t tell us anything about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; &lt;em&gt;alone&lt;/em&gt;. But say we also know the median is 1. Now, we now that &lt;script type=&quot;math/tex&quot;&gt;X_{(1)} = 0.6&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;X_{(n)} = 1.4&lt;/script&gt;. From this information, we can gather that &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; must be in the range of &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-0.4 &lt; \theta &lt; 0.6 %]]&gt;&lt;/script&gt; because it can’t be more than 0.6 (or we wouldn’t observe the minimum we have) and vice versa for 0.4. So, in summary, ancillary statistics, &lt;em&gt;when combined with other statistics&lt;/em&gt;, can improve our understanding of the parameter. However, alone, they do nothing for us. They’re like a friend’s friend. Lots of fun to hang out with, but only when your mutual friend is around. Otherwise it is weird and you just want to go home.&lt;/p&gt;
+&lt;p&gt;So its been fun learning about ancillary statistics.. but why does it matter again? Turns out that, while ancillary statistics do not contain any information about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, they can help up the precision in our estimation of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. How, do you say? Consider the Uniform(&lt;script type=&quot;math/tex&quot;&gt;\theta, \theta + 1&lt;/script&gt;) case, and say we know the range is 0.8. This doesn’t tell us anything about &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; &lt;em&gt;alone&lt;/em&gt;. But say we also know the median is 1. If we &lt;em&gt;only&lt;/em&gt; knew the median was 1, we would only know that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+0 &lt; \theta &lt; 1 %]]&gt;&lt;/script&gt;.  Now, by knowing the range &lt;em&gt;and&lt;/em&gt; the median, we now that &lt;script type=&quot;math/tex&quot;&gt;X_{(1)} = 0.6&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;X_{(n)} = 1.4&lt;/script&gt;. From this information, we can gather that &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; must be in the range of &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+0.4 &lt; \theta &lt; 0.6 %]]&gt;&lt;/script&gt; because it can’t be more than 0.6 (or we wouldn’t observe the minimum we have) and vice versa for 0.4. So, in summary, ancillary statistics, &lt;em&gt;when combined with other statistics&lt;/em&gt;, can improve our understanding of the parameter. However, alone, they do nothing for us. They’re like a friend’s friend. Lots of fun to hang out with, but only when your mutual friend is around. Otherwise, things get awkward and you just want to go home.&lt;/p&gt;
+
+&lt;h2 id=&quot;complete-statistics&quot;&gt;Complete Statistics&lt;/h2&gt;
+
+&lt;p&gt;So lets tie all this together (not really, but lets wrap this up with final discussion about statistics).&lt;/p&gt;
+
+&lt;p&gt;We will end this by talking about &lt;strong&gt;complete statistics&lt;/strong&gt;. Sounds cool. What is it? It’s actually defined through familes of distributions (like we talked about above). Let &lt;script type=&quot;math/tex&quot;&gt;\mathcal{P} = \{ p(t \vert \theta), \theta \in \Theta \}&lt;/script&gt; be a family of distributions for &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;E\left[ g(T) \vert \theta \right] = 0 \; \; \forall \; \theta \; \implies P[g(T) = 0 \vert \theta] = 1 \; \forall \; \theta&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt; is called a &lt;strong&gt;complete statistic&lt;/strong&gt;! 
+Really, completeness is a property of the family of distributions. To call a statistic itself complete is almost misleading. To get some more intuition into this problem, notice that, in the discrete case,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E_{\theta}\left[ g(t) \right] = \sum_{i} g(t_i) \times P_{\theta}(T = t_i) = g(t_1) \times p_{\theta}(t_1) + \dots = 0&lt;/script&gt;
+
+&lt;p&gt;Therefore, for &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; to be complete, this must mean that &lt;script type=&quot;math/tex&quot;&gt;g(t)&lt;/script&gt; above is almost surely 0 - i.e there is no non-trivial (occuring with probabilty 0) &lt;script type=&quot;math/tex&quot;&gt;g(t)&lt;/script&gt; that is not zero. This is analagous to the idea of linear independence of vectors. Above, we only have one.. or do we? We actually have a set of equations that corresponds to the number of &lt;script type=&quot;math/tex&quot;&gt;\theta \in \Theta&lt;/script&gt;. So, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vec{g(\mathbf{x})} \times \mathcal{P}_{\Theta} = 0&lt;/script&gt;
+
+&lt;p&gt;This can only happen when either &lt;script type=&quot;math/tex&quot;&gt;g(T) = 0&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;\mathcal{P}&lt;/script&gt; does not change across separate values of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, or if it changes very simply (i.e scaled by a constant). Therefore, completeness guarantees that distributions parameterized by different values of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; are distinct. If you change &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, you change the whole thing. Also, conceptually note that there is a “no nonsense” part of this definition. It says “if &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; is expected to be zero with respect to &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, then it is just zero”. That is, there is no part of the distribution of &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; that does not depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. No nonsense. One thing to note from this is that, if you can make an ancillary statistic out of &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X})&lt;/script&gt;, then it cannot be complete… which follows immediately from what was stated above. Another thing to note - this is all defined by the family of distributions &lt;script type=&quot;math/tex&quot;&gt;\mathcal{P}&lt;/script&gt;, that depends on the set &lt;script type=&quot;math/tex&quot;&gt;\Theta&lt;/script&gt;. A statistic may be complete for a certain portion of that set, and may not be complete for another.&lt;br /&gt;
+Let’s check out some examples. Suppose &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X} \sim \textrm{Uniform}(\theta,\theta + 1)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = (X_{(1)}, X_{(n)})&lt;/script&gt;. Is this a complete statistic? We should think, intuitively, that it is not. We can make an ancillary statistic (the range) out of this statistic. A complete statistic has no non-trivial part that doesn’t depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, but nothing about the range depends on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;g(T) = R - E[R]&lt;/script&gt;. Now notice that &lt;script type=&quot;math/tex&quot;&gt;E[R]&lt;/script&gt; is a constant with respect to &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. Therefore, &lt;script type=&quot;math/tex&quot;&gt;g(T)&lt;/script&gt; is a non-zero function, but &lt;script type=&quot;math/tex&quot;&gt;E[g(T)] \; \forall \; \theta&lt;/script&gt;. Therfore, &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is not complete!&lt;/p&gt;
+
+&lt;p&gt;Now suppose &lt;script type=&quot;math/tex&quot;&gt;T \sim \textrm{Poisson}(\lambda), \; \lambda \in \{1,2\}&lt;/script&gt;. Now, if &lt;script type=&quot;math/tex&quot;&gt;E_{\lambda=1}[g(t)] = 0&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;E_{\lambda=1}[g(t)] = 0&lt;/script&gt; implies that &lt;script type=&quot;math/tex&quot;&gt;\sum_{t} \frac{g(t)}{t!} = \sum_{t} \frac{g(t)2^t}{t!} =  0&lt;/script&gt; which clearly does not mean that &lt;script type=&quot;math/tex&quot;&gt;g(t)&lt;/script&gt; must be zero, and you can think of &lt;em&gt;lots&lt;/em&gt; of examples. So this family is not complete. Notice how we are talking about a family of distributions… and remember how I said it depended on the range of the parameter. Now, suppose&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;T \sim \textrm{Poisson}(\lambda), \; \; \lambda \in \mathbb{R}^+&lt;/script&gt;
+
+&lt;p&gt;Now, suppose there is &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;E[g(T)] = 0&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;. Then,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum_{t = 0}^{\infty} \frac{g(t)}{t!}\lambda^t = 0 = \sum_{t = 0}^{\infty} \phi(t) \lambda^t = 0&lt;/script&gt;
+
+&lt;p&gt;Since &lt;script type=&quot;math/tex&quot;&gt;\lambda &gt; 0&lt;/script&gt;, this can only be 0 if &lt;script type=&quot;math/tex&quot;&gt;\phi(t) = 0 \; \forall \; t \; \implies \; g(t) = 0 \; \forall t&lt;/script&gt;. Bam, complete. By adding more dimensionality to &lt;script type=&quot;math/tex&quot;&gt;\Omega&lt;/script&gt;, the parameter space for &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;, we make the family complete. Why is this? Becauase the larger the family (i.e the more paramters), the more constraints &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; must satisfy. At some point, the only such &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; is the trivial &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt;, 0. This means the family is complete.&lt;/p&gt;
+
+&lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim \textrm{Uniform}(0,\theta)&lt;/script&gt;. Show that &lt;script type=&quot;math/tex&quot;&gt;X_{(n)}&lt;/script&gt; is complete.&lt;/p&gt;
+
+&lt;p&gt;The distribution of &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(t \vert \theta) = n f_X(t) \left[ F_X(t) \right] = n\frac{1}{\theta} \left[ \frac{t}{\theta} \right]^{n-1}&lt;/script&gt;
+
+&lt;p&gt;So, assume that &lt;script type=&quot;math/tex&quot;&gt;E[g(T)] = 0&lt;/script&gt;. Then,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\displaystyle\int_{0}^{\theta} g(t)\frac{n}{\theta^n}t^{n-1} = 0 \implies \displaystyle\int_{0}^{\theta} g(t)t^{n-1} = 0&lt;/script&gt;
+
+&lt;p&gt;and, by the Fundamental Theorem of Calculus,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\displaystyle\int_{0}^{\theta} g(t)t^{n-1} = \displaystyle\int_{0}^{\theta} F(t)dt = F(\theta) - F(0) = g(\theta)\theta^{n-1} = 0&lt;/script&gt;
+
+&lt;p&gt;so, since &lt;script type=&quot;math/tex&quot;&gt;\theta &gt; 0 \; , \; g(\theta) = 0&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;\theta &gt; 0&lt;/script&gt; - concluding the &lt;script type=&quot;math/tex&quot;&gt;X_{(n)}&lt;/script&gt; is complete.&lt;/p&gt;
+
+&lt;p&gt;There’s just a few more things (2) to be said about complete statistics.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;If a function of &lt;script type=&quot;math/tex&quot;&gt;T \; , \; h(T)&lt;/script&gt; is ancillary, then &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; cannot be complete. This goes with what we said before - a complete statistic does not have any unncessary part associated with it. Let &lt;script type=&quot;math/tex&quot;&gt;g(T) = h(T) - E[h(T)]&lt;/script&gt;. Since &lt;script type=&quot;math/tex&quot;&gt;h(T)&lt;/script&gt; is ancillary, then &lt;script type=&quot;math/tex&quot;&gt;g(T) = 0&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. But, again, &lt;script type=&quot;math/tex&quot;&gt;g(T)&lt;/script&gt; is non-zero. Or, at least, it doesn’t have to be zero.&lt;/li&gt;
+  &lt;li&gt;Say &lt;script type=&quot;math/tex&quot;&gt;T_1(\mathbf{X})&lt;/script&gt; is complete. Then &lt;script type=&quot;math/tex&quot;&gt;h(T) = T_1&lt;/script&gt; is also complete. So assume &lt;script type=&quot;math/tex&quot;&gt;E[g(h(T))] = E[g(T_1)] = 0&lt;/script&gt;. Now, since &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is complete, &lt;script type=&quot;math/tex&quot;&gt;P(g(h(T))) = P(g(T_1)) = 1&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Great! Now, to put some things together: if a minimal sufficient statistic exists, then any complete sufficient statistic is also a minimal sufficient statistic. So, if you find a statistic that is sufficent and complete, it is also minimal sufficient (assuming a minimally sufficient statistic exists). However, a minimal sufficient statistic is not always complete. So, in summary, complete &lt;script type=&quot;math/tex&quot;&gt;\implies&lt;/script&gt; minimal!&lt;/p&gt;
 
 &lt;h2 id=&quot;more-examples&quot;&gt;More Examples&lt;/h2&gt;
 
@@ -344,7 +395,7 @@ f(x \vert \sigma) = \frac{1}{\sigma}e^{-\frac{1}{\sigma}(x - \mu)}, \; \; \mu &l
 
 &lt;p&gt;&lt;strong&gt;2&lt;/strong&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim \mathcal{N}(0, \sigma^2)&lt;/script&gt;.&lt;/p&gt;
 
-&lt;p&gt;Show that &lt;script type=&quot;math/tex&quot;&gt;sum_{i=1}^n X_i^2&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt; and determine whether it is a minimal sufficient statistic or not.&lt;/p&gt;
+&lt;p&gt;Show that &lt;script type=&quot;math/tex&quot;&gt;\sum_{i=1}^n X_i^2&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt; and determine whether it is a minimal sufficient statistic or not.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Answer:&lt;/strong&gt;&lt;/p&gt;
 
@@ -354,7 +405,7 @@ f(x \vert \sigma) = \frac{1}{\sigma}e^{-\frac{1}{\sigma}(x - \mu)}, \; \; \mu &l
 
 &lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;t = \sum_{i=1}^n x_i^2&lt;/script&gt; so by the Factorization Theorem, &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = \sum_{i=1}^n X_i^2&lt;/script&gt; is sufficient for &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;. Now,&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f(\mathbf{x} \vert \sigma^2)}{f(\mathbf{y} \vert \sigma^2)} = e^{\frac{-1}{2\sigma^2}(\sum x_i - \sum y_i)} = e^{\frac{-1}{2\sigma^2}(T(\mathbf{x}) - T(\mathbf{y}))}&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f(\mathbf{x} \vert \sigma^2)}{f(\mathbf{y} \vert \sigma^2)} = e^{\frac{-1}{2\sigma^2}(\sum x_i^2 - \sum y_i^2)} = e^{\frac{-1}{2\sigma^2}(T(\mathbf{x}) - T(\mathbf{y}))}&lt;/script&gt;
 
 &lt;p&gt;If &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = T(\mathbf{y})&lt;/script&gt;, this ratio is 1 which is clearly free of &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;. Now, if the ratio is free of &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;, then it is necessary that &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = T(\mathbf{y})&lt;/script&gt;. Thus, &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = \sum X_i^2&lt;/script&gt; is a minimal sufficient statistic for &lt;script type=&quot;math/tex&quot;&gt;\sigma ^2&lt;/script&gt;.&lt;/p&gt;
 
@@ -370,7 +421,72 @@ f(x \vert \sigma) = \frac{1}{\sigma}e^{-\frac{1}{\sigma}(x - \mu)}, \; \; \mu &l
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f(\mathbf{x} \vert \lambda)}{f(\mathbf{y} \vert \lambda)} \propto_{\lambda} \lambda^{\sum x_i - \sum y_i} = \lambda^{T(\mathbf{x}) - T(\mathbf{y})}&lt;/script&gt;
 
-&lt;p&gt;so if &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = T(\mathbf{y})&lt;/script&gt;, the ratio is free of &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;. Furthermore, if the ratio is free of &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;, then it is necessary that &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = T(\mathbf{y})&lt;/script&gt; for the exponent to be 0 and thus have &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt; disappear. Therefore, &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = \sum X_i&lt;/script&gt; is also a minimal sufficient statistic for &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;p&gt;so if &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = T(\mathbf{y})&lt;/script&gt;, the ratio is free of &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;. Furthermore, if the ratio is free of &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;, then it is necessary that &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = T(\mathbf{y})&lt;/script&gt; for the exponent to be 0 and thus have &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt; disappear. Therefore, &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{x}) = \sum X_i&lt;/script&gt; is also a minimal sufficient statistic for &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim f_X(x \vert \theta)&lt;/script&gt; where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+f_X(x \vert \theta) = \frac{2x}{\theta^2}, \; \; 0 &lt; x &lt; \theta %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Find a minimal sufficent statistic for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f_X(\mathbf{x} \vert \theta)}{f_X(\mathbf{y} \vert \theta)} = \frac{\prod x_i I(x_{(n)} &gt; \theta)}{\prod y_i I(y_{(n)} &gt; \theta)} \propto_{\theta} \frac{I(x_{(n)} &gt; \theta)}{I(y_{(n)} &gt; \theta)}&lt;/script&gt;
+
+&lt;p&gt;Therfore, since this ratio doesn’t depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; if and only if &lt;script type=&quot;math/tex&quot;&gt;x_{(n)} = y_{(n)}&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;X_{(n)}&lt;/script&gt; is minmial sufficient.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots , X_n \sim f(x \vert \theta)&lt;/script&gt; where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x \vert \theta) = \theta x^{\theta - 1} \textrm{exp}(-x^{\theta})&lt;/script&gt;
+
+&lt;p&gt;with &lt;script type=&quot;math/tex&quot;&gt;\theta ,\; x \; &gt; \; 0&lt;/script&gt;. Show that &lt;script type=&quot;math/tex&quot;&gt;\frac{\log X_{(n)}}{\log X_{(1)}}&lt;/script&gt; is ancillary. Well, let &lt;script type=&quot;math/tex&quot;&gt;Y = \theta \log(X) \implies X = e^{Y/\theta}&lt;/script&gt;. Then,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_Y(y) = f_X(e^{Y/\theta})\vert \frac{dx}{dy} \vert = \theta \; \textrm{exp}(\frac{y}{\theta}(\theta - 1))\textrm{exp}(-\textrm{exp}(\frac{y}{\theta}(\theta))) \frac{1}{\theta}e^{y/ \theta}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \textrm{exp}(y - e^y)&lt;/script&gt;
+
+&lt;p&gt;Now, since &lt;script type=&quot;math/tex&quot;&gt;\theta &gt; 0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\log(*)&lt;/script&gt; is increasing monotonically, the maximum and minimum values are the same after the mappings. Thus,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\log X_{(n)}}{\log X_{(1)}} = \frac{Y_{(n)}}{Y_{(1)}}&lt;/script&gt;
+
+&lt;p&gt;which is ancillary, since the distribution of &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; does not depend on &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, as we have shown above.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;6&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;X_1, \dots, X_n \sim \textrm{Uniform}(-\theta, \theta)&lt;/script&gt;. Is &lt;script type=&quot;math/tex&quot;&gt;T(\mathbf{X}) = (X_{(1)}, X_{(n)})&lt;/script&gt; a complete sufficient statistic? If not, is &lt;script type=&quot;math/tex&quot;&gt;\textrm{max}_i \vert X_i \vert&lt;/script&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The first question: No, and this should be easy to see. This is a scale family, so we can make an ancillary statistic out of &lt;script type=&quot;math/tex&quot;&gt;\frac{X_{(n)}}{X_{(1)}}&lt;/script&gt;. Just let &lt;script type=&quot;math/tex&quot;&gt;X = \theta Y&lt;/script&gt; and do the transform. Therefore, this statistic cannot be complete. More cleary,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+f_Y(y) = f_X(\theta y) \vert \frac{d \theta y}{dy} \vert I(-\theta &lt; y \theta &lt; \theta) = \frac{1}{2}I(-1 &lt; y &lt; 1) %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;which is Uniform(0,1). Then, let &lt;script type=&quot;math/tex&quot;&gt;g(T) = \frac{X_{(n)}}{X_{(1)}} - E\left[ \frac{X_{(n)}}{X_{(1)}} \right] = \frac{Y_{(n)}}{Y_{(1)}} - E \left[ \frac{Y_{(n)}}{Y_{(1)}} \right]&lt;/script&gt;. Now we see &lt;script type=&quot;math/tex&quot;&gt;E\left[ g(t) \vert \theta \right] = 0&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; but it doesn’t mean that &lt;script type=&quot;math/tex&quot;&gt;g(T) = 0&lt;/script&gt; almost surely.&lt;/p&gt;
+
+&lt;p&gt;Now, for &lt;script type=&quot;math/tex&quot;&gt;Y = \textrm{max}_i \vert X_i \vert&lt;/script&gt;. Lets define the distribution first for &lt;script type=&quot;math/tex&quot;&gt;\vert X \vert&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+F_Y(y) = P(Y &lt; y) = P(- y &lt; X &lt; y ) = P(X &lt; y) - P (X &lt; -y) %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\implies f_y(y) = f_X(y) - f_X(-y)(-1) = f_X(y) - f_X(-y) = \frac{1}{\theta} I(0 &lt; y &lt; \theta) %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;which is Uniform(&lt;script type=&quot;math/tex&quot;&gt;0, \theta&lt;/script&gt;). Now, we know that &lt;script type=&quot;math/tex&quot;&gt;T = \textrm{max}_i \vert X_i \vert&lt;/script&gt; is distributed with pdf&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_T(t \vert \theta) = nf(X)[F(x)]^{n-1}&lt;/script&gt;
+
+&lt;p&gt;and now this is the exact problem we did in the examples above. So this is a complete statistic! Is it sufficient?&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+f_X(x \vert \theta) = \left[ \frac{1}{2 \theta}\right]^n I(-\theta &lt; \mathbf{x} &lt; \theta) = \left[ \frac{1}{2 \theta}\right]^n I(t &lt; \theta) %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;so it is sufficient by the factorization theorem! Therefore, this is a complete sufficient statistic.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Gradient Descent</title><link href="http://localhost:4000/2019/12/31/gradient-descent.html" rel="alternate" type="text/html" title="Gradient Descent" /><published>2019-12-31T00:21:32-05:00</published><updated>2019-12-31T00:21:32-05:00</updated><id>http://localhost:4000/2019/12/31/gradient-descent</id><content type="html" xml:base="http://localhost:4000/2019/12/31/gradient-descent.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;You’ll remember in OLS, we had something called the &lt;strong&gt;normal equations&lt;/strong&gt; - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.&lt;/p&gt;

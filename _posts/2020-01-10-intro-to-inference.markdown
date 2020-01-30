@@ -13,7 +13,7 @@ Lots of people go through life talking about statistics and not actually knowing
 
 For example, we can make conclusions about the probability we get a certain number of successes in a certain number of trials (i.e Binomial($$n,p$$), or the probability that a certain metric is less than some value (i.e $$\mathcal{N}(\mu, \sigma^2$$)) - but that requires us to know the distribution those values follow in the population (i.e to know the population parameters). 
 
-First - and back to the beginning - what is a statistic?! 
+First - and back to the beginning - what is a statistic?! (FYI - this is less of a post, more of a literal book chapter.. fair warning!) 
 
 A statistics takes a random variable $$ \mathbf{X}$$ and maps it via some function $$T(.)$$. That is, 
 
@@ -409,12 +409,70 @@ We showed above that the range is an ancillary statistic for a location family. 
 
 Define $$Y = \frac{X}{\sigma}$$. Then, $$ X = \sigma Y$$ and $$dx/dy = \sigma$$. Thefore, $$f_Y(y) = \frac{1}{\sigma}f_X(\sigma y/\sigma) \sigma = f(y)$$. Then, $$\frac{X_1}{X_n} = \frac{\sigma Y_1}{\sigma Y_n} = \frac{Y_1}{Y_{n}}$$ which does not depend on $$\sigma$$. 
 
-So its been fun learning about ancillary statistics.. but why does it matter again? Turns out that, while ancillary statistics do not contain any information about $$\theta$$, they can help up the precision in our estimation of $$\theta$$. How, do you say? Consider the Uniform($$\theta, \theta + 1$$) case, and say we know the range is 0.8. This doesn't tell us anything about $$\theta$$ *alone*. But say we also know the median is 1. Now, we now that $$X_{(1)} = 0.6$$ and $$X_{(n)} = 1.4$$. From this information, we can gather that $$\theta$$ must be in the range of $$0.4 < \theta < 0.6$$ because it can't be more than 0.6 (or we wouldn't observe the minimum we have) and vice versa for 0.4. So, in summary, ancillary statistics, *when combined with other statistics*, can improve our understanding of the parameter. However, alone, they do nothing for us. They're like a friend's friend. Lots of fun to hang out with, but only when your mutual friend is around. Otherwise it is weird and you just want to go home. 
+So its been fun learning about ancillary statistics.. but why does it matter again? Turns out that, while ancillary statistics do not contain any information about $$\theta$$, they can help up the precision in our estimation of $$\theta$$. How, do you say? Consider the Uniform($$\theta, \theta + 1$$) case, and say we know the range is 0.8. This doesn't tell us anything about $$\theta$$ *alone*. But say we also know the median is 1. If we *only* knew the median was 1, we would only know that $$0 < \theta < 1$$.  Now, by knowing the range *and* the median, we now that $$X_{(1)} = 0.6$$ and $$X_{(n)} = 1.4$$. From this information, we can gather that $$\theta$$ must be in the range of $$0.4 < \theta < 0.6$$ because it can't be more than 0.6 (or we wouldn't observe the minimum we have) and vice versa for 0.4. So, in summary, ancillary statistics, *when combined with other statistics*, can improve our understanding of the parameter. However, alone, they do nothing for us. They're like a friend's friend. Lots of fun to hang out with, but only when your mutual friend is around. Otherwise, things get awkward and you just want to go home. 
+
+## Complete Statistics 
+
+So lets tie all this together (not really, but lets wrap this up with final discussion about statistics). 
+
+We will end this by talking about **complete statistics**. Sounds cool. What is it? It's actually defined through familes of distributions (like we talked about above). Let $$\mathcal{P} = \{ p(t \vert \theta), \theta \in \Theta \}$$ be a family of distributions for $$T(\mathbf{X})$$. If $$ E\left[ g(T) \vert \theta \right] = 0 \; \; \forall \; \theta \; \implies P[g(T) = 0 \vert \theta] = 1 \; \forall \; \theta$$, then $$T(\mathbf{X})$$ is called a **complete statistic**! 
+Really, completeness is a property of the family of distributions. To call a statistic itself complete is almost misleading. To get some more intuition into this problem, notice that, in the discrete case, 
+
+$$
+E_{\theta}\left[ g(t) \right] = \sum_{i} g(t_i) \times P_{\theta}(T = t_i) = g(t_1) \times p_{\theta}(t_1) + \dots = 0 
+$$
+
+Therefore, for $$T$$ to be complete, this must mean that $$g(t)$$ above is almost surely 0 - i.e there is no non-trivial (occuring with probabilty 0) $$g(t)$$ that is not zero. This is analagous to the idea of linear independence of vectors. Above, we only have one.. or do we? We actually have a set of equations that corresponds to the number of $$\theta \in \Theta$$. So, we have 
+
+$$
+\vec{g(\mathbf{x})} \times \mathcal{P}_{\Theta} = 0
+$$
+
+This can only happen when either $$g(T) = 0$$ or $$\mathcal{P}$$ does not change across separate values of $$\theta$$, or if it changes very simply (i.e scaled by a constant). Therefore, completeness guarantees that distributions parameterized by different values of $$\theta$$ are distinct. If you change $$\theta$$, you change the whole thing. Also, conceptually note that there is a "no nonsense" part of this definition. It says "if $$g$$ is expected to be zero with respect to $$\theta$$, then it is just zero". That is, there is no part of the distribution of $$g$$ that does not depend on $$\theta$$. No nonsense. One thing to note from this is that, if you can make an ancillary statistic out of $$T(\mathbf{X})$$, then it cannot be complete... which follows immediately from what was stated above. Another thing to note - this is all defined by the family of distributions $$\mathcal{P}$$, that depends on the set $$\Theta$$. A statistic may be complete for a certain portion of that set, and may not be complete for another.  
+Let's check out some examples. Suppose $$\mathbf{X} \sim \textrm{Uniform}(\theta,\theta + 1)$$ and $$T(\mathbf{X}) = (X_{(1)}, X_{(n)})$$. Is this a complete statistic? We should think, intuitively, that it is not. We can make an ancillary statistic (the range) out of this statistic. A complete statistic has no non-trivial part that doesn't depend on $$\theta$$, but nothing about the range depends on $$\theta$$. Let $$g(T) = R - E[R]$$. Now notice that $$E[R]$$ is a constant with respect to $$\theta$$. Therefore, $$g(T)$$ is a non-zero function, but $$E[g(T)] \; \forall \; \theta$$. Therfore, $$T$$ is not complete! 
 
 
+Now suppose $$T \sim \textrm{Poisson}(\lambda), \; \lambda \in \{1,2\}$$. Now, if $$E_{\lambda=1}[g(t)] = 0$$, $$E_{\lambda=1}[g(t)] = 0$$ implies that $$\sum_{t} \frac{g(t)}{t!} = \sum_{t} \frac{g(t)2^t}{t!} =  0$$ which clearly does not mean that $$g(t)$$ must be zero, and you can think of *lots* of examples. So this family is not complete. Notice how we are talking about a family of distributions... and remember how I said it depended on the range of the parameter. Now, suppose 
 
+$$ 
+T \sim \textrm{Poisson}(\lambda), \; \; \lambda \in \mathbb{R}^+
+$$
 
+Now, suppose there is $$g$$ such that $$E[g(T)] = 0$$ for all $$\lambda$$. Then,
 
+$$
+\sum_{t = 0}^{\infty} \frac{g(t)}{t!}\lambda^t = 0 = \sum_{t = 0}^{\infty} \phi(t) \lambda^t = 0
+$$
+
+Since $$\lambda > 0$$, this can only be 0 if $$\phi(t) = 0 \; \forall \; t \; \implies \; g(t) = 0 \; \forall t$$. Bam, complete. By adding more dimensionality to $$\Omega$$, the parameter space for $$\lambda$$, we make the family complete. Why is this? Becauase the larger the family (i.e the more paramters), the more constraints $$g$$ must satisfy. At some point, the only such $$g$$ is the trivial $$g$$, 0. This means the family is complete.
+
+Suppose $$X_1, \dots, X_n \sim \textrm{Uniform}(0,\theta)$$. Show that $$X_{(n)}$$ is complete. 
+
+The distribution of $$T$$ is 
+
+$$
+f(t \vert \theta) = n f_X(t) \left[ F_X(t) \right] = n\frac{1}{\theta} \left[ \frac{t}{\theta} \right]^{n-1}
+$$
+
+So, assume that $$E[g(T)] = 0$$. Then, 
+
+$$
+\displaystyle\int_{0}^{\theta} g(t)\frac{n}{\theta^n}t^{n-1} = 0 \implies \displaystyle\int_{0}^{\theta} g(t)t^{n-1} = 0
+$$
+
+and, by the Fundamental Theorem of Calculus, 
+
+$$
+\displaystyle\int_{0}^{\theta} g(t)t^{n-1} = \displaystyle\int_{0}^{\theta} F(t)dt = F(\theta) - F(0) = g(\theta)\theta^{n-1} = 0
+$$
+
+so, since $$\theta > 0 \; , \; g(\theta) = 0$$ for all $$\theta > 0 $$ - concluding the $$X_{(n)}$$ is complete. 
+
+There's just a few more things (2) to be said about complete statistics. 
+1. If a function of $$T \; , \; h(T)$$ is ancillary, then $$T$$ cannot be complete. This goes with what we said before - a complete statistic does not have any unncessary part associated with it. Let $$g(T) = h(T) - E[h(T)]$$. Since $$h(T)$$ is ancillary, then $$g(T) = 0$$ for all $$\theta$$. But, again, $$g(T)$$ is non-zero. Or, at least, it doesn't have to be zero.
+2. Say $$T_1(\mathbf{X})$$ is complete. Then $$h(T) = T_1$$ is also complete. So assume $$E[g(h(T))] = E[g(T_1)] = 0$$. Now, since $$T$$ is complete, $$P(g(h(T))) = P(g(T_1)) = 1$$ for all $$\theta$$.  
+
+Great! Now, to put some things together: if a minimal sufficient statistic exists, then any complete sufficient statistic is also a minimal sufficient statistic. So, if you find a statistic that is sufficent and complete, it is also minimal sufficient (assuming a minimally sufficient statistic exists). However, a minimal sufficient statistic is not always complete. So, in summary, complete $$\implies$$ minimal! 
 
 ## More Examples 
 
@@ -452,7 +510,7 @@ so, $$(\mathbf{T_2}, \mathbf{T_1}) = (X_{(1)}, \sum_{i=1}^n X_i)$$ is sufficient
 
 **2**. Let $$X_1, \dots, X_n \sim \mathcal{N}(0, \sigma^2)$$. 
 
-Show that $$sum_{i=1}^n X_i^2$$ is sufficient for $$\sigma^2$$ and determine whether it is a minimal sufficient statistic or not. 
+Show that $$\sum_{i=1}^n X_i^2$$ is sufficient for $$\sigma^2$$ and determine whether it is a minimal sufficient statistic or not. 
 
 **Answer:** 
 
@@ -471,7 +529,7 @@ where $$ t = \sum_{i=1}^n x_i^2 $$ so by the Factorization Theorem, $$T(\mathbf{
 
 $$
 
-\frac{f(\mathbf{x} \vert \sigma^2)}{f(\mathbf{y} \vert \sigma^2)} = e^{\frac{-1}{2\sigma^2}(\sum x_i - \sum y_i)} = e^{\frac{-1}{2\sigma^2}(T(\mathbf{x}) - T(\mathbf{y}))}
+\frac{f(\mathbf{x} \vert \sigma^2)}{f(\mathbf{y} \vert \sigma^2)} = e^{\frac{-1}{2\sigma^2}(\sum x_i^2 - \sum y_i^2)} = e^{\frac{-1}{2\sigma^2}(T(\mathbf{x}) - T(\mathbf{y}))}
 
 $$
 
@@ -496,6 +554,90 @@ $$
 $$
 
 so if $$T(\mathbf{x}) = T(\mathbf{y})$$, the ratio is free of $$\lambda$$. Furthermore, if the ratio is free of $$\lambda$$, then it is necessary that $$T(\mathbf{x}) = T(\mathbf{y})$$ for the exponent to be 0 and thus have $$\lambda$$ disappear. Therefore, $$T(\mathbf{x}) = \sum X_i$$ is also a minimal sufficient statistic for $$\lambda$$. 
+
+**4** 
+
+Let $$ X_1, \dots, X_n \sim f_X(x \vert \theta)$$ where 
+
+$$
+f_X(x \vert \theta) = \frac{2x}{\theta^2}, \; \; 0 < x < \theta
+$$
+
+Find a minimal sufficent statistic for $$\theta$$
+
+**Answer:** 
+
+$$
+\frac{f_X(\mathbf{x} \vert \theta)}{f_X(\mathbf{y} \vert \theta)} = \frac{\prod x_i I(x_{(n)} > \theta)}{\prod y_i I(y_{(n)} > \theta)} \propto_{\theta} \frac{I(x_{(n)} > \theta)}{I(y_{(n)} > \theta)}
+$$
+
+Therfore, since this ratio doesn't depend on $$\theta$$ if and only if $$x_{(n)} = y_{(n)}$$, then $$X_{(n)}$$ is minmial sufficient. 
+
+**5** 
+
+Suppose $$X_1, \dots , X_n \sim f(x \vert \theta)$$ where
+
+$$
+f(x \vert \theta) = \theta x^{\theta - 1} \textrm{exp}(-x^{\theta})
+$$ 
+
+with $$\theta ,\; x \; > \; 0$$. Show that $$\frac{\log X_{(n)}}{\log X_{(1)}}$$ is ancillary. Well, let $$Y = \theta \log(X) \implies X = e^{Y/\theta}$$. Then, 
+
+$$
+f_Y(y) = f_X(e^{Y/\theta})\vert \frac{dx}{dy} \vert = \theta \; \textrm{exp}(\frac{y}{\theta}(\theta - 1))\textrm{exp}(-\textrm{exp}(\frac{y}{\theta}(\theta))) \frac{1}{\theta}e^{y/ \theta}
+$$
+
+$$
+
+ = \textrm{exp}(y - e^y)
+$$
+
+Now, since $$\theta > 0$$ and $$\log(*)$$ is increasing monotonically, the maximum and minimum values are the same after the mappings. Thus, 
+
+$$
+\frac{\log X_{(n)}}{\log X_{(1)}} = \frac{Y_{(n)}}{Y_{(1)}}
+$$
+
+which is ancillary, since the distribution of $$Y$$ does not depend on $$\theta$$, as we have shown above.
+
+**6** 
+
+Suppose $$X_1, \dots, X_n \sim \textrm{Uniform}(-\theta, \theta)$$. Is $$T(\mathbf{X}) = (X_{(1)}, X_{(n)})$$ a complete sufficient statistic? If not, is $$\textrm{max}_i \vert X_i \vert$$?
+
+**Answer:** 
+
+The first question: No, and this should be easy to see. This is a scale family, so we can make an ancillary statistic out of $$\frac{X_{(n)}}{X_{(1)}}$$. Just let $$ X = \theta Y$$ and do the transform. Therefore, this statistic cannot be complete. More cleary, 
+
+$$
+f_Y(y) = f_X(\theta y) \vert \frac{d \theta y}{dy} \vert I(-\theta < y \theta < \theta) = \frac{1}{2}I(-1 < y < 1)
+$$
+
+which is Uniform(0,1). Then, let $$g(T) = \frac{X_{(n)}}{X_{(1)}} - E\left[ \frac{X_{(n)}}{X_{(1)}} \right] = \frac{Y_{(n)}}{Y_{(1)}} - E \left[ \frac{Y_{(n)}}{Y_{(1)}} \right]$$. Now we see $$E\left[ g(t) \vert \theta \right] = 0$$ for all $$\theta$$ but it doesn't mean that $$g(T) = 0$$ almost surely.  
+
+Now, for $$Y = \textrm{max}_i \vert X_i \vert$$. Lets define the distribution first for $$\vert X \vert$$ 
+
+$$
+F_Y(y) = P(Y < y) = P(- y < X < y ) = P(X < y) - P (X < -y)
+$$
+
+$$
+\implies f_y(y) = f_X(y) - f_X(-y)(-1) = f_X(y) - f_X(-y) = \frac{1}{\theta} I(0 < y < \theta)
+$$
+
+which is Uniform($$0, \theta$$). Now, we know that $$T = \textrm{max}_i \vert X_i \vert$$ is distributed with pdf 
+
+$$
+f_T(t \vert \theta) = nf(X)[F(x)]^{n-1}
+$$
+
+and now this is the exact problem we did in the examples above. So this is a complete statistic! Is it sufficient? 
+
+$$
+f_X(x \vert \theta) = \left[ \frac{1}{2 \theta}\right]^n I(-\theta < \mathbf{x} < \theta) = \left[ \frac{1}{2 \theta}\right]^n I(t < \theta)
+$$
+
+so it is sufficient by the factorization theorem! Therefore, this is a complete sufficient statistic. 
+
 
 
 

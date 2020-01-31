@@ -463,7 +463,7 @@ $$
 and, by the Fundamental Theorem of Calculus, 
 
 $$
-\displaystyle\int_{0}^{\theta} g(t)t^{n-1} = \displaystyle\int_{0}^{\theta} F(t)dt = F(\theta) - F(0) = g(\theta)\theta^{n-1} = 0
+\displaystyle\int_{0}^{\theta} g(t)t^{n-1} = 0 \implies \frac{d}{dx} \displaystyle\int_{0}^{\theta} f(t)dt = 0 \implies g(\theta)\theta^{n-1} = 0
 $$
 
 so, since $$\theta > 0 \; , \; g(\theta) = 0$$ for all $$\theta > 0 $$ - concluding the $$X_{(n)}$$ is complete. 

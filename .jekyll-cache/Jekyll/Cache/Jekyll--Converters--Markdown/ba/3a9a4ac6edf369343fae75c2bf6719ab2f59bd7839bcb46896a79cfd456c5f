@@ -1,4 +1,4 @@
-I"ó×<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"Gä<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Lots of people go through life talking about statistics and not actually knowing what a statistic <em>is</em>, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a <em>population</em> based off a sample. In general, you have a population parameter (<script type="math/tex">\theta</script>) that needs to be estimated (could be high - dimensional - the most we will talk about is <em>max</em> 2, so no worries) and some data (a random sample, once could sayâ€¦) <script type="math/tex">X_ 1, \dots, X_ n</script> from that population, from which we observe the data <script type="math/tex">x_ 1, \dots, x_ n</script>. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didnâ€™t think so.</p>
@@ -356,7 +356,7 @@ Letâ€™s check out some examples. Suppose <script type="math/tex">\mathbf{X} \sim
 
 <p>and, by the Fundamental Theorem of Calculus,</p>
 
-<script type="math/tex; mode=display">\displaystyle\int_{0}^{\theta} g(t)t^{n-1} = \displaystyle\int_{0}^{\theta} F(t)dt = F(\theta) - F(0) = g(\theta)\theta^{n-1} = 0</script>
+<script type="math/tex; mode=display">\displaystyle\int_{0}^{\theta} g(t)t^{n-1} = 0 \implies \frac{d}{dx} \displaystyle\int_{0}^{\theta} f(t)dt = 0 \implies g(\theta)\theta^{n-1} = 0</script>
 
 <p>so, since <script type="math/tex">\theta > 0 \; , \; g(\theta) = 0</script> for all <script type="math/tex">\theta > 0</script> - concluding the <script type="math/tex">X_{(n)}</script> is complete.</p>
 
@@ -444,8 +444,48 @@ f_X(x \vert \theta) = \frac{2x}{\theta^2}, \; \; 0 < x < \theta %]]></script>
 
 <script type="math/tex; mode=display">f(x \vert \theta) = \theta x^{\theta - 1} \textrm{exp}(-x^{\theta})</script>
 
-<p>with <script type="math/tex">\theta ,\; x \; > \; 0</script>. Show that <script type="math/tex">\frac{\log X_{(n)}}{\log X_{(1)}}</script> is ancillary. Well, let <script type="math/tex">Y = \theta log(X) \ implies X = \frac{e^y}{\theta}</script>. Then,</p>
+<p>with <script type="math/tex">\theta ,\; x \; > \; 0</script>. Show that <script type="math/tex">\frac{\log X_{(n)}}{\log X_{(1)}}</script> is ancillary. Well, let <script type="math/tex">Y = \theta \log(X) \implies X = e^{Y/\theta}</script>. Then,</p>
 
-<script type="math/tex; mode=display">f_Y(y) = f_X(e^y/ \theta)\vert \frac{dx}{dy} \vert</script>
+<script type="math/tex; mode=display">f_Y(y) = f_X(e^{Y/\theta})\vert \frac{dx}{dy} \vert = \theta \; \textrm{exp}(\frac{y}{\theta}(\theta - 1))\textrm{exp}(-\textrm{exp}(\frac{y}{\theta}(\theta))) \frac{1}{\theta}e^{y/ \theta}</script>
+
+<script type="math/tex; mode=display">= \textrm{exp}(y - e^y)</script>
+
+<p>Now, since <script type="math/tex">\theta > 0</script> and <script type="math/tex">\log(*)</script> is increasing monotonically, the maximum and minimum values are the same after the mappings. Thus,</p>
+
+<script type="math/tex; mode=display">\frac{\log X_{(n)}}{\log X_{(1)}} = \frac{Y_{(n)}}{Y_{(1)}}</script>
+
+<p>which is ancillary, since the distribution of <script type="math/tex">Y</script> does not depend on <script type="math/tex">\theta</script>, as we have shown above.</p>
+
+<p><strong>6</strong></p>
+
+<p>Suppose <script type="math/tex">X_1, \dots, X_n \sim \textrm{Uniform}(-\theta, \theta)</script>. Is <script type="math/tex">T(\mathbf{X}) = (X_{(1)}, X_{(n)})</script> a complete sufficient statistic? If not, is <script type="math/tex">\textrm{max}_i \vert X_i \vert</script>?</p>
+
+<p><strong>Answer:</strong></p>
+
+<p>The first question: No, and this should be easy to see. This is a scale family, so we can make an ancillary statistic out of <script type="math/tex">\frac{X_{(n)}}{X_{(1)}}</script>. Just let <script type="math/tex">X = \theta Y</script> and do the transform. Therefore, this statistic cannot be complete. More cleary,</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+f_Y(y) = f_X(\theta y) \vert \frac{d \theta y}{dy} \vert I(-\theta < y \theta < \theta) = \frac{1}{2}I(-1 < y < 1) %]]></script>
+
+<p>which is Uniform(0,1). Then, let <script type="math/tex">g(T) = \frac{X_{(n)}}{X_{(1)}} - E\left[ \frac{X_{(n)}}{X_{(1)}} \right] = \frac{Y_{(n)}}{Y_{(1)}} - E \left[ \frac{Y_{(n)}}{Y_{(1)}} \right]</script>. Now we see <script type="math/tex">E\left[ g(t) \vert \theta \right] = 0</script> for all <script type="math/tex">\theta</script> but it doesnâ€™t mean that <script type="math/tex">g(T) = 0</script> almost surely.</p>
+
+<p>Now, for <script type="math/tex">Y = \textrm{max}_i \vert X_i \vert</script>. Lets define the distribution first for <script type="math/tex">\vert X \vert</script></p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+F_Y(y) = P(Y < y) = P(- y < X < y ) = P(X < y) - P (X < -y) %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\implies f_y(y) = f_X(y) - f_X(-y)(-1) = f_X(y) - f_X(-y) = \frac{1}{\theta} I(0 < y < \theta) %]]></script>
+
+<p>which is Uniform(<script type="math/tex">0, \theta</script>). Now, we know that <script type="math/tex">T = \textrm{max}_i \vert X_i \vert</script> is distributed with pdf</p>
+
+<script type="math/tex; mode=display">f_T(t \vert \theta) = nf(X)[F(x)]^{n-1}</script>
+
+<p>and now this is the exact problem we did in the examples above. So this is a complete statistic! Is it sufficient?</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+f_X(x \vert \theta) = \left[ \frac{1}{2 \theta}\right]^n I(-\theta < \mathbf{x} < \theta) = \left[ \frac{1}{2 \theta}\right]^n I(t < \theta) %]]></script>
+
+<p>so it is sufficient by the factorization theorem! Therefore, this is a complete sufficient statistic.</p>
 
 :ET

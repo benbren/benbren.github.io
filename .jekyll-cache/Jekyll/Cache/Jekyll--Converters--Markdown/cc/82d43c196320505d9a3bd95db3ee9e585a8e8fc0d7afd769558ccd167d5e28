@@ -1,51 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Intro to Inference | Ben Brennan</title>
-<meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Intro to Inference" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking." />
-<meta property="og:description" content="Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking." />
-<link rel="canonical" href="http://localhost:4000/2020/01/10/intro-to-inference.html" />
-<meta property="og:url" content="http://localhost:4000/2020/01/10/intro-to-inference.html" />
-<meta property="og:site_name" content="Ben Brennan" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-01-10T12:00:00-05:00" />
-<script type="application/ld+json">
-{"description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","@type":"BlogPosting","headline":"Intro to Inference","dateModified":"2020-01-10T12:00:00-05:00","datePublished":"2020-01-10T12:00:00-05:00","url":"http://localhost:4000/2020/01/10/intro-to-inference.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/01/10/intro-to-inference.html"},"@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ben Brennan" /></head>
-<body><header class="site-header" role="banner">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Ben Brennan</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/blog/">Blog</a><a class="page-link" href="/cv/">CV</a><a class="page-link" href="/donate/">Donate</a><a class="page-link" href="/projects/">Projects</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Intro to Inference</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="2020-01-10T12:00:00-05:00" itemprop="datePublished">Jan 10, 2020
-      </time></p>
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+I"*�<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Lots of people go through life talking about statistics and not actually knowing what a statistic <em>is</em>, sadly enough. The point of statistics, and statistical inference in general, is to make inferences about a <em>population</em> based off a sample. In general, you have a population parameter (<script type="math/tex">\theta</script>) that needs to be estimated (could be high - dimensional - the most we will talk about is <em>max</em> 2, so no worries) and some data (a random sample, once could say…) <script type="math/tex">X_ 1, \dots, X_ n</script> from that population, from which we observe the data <script type="math/tex">x_ 1, \dots, x_ n</script>. The goal of statistical inference is to take that sample and make really good educated guesses about the population and also make good, educated guesses about how good and educated your guess is. Make sense? I didn’t think so.</p>
@@ -487,83 +440,10 @@ f_X(x \vert \theta) = \frac{2x}{\theta^2}, \; \; 0 < x < \theta %]]></script>
 
 <p><strong>5</strong></p>
 
-<p>Suppose <script type="math/tex">X_1, \dots , X_n \sim f(x \vert \theta)</script> where</p>
+<p>Suppose <script type="math/tex">X_1, \dot, X_n \sim f_(x \vert \theta)</script> where</p>
 
 <script type="math/tex; mode=display">f(x \vert \theta) = \theta x^{\theta - 1} \textrm{exp}(-x^{\theta})</script>
 
-<p>with <script type="math/tex">\theta ,\; x \; > \; 0</script>. Show that <script type="math/tex">\frac{\log X_{(n)}}{\log X_{(1)}}</script> is ancillary. Well, let <script type="math/tex">Y = \theta \log(X) \implies X = e^{Y/\theta}</script>. Then,</p>
+<p>with <script type="math/tex">\theta ,\; x \; > \; 0</script>. Show that <script type="math/tex">\frac{\log X_{(n)}}{\log X_{(1)}}</script> is ancillary.</p>
 
-<script type="math/tex; mode=display">f_Y(y) = f_X(e^{Y/\theta})\vert \frac{dx}{dy} \vert = \theta \; \textrm{exp}(\frac{y}{\theta}(\theta - 1))\textrm{exp}(-\textrm{exp}(\frac{y}{\theta}(\theta))) \frac{1}{\theta}e^{y/ \theta}</script>
-
-<script type="math/tex; mode=display">= \textrm{exp}(y - e^y)</script>
-
-<p>Now, since <script type="math/tex">\theta > 0</script> and <script type="math/tex">\log(*)</script> is increasing monotonically, the maximum and minimum values are the same after the mappings. Thus,</p>
-
-<script type="math/tex; mode=display">\frac{\log X_{(n)}}{\log X_{(1)}} = \frac{Y_{(n)}}{Y_{(1)}}</script>
-
-<p>which is ancillary, since the distribution of <script type="math/tex">Y</script> does not depend on <script type="math/tex">\theta</script>, as we have shown above.</p>
-
-<p><strong>6</strong></p>
-
-<p>Suppose <script type="math/tex">X_1, \dots, X_n \sim \textrm{Uniform}(-\theta, \theta)</script>. Is <script type="math/tex">T(\mathbf{X}) = (X_{(1)}, X_{(n)})</script> a complete sufficient statistic? If not, is <script type="math/tex">\textrm{max}_i \vert X_i \vert</script>?</p>
-
-<p><strong>Answer:</strong></p>
-
-<p>The first question: No, and this should be easy to see. This is a scale family, so we can make an ancillary statistic out of <script type="math/tex">\frac{X_{(n)}}{X_{(1)}}</script>. Just let <script type="math/tex">X = \theta Y</script> and do the transform. Therefore, this statistic cannot be complete. More cleary,</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-f_Y(y) = f_X(\theta y) \vert \frac{d \theta y}{dy} \vert I(-\theta < y \theta < \theta) = \frac{1}{2}I(-1 < y < 1) %]]></script>
-
-<p>which is Uniform(0,1). Then, let <script type="math/tex">g(T) = \frac{X_{(n)}}{X_{(1)}} - E\left[ \frac{X_{(n)}}{X_{(1)}} \right] = \frac{Y_{(n)}}{Y_{(1)}} - E \left[ \frac{Y_{(n)}}{Y_{(1)}} \right]</script>. Now we see <script type="math/tex">E\left[ g(t) \vert \theta \right] = 0</script> for all <script type="math/tex">\theta</script> but it doesn’t mean that <script type="math/tex">g(T) = 0</script> almost surely.</p>
-
-<p>Now, for <script type="math/tex">Y = \textrm{max}_i \vert X_i \vert</script>. Lets define the distribution first for <script type="math/tex">\vert X \vert</script></p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-F_Y(y) = P(Y < y) = P(- y < X < y ) = P(X < y) - P (X < -y) %]]></script>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\implies f_y(y) = f_X(y) - f_X(-y)(-1) = f_X(y) - f_X(-y) = \frac{1}{\theta} I(0 < y < \theta) %]]></script>
-
-<p>which is Uniform(<script type="math/tex">0, \theta</script>). Now, we know that <script type="math/tex">T = \textrm{max}_i \vert X_i \vert</script> is distributed with pdf</p>
-
-<script type="math/tex; mode=display">f_T(t \vert \theta) = nf(X)[F(x)]^{n-1}</script>
-
-<p>and now this is the exact problem we did in the examples above. So this is a complete statistic! Is it sufficient?</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-f_X(x \vert \theta) = \left[ \frac{1}{2 \theta}\right]^n I(-\theta < \mathbf{x} < \theta) = \left[ \frac{1}{2 \theta}\right]^n I(t < \theta) %]]></script>
-
-<p>so it is sufficient by the factorization theorem! Therefore, this is a complete sufficient statistic.</p>
-
-
-  </div><a class="u-url" href="/2020/01/10/intro-to-inference.html" hidden></a>
-</article>
-
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">Ben Brennan</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Ben Brennan</li><li><a class="u-email" href="mailto:brennben@umich.edu">brennben@umich.edu</a></li></ul>
-      </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/benbren"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">benbren</span></a></li><li><a href="https://instagram.com/benjuum"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg> <span class="username">benjuum</span></a></li><li><a href="https://www.linkedin.com/in/ben-brenn"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">ben-brenn</span></a></li><li><a href="https://www.twitter.com/benbrenn"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">benbrenn</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Hi, I&#39;m Ben. This is my website/blog. Views are my own. Thanks for looking.</p>
-      </div>
-    </div>
-
-  </div>
-
-</footer>
-</body>
-
-</html>
+:ET

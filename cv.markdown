@@ -4,4 +4,4 @@ title: CV
 permalink: /cv/
 ---
 
-Please click [here](../downloads/CV.pdf) to download a copy of my CV.
+You can click [here](../downloads/CV.pdf) to download a copy of my CV. Alternatively, you can not - up to you. 

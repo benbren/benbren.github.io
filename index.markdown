@@ -5,7 +5,7 @@
 layout: default
 ---
 
-My name is Ben. :-)
+I'm Ben. 
 
 I was born and raised in Albuquerque, New Mexico. Some answers to common follow-up questions to that fact:
 

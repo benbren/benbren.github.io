@@ -1,0 +1,18 @@
+I"0<p><strong><a href="../downloads/625.pdf">Airline Recommendation Prediction</a></strong></p>
+
+<ul>
+  <li>Used NLP to build an RShiny dashboard to give realtime predictions of airline reviews based off of comments being written.</li>
+</ul>
+
+<p><strong><a href="../downloads/653.pdf">Longitudinal Analysis of Defensive Performance in the NBA</a></strong></p>
+
+<ul>
+  <li>Longitudinal Anaysis of NBA performance statistics using both linear mixed models and GEE</li>
+</ul>
+
+<p><strong><a href="../downloads/682.pdf">Bayesian Basketball Prediction</a></strong></p>
+
+<ul>
+  <li>Fit Bayesian Linear Regression models and used posterior predictive distributions to predict future performance based on a subjective loss function. Compared results with results given from a Gaussian Process Regression prediction.</li>
+</ul>
+:ET

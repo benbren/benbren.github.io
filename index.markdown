@@ -7,8 +7,6 @@ layout: default
 
 My name is Ben. 
 
-<img src="/assets/pics/fam.jpg" width ="200" align ="middle">     <img src="/assets/pics/me_n_dodge2.jpg" width ="200" align ="middle">     <img src="/assets/pics/boiz.jpg" width ="200" align ="middle">
-
 I was born and raised in Albuquerque, New Mexico. Some answers to common follow-up questions to that fact:
 
 * New Mexico is in the United States. 

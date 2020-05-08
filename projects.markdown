@@ -6,7 +6,7 @@ permalink: /projects/
 
 **[Airline Recommendation Prediction](../downloads/625.pdf)**
 
- - Used NLP to build an RShiny dashboard to give realtime predictions of airline reviews based off of comments being written.  
+ - Used NLP to build an RShiny dashboard to give real-time predictions of airline reviews based off of comments being written.  
 
 **[Longitudinal Analysis of Defensive Performance in the NBA](../downloads/653.pdf)**
 

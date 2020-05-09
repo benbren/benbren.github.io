@@ -21,7 +21,7 @@ permalink: /cv/
 
 **University of Michigan – Ann Arbor**  **Ph.D Biostatistics**  **Anticipated 2024**
 
-**University of Michigan – Ann Arbor**  **M.S. Biostatistics** _(3.77 GPA)_ **Sept 2017 - May**** 2020**
+**University of Michigan – Ann Arbor**  **M.S. Biostatistics** _(3.77 GPA)_ **Sept 2017 - May** **2020**
 
 **College of Charleston**  **B.S Applied Mathematics &amp; Economics** _(3.9 GPA)_ **Jan 2015 - May 2016**
 

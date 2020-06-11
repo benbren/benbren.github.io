@@ -18,5 +18,7 @@ Although there are relatively few people visiting my site, I like to give people
 
 * **[Planned Parenthood](https://www.plannedparenthood.org/get-involved/other-ways-give)**
 
+* **[Black Girls Code](https://www.blackgirlscode.com/donations.html)** 
+
 
 Thanks for your consideration! 

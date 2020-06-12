@@ -16,7 +16,7 @@ permalink: /projects/
 
 - Fit Bayesian Linear Regression models and used posterior predictive distributions to predict future performance based on a subjective loss function. Compared results with results given from a Gaussian Process Regression prediction. 
 
-**Michigan Basketball Data Madness Challenge 2020** 
+**[Michigan Basketball Data Madness Challenge 2020](https://midas.umich.edu/extracurriculars/)** 
 
 *To respect the privacy of the Michigan Basketball Team, we have not released any analyses or results from this project publicly.*
 

@@ -14,4 +14,12 @@ permalink: /projects/
 
 **[Bayesian Basketball Prediction](../downloads/682.pdf)**
 
- - Fit Bayesian Linear Regression models and used posterior predictive distributions to predict future performance based on a subjective loss function. Compared results with results given from a Gaussian Process Regression prediction. 
+- Fit Bayesian Linear Regression models and used posterior predictive distributions to predict future performance based on a subjective loss function. Compared results with results given from a Gaussian Process Regression prediction. 
+
+**Michigan Basketball Data Madness Challenge 2020** 
+
+*To respect the privacy of the Michigan Basketball Team, we have not released any analyses or results from this project publicly.*
+
+- Data Science project analyzing Michigan Basketball game/practice data obtained via wearable sensor. Applied statistical/machine learning methods to the engineered datasets to provide insights and recommendations on how Michigan could best prepare for both conference and non-conference games.
+
+- This project won the Michigan Basketball Data Madness Challenge 2020 hosted by the Michigan Institute for Data Science (MIDAS)

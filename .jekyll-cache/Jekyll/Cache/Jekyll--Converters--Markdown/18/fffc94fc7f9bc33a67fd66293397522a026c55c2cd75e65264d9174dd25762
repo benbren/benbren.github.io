@@ -1,0 +1,31 @@
+I"ç<p><strong><a href="../downloads/625.pdf">Airline Recommendation Prediction</a></strong></p>
+
+<ul>
+  <li>Used NLP to build an RShiny dashboard to give real-time predictions of airline reviews based off of comments being written.</li>
+</ul>
+
+<p><strong><a href="../downloads/653.pdf">Longitudinal Analysis of Defensive Performance in the NBA</a></strong></p>
+
+<ul>
+  <li>Longitudinal Anaysis of NBA performance statistics using both linear mixed models and GEE</li>
+</ul>
+
+<p><strong><a href="../downloads/682.pdf">Bayesian Basketball Prediction</a></strong></p>
+
+<ul>
+  <li>Fit Bayesian Linear Regression models and used posterior predictive distributions to predict future performance based on a subjective loss function. Compared results with results given from a Gaussian Process Regression prediction.</li>
+</ul>
+
+<p><strong>Michigan Basketball Data Madness Challenge 2020</strong></p>
+
+<p><em>To respect the privacy of the Michigan Basketball Team, we are not releasing any analyses or results from this project.</em></p>
+
+<ul>
+  <li>
+    <p>Data Science project analyzing Michigan Basketball game/practice data obtained via wearable sensor. Applied statistical/machine learning methods to the engineered datasets to provide insights and recommendations on how Michigan could best prepare for both conference and non-conference games.</p>
+  </li>
+  <li>
+    <p>This project won the Michigan Basketball Data Madness Challenge 2020 hosted by the Michigan Institute for Data Science (MIDAS)</p>
+  </li>
+</ul>
+:ET

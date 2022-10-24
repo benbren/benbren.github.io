@@ -2,9 +2,9 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Gradient Descent | Ben Brennan</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v3.9.2" />
 <meta property="og:title" content="Gradient Descent" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking." />
@@ -14,8 +14,10 @@
 <meta property="og:site_name" content="Ben Brennan" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-12-31T00:21:32-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Gradient Descent" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/2019/12/31/gradient-descent.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/12/31/gradient-descent.html"},"headline":"Gradient Descent","dateModified":"2019-12-31T00:21:32-05:00","datePublished":"2019-12-31T00:21:32-05:00","description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2019-12-31T00:21:32-05:00","datePublished":"2019-12-31T00:21:32-05:00","description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","headline":"Gradient Descent","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/12/31/gradient-descent.html"},"url":"http://localhost:4000/2019/12/31/gradient-descent.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ben Brennan" /></head>
 <body>
@@ -49,7 +51,7 @@
     <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<p>You’ll remember in OLS, we had something called the <strong>normal equations</strong> - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, <script type="math/tex">X^TX</script> to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.</p>
+<p>You’ll remember in OLS, we had something called the <strong>normal equations</strong> - a nice, succinct, simple formula for calculating out best-fit parameters. You’ll also remember, then, that we had to invert an n by n matrix, \(X^TX\) to get these parameters.. which, if n is large, is computationally very expensive. Today we’ll discuss gradient descent, a less computationally expensive way (for large n) to obtain parameters that minimize our squared error.</p>
 
 <p>It’s important to first note that gradient descent is not limited to least squares. Gradient descent is just an algorithm that can be used to maximize (or minimize) any convex objective function by calculating the gradient at a point, taking a step in that direction, calculation the gradient again, taking a step in that direction… so on and so forth, until the gradient is basically norm 0. It just so happens that the least squares function is convex, so gradient descent converges to the minimum.</p>
 
@@ -57,45 +59,44 @@
 
 <p>Let’s say we have</p>
 
-<script type="math/tex; mode=display">J(\beta_0, \beta_1, \dots, \beta_q): \mathbb{R}^{q+1} \rightarrow \mathbb{R}</script>
+\[J(\beta_0, \beta_1, \dots, \beta_q): \mathbb{R}^{q+1} \rightarrow \mathbb{R}\]
 
 <p>then, the gradient is defined as</p>
 
-<script type="math/tex; mode=display">\nabla J = \frac{\partial J}{\partial \beta_0} \hat{e_1} + \dots + \frac{\partial J}{\partial \beta_q} \hat{e_{q+1}} = \begin{bmatrix} \frac{\partial J}{\partial \beta_0} \\ \vdots \\ \frac{\partial J}{\partial \beta_q} \end{bmatrix}</script>
+\[\nabla J = \frac{\partial J}{\partial \beta_0} \hat{e_1} + \dots + \frac{\partial J}{\partial \beta_q} \hat{e_{q+1}} = \begin{bmatrix} \frac{\partial J}{\partial \beta_0} \\ \vdots \\ \frac{\partial J}{\partial \beta_q} \end{bmatrix}\]
 
-<p>so, essentially, each component of the gradient tells you how fast your function changes with respect to the standard basis in each direction. We can find the directional derivative of any unit vector <script type="math/tex">\vec{v}</script> by <script type="math/tex">\nabla J \cdot \vec{v}</script></p>
+<p>so, essentially, each component of the gradient tells you how fast your function changes with respect to the standard basis in each direction. We can find the directional derivative of any unit vector \(\vec{v}\) by \(\nabla J \cdot \vec{v}\)</p>
 
-<script type="math/tex; mode=display">\nabla J \cdot \vec{v} = \| \nabla J\|\|\vec{v}\|\cos(\theta) =\| \nabla J\|\cos(\theta)</script>
+\[\nabla J \cdot \vec{v} = \| \nabla J\|\|\vec{v}\|\cos(\theta) =\| \nabla J\|\cos(\theta)\]
 
-<p>since <script type="math/tex">\vec{v}</script> is a unit vector, where <script type="math/tex">\theta</script> is the angle between the two vectors. <script type="math/tex">\cos(\theta)</script> is max when $\theta = 0$ - that is, when <script type="math/tex">\vec{v}</script> is in the direction of the gradient! So the steepest ascent is in the direction of the gradient, and the steepest descent is in the opposite direction. We should note that the steepest ascent here is limited to unit vectors, so the steepest ascent is really in the direction of <script type="math/tex">\frac{\nabla J}{\| \nabla J\|}</script>, right? But that’s the same direction as the gradient. And we are going to kinda normalize the gradient in our own way later… you will see.</p>
+<p>since \(\vec{v}\) is a unit vector, where \(\theta\) is the angle between the two vectors. \(\cos(\theta)\) is max when $\theta = 0$ - that is, when \(\vec{v}\) is in the direction of the gradient! So the steepest ascent is in the direction of the gradient, and the steepest descent is in the opposite direction. We should note that the steepest ascent here is limited to unit vectors, so the steepest ascent is really in the direction of \(\frac{\nabla J}{\| \nabla J\|}\), right? But that’s the same direction as the gradient. And we are going to kinda normalize the gradient in our own way later… you will see.</p>
 
-<p>You can think of the gradient as kind of a trade-off. Say the gradient is <script type="math/tex">% <![CDATA[
-<3,1,6> %]]></script>. You’re confined to a circle in terms of where you can move with the gradient (or any vector) starting from a point. That is, there’s a trade-off between directions. You can essentially trade 3 steps in the Y direction for one step in the X direction. So an optimal direction does just that, hence why the optimal direction is the gradient… it takes one 3 steps in the X direction for each step in the Y direction. Any other decision is ‘unfair’, i.e there is a better trade-off that maximizes how steep the gradient could be.</p>
+<p>You can think of the gradient as kind of a trade-off. Say the gradient is \(&lt;3,1,6&gt;\). You’re confined to a circle in terms of where you can move with the gradient (or any vector) starting from a point. That is, there’s a trade-off between directions. You can essentially trade 3 steps in the Y direction for one step in the X direction. So an optimal direction does just that, hence why the optimal direction is the gradient… it takes one 3 steps in the X direction for each step in the Y direction. Any other decision is ‘unfair’, i.e there is a better trade-off that maximizes how steep the gradient could be.</p>
 
-<p>Anyways. The gradient heads in the direction of the steepest ascent, so an algorithm searching out the lowest point of a function should head in the opposite of the gradient. So let’s consider least squares, where our squared error loss term is a function of <script type="math/tex">\mathbf{\beta}</script>, the vector of parameters. That is,</p>
+<p>Anyways. The gradient heads in the direction of the steepest ascent, so an algorithm searching out the lowest point of a function should head in the opposite of the gradient. So let’s consider least squares, where our squared error loss term is a function of \(\mathbf{\beta}\), the vector of parameters. That is,</p>
 
-<script type="math/tex; mode=display">J(\beta_0, \dots, \beta_q) = \frac{1}{2n} \sum_{i=1}^n (\hat{y_i} - y_i)^2  =\frac{1}{2n} \sum_{i=1}^n ( \beta_0 + \beta_1x_{i1} + \dots + \beta_qx_{iq} - y_i )^2</script>
+\[J(\beta_0, \dots, \beta_q) = \frac{1}{2n} \sum_{i=1}^n (\hat{y_i} - y_i)^2  =\frac{1}{2n} \sum_{i=1}^n ( \beta_0 + \beta_1x_{i1} + \dots + \beta_qx_{iq} - y_i )^2\]
 
-<p>where we just normalized the squared error function. Remember, <script type="math/tex">q</script> is the number of features, and <script type="math/tex">q+1</script> is the number of parameters we must estimate. Now, using a bit of calculus, we see that</p>
+<p>where we just normalized the squared error function. Remember, \(q\) is the number of features, and \(q+1\) is the number of parameters we must estimate. Now, using a bit of calculus, we see that</p>
 
-<script type="math/tex; mode=display">\frac{\partial J} {\partial \beta_0} = \frac{1}{n} \sum_{i=1}^n ( \hat{y_i} - y_i)</script>
+\[\frac{\partial J} {\partial \beta_0} = \frac{1}{n} \sum_{i=1}^n ( \hat{y_i} - y_i)\]
 
-<p>and, for <script type="math/tex">j = 1,\dots, q</script>,</p>
+<p>and, for \(j = 1,\dots, q\),</p>
 
-<script type="math/tex; mode=display">\frac{\partial J} {\partial \beta_j} = \frac{1}{n} \sum_{i=1}^n (\hat{y_i} - y_i)x_{ij}</script>
+\[\frac{\partial J} {\partial \beta_j} = \frac{1}{n} \sum_{i=1}^n (\hat{y_i} - y_i)x_{ij}\]
 
 <p>so, a gradient descent algorithm would look something like</p>
 
 <ul>
   <li>is the norm of the gradient greater than our threshold?
     <ul>
-      <li>if yes, move along the gradient for each <script type="math/tex">\beta_J</script> by some <script type="math/tex">\alpha</script> and check again</li>
+      <li>if yes, move along the gradient for each \(\beta_J\) by some \(\alpha\) and check again</li>
       <li>if no, return the current point</li>
     </ul>
   </li>
 </ul>
 
-<p>where <script type="math/tex">\alpha</script> is a stepsize of your choosing. It is important to note that the choice of the step-size is important. A step-size that is too big will cause the algorithm to jump over the minimum value and maybe even diverge, whereas a step-size that is too small will mean the algorithm takes forever to converge to the minimum value. In one dimension, we can see what is happening below.</p>
+<p>where \(\alpha\) is a stepsize of your choosing. It is important to note that the choice of the step-size is important. A step-size that is too big will cause the algorithm to jump over the minimum value and maybe even diverge, whereas a step-size that is too small will mean the algorithm takes forever to converge to the minimum value. In one dimension, we can see what is happening below.</p>
 
 <p><img src="/assets/pics/lambda_tut.jpg" alt="Different stepsizes" /></p>
 
@@ -140,25 +141,25 @@
 
 <p>The first part of this just says ‘okay, did you add an intercept? maybe not.. because you might not think to add the column of ones… we are gonna assume you want to do this so we will do it for you if you did not’. Obviously, this isn’t necessary, and could actually lead to incorrect results if the column  missing isn’t the one of all ones, but it is just to show you that coding is YOUR life, do with it what you will… Anyways. We compute the gradient via the dot product, as you will notice that</p>
 
-<script type="math/tex; mode=display">\sum_{i=1}^n (\hat{y_i} - y_i) = e^T \cdot \mathbf{1_n}</script>
+\[\sum_{i=1}^n (\hat{y_i} - y_i) = e^T \cdot \mathbf{1_n}\]
 
 <p>and</p>
 
-<script type="math/tex; mode=display">\sum_{i=1}^n (\hat{y_i} - y_i)x_{ij} = e^T  \cdot \mathbf{X}[:,j]</script>
+\[\sum_{i=1}^n (\hat{y_i} - y_i)x_{ij} = e^T  \cdot \mathbf{X}[:,j]\]
 
-<p>where <script type="math/tex">e</script> is the n-dimensional vector of errors and $latex X$ is the feature matrix, with a row of ones so that</p>
+<p>where \(e\) is the n-dimensional vector of errors and $latex X$ is the feature matrix, with a row of ones so that</p>
 
-<script type="math/tex; mode=display">\sum_{i=1}^n (\hat{y_1} - y_i) = e^T \cdot \mathbf{X}[:,1] = e^T \cdot \mathbf{1_n}</script>
+\[\sum_{i=1}^n (\hat{y_1} - y_i) = e^T \cdot \mathbf{X}[:,1] = e^T \cdot \mathbf{1_n}\]
 
 <p>We also add an iteration count (just in case our step size is too small or too large or we totally messed up the code) to stop the loop at a certain point. However, this way of thinking about the algorithm is commented out because it is not efficient. Generally, for-loops should (and usually can) be replaced by matrix multiplication, which is in the code above! Let’s go ahead and see if we can see how you would write that ‘in math’…..</p>
 
 <p>You can see in the code that</p>
 
-<script type="math/tex; mode=display">\nabla J = \mathbf{X^T(X\beta - Y)}</script>
+\[\nabla J = \mathbf{X^T(X\beta - Y)}\]
 
 <p>which is actually just exactly what we wrote above. You’re multiplying the errors by the columns of the feature matrix to get the components of the gradient, so why not just transpose your matrix and use matrix multiplication? Thats what this is saying. Thus,</p>
 
-<script type="math/tex; mode=display">\mathbf{\beta^{(new)}} = \mathbf{\beta^{(old)}} - \alpha \frac{1}{n} \mathbf{X^T( X\beta - Y)}</script>
+\[\mathbf{\beta^{(new)}} = \mathbf{\beta^{(old)}} - \alpha \frac{1}{n} \mathbf{X^T( X\beta - Y)}\]
 
 <p>Perfect. So now we know what it is, how to use it.. but when would you use it? Usually only when you have really large values of n (lots of observations, like millions…) . Essentially, the only reason you use it is time. There are other things you can do here, like use only one observation (which is called Least Mean Squares) which saves even more time but isn’t as great, obviously. There are other issues with gradient descent, like correctly choosing the step-size that, in practice, you really have no way around. There are plenty of ways to choose a step-size, but no set-rule - you’ll have to figure it out on your own (and that takes time, too!). What’s best about gradient descent is that you can use it for a lot of things. Least squares is just one. You can use it for plenty of other things… really, you can use it for whatever problem you have where you need to optimize a function. But I hope learning about it via least squares was helpful!</p>
 

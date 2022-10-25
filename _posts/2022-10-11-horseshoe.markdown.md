@@ -17,4 +17,4 @@ $$
 \beta_i \sim \pi \delta_0  + (1 - \pi)f(\beta_i ; \theta)
 $$
 
-on the parameters. With probability $\pi$, the prior is a point-mass centered at zero and with probabilty $1 - \pi$, the prior is a continuous slab distribution (usually centered at zero e.g. ($\f = N(0,\theta)$)). 
+on the parameters. With probability $$\pi$$, the prior is a point-mass centered at zero and with probabilty $$1 - \pi$$, the prior is a continuous slab distribution (usually centered at zero e.g. ($$\f = N(0,\theta)$$)). 

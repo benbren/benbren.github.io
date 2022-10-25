@@ -3,20 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Blog | Ben Brennan</title>
+<title>The Horseshoe Prior | Ben Brennan</title>
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="Blog" />
+<meta property="og:title" content="The Horseshoe Prior" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking." />
 <meta property="og:description" content="Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking." />
-<link rel="canonical" href="http://localhost:4000/blog/" />
-<meta property="og:url" content="http://localhost:4000/blog/" />
+<link rel="canonical" href="http://localhost:4000/2022/10/11/horseshoe.markdown.html" />
+<meta property="og:url" content="http://localhost:4000/2022/10/11/horseshoe.markdown.html" />
 <meta property="og:site_name" content="Ben Brennan" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-11T23:00:00-04:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Blog" />
+<meta property="twitter:title" content="The Horseshoe Prior" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","headline":"Blog","url":"http://localhost:4000/blog/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-11T23:00:00-04:00","datePublished":"2022-10-11T23:00:00-04:00","description":"Hi, I’m Ben. This is my website/blog. Views are my own. Thanks for looking.","headline":"The Horseshoe Prior","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/10/11/horseshoe.markdown.html"},"url":"http://localhost:4000/2022/10/11/horseshoe.markdown.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ben Brennan" /></head>
 <body>
@@ -37,44 +38,29 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><h1 class="page-heading">Blog</h1>
-<h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Oct 11, 2022</span>
-        <h3>
-          <a class="post-link" href="/2022/10/11/horseshoe.markdown.html">
-            The Horseshoe Prior
-          </a>
-        </h3></li><li><span class="post-meta">Jan 10, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/01/10/intro-to-inference.html">
-            Intro to Inference
-          </a>
-        </h3></li><li><span class="post-meta">Dec 31, 2019</span>
-        <h3>
-          <a class="post-link" href="/2019/12/31/gradient-descent.html">
-            Gradient Descent
-          </a>
-        </h3></li><li><span class="post-meta">Oct 21, 2019</span>
-        <h3>
-          <a class="post-link" href="/2019/10/21/introduction-to-survival-analysis.html">
-            Introduction to Survival Analysis
-          </a>
-        </h3></li><li><span class="post-meta">Jul 13, 2018</span>
-        <h3>
-          <a class="post-link" href="/2018/07/13/bayesian-estimation.html">
-            Bayesian Estimation
-          </a>
-        </h3></li><li><span class="post-meta">Apr 11, 2018</span>
-        <h3>
-          <a class="post-link" href="/2018/04/11/least-squares-via-the-svd.html">
-            Least Squares via the SVD
-          </a>
-        </h3></li><li><span class="post-meta">Mar 10, 2018</span>
-        <h3>
-          <a class="post-link" href="/2018/03/10/linear-regression.html">
-            Linear Regression
-          </a>
-        </h3></li></ul></div>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The Horseshoe Prior</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-10-11T23:00:00-04:00" itemprop="datePublished">Oct 11, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Turns out there is a lot of data in the world and, turns out, a lot of that data is not really applicable to your problem! You might just say “hey, let’s throw the kitchen sink at this problem and see what comes out” (for instance, neural networks..), but sometimes you want to know what’s actually on the inside (not taking sides, just saying!).  Essentially, sometimes you want to know “what is causing y?” versus “what is y?”. Enter - shrinkage priors.</p>
+
+<p>In this model, there is two types of parameters that we are interested in: signal and noise. We want to knwo what parameters are having an impact on our outcome and what parameters are not. The gold standard is what is colloquially known as the spike-and-slab prior that places the prior</p>
+
+\[\beta_i \sim \pi \delta_0  + (1 - \pi)f(\beta_i ; \theta)\]
+
+<p>on the parameters. With probability $\pi$, the prior is a point-mass centered at zero and with probabilty $1 - \pi$, the prior is a continuous slab distribution (usually centered at zero e.g. ($\f = N(0,\theta)$)).</p>
+
+  </div><a class="u-url" href="/2022/10/11/horseshoe.markdown.html" hidden></a>
+</article>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>

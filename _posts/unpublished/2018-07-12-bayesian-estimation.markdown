@@ -2,6 +2,7 @@
 layout: post
 title:  "Bayesian Estimation"
 date:   2018-07-12 22:21:32 -0700
+published: false
 ---
 
 <script type="text/javascript" async

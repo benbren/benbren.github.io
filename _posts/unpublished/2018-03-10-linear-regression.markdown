@@ -2,6 +2,7 @@
 layout: post
 title:  "Linear Regression"
 date:   2018-03-10 20:00:00 -0700
+published: false
 ---
 
 <script type="text/javascript" async

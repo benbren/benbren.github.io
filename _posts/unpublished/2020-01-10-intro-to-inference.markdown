@@ -2,6 +2,7 @@
 layout: post
 title:  Intro to Inference 
 date:   2020-01-10 10:00:00 -0700
+published: false
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">

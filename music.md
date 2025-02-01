@@ -3,7 +3,7 @@ layout: page
 title: music
 permalink: /music/
 ---
-i like to make music for fun on the side - these are a few songs I made. not very good at getting the mix right... but getting there 
+i like to make music for fun on the side - these are a few songs I made. 
 
 
 -------------
